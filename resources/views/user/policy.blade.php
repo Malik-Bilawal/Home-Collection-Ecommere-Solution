@@ -269,10 +269,10 @@
                         
                         <div class="mb-8 p-6 rounded-lg" style="background-color: rgba(200, 161, 101, 0.1); border-color: var(--secondary-color); border: 1px solid var(--border-color);">
                             <h3 class="text-xl font-bold mb-4" style="color: var(--accent-color);">Our Warranty Promise</h3>
-                            <p class="mb-4">All INHOUSE TEXTILES products come with a <span class="font-bold">2-year limited warranty</span> against manufacturing defects in materials and workmanship.</p>
+                            <p class="mb-4">All INHOUSE TEXTILES products come with a <span class="font-bold">7 Days warranty</span> against manufacturing defects in materials and workmanship.</p>
                             <div class="flex items-center">
                                 <i class="fas fa-award text-3xl mr-4" style="color: var(--primary-color);"></i>
-                                <p>Premium collections feature an extended <span class="font-bold">5-year warranty</span> for added peace of mind.</p>
+                                <p>Premium collections feature an extended <span class="font-bold">7 Days warranty</span> for added peace of mind.</p>
                             </div>
                         </div>
                         

@@ -38,7 +38,7 @@
 
         <div class="text-right mb-6">
             <p><strong>Subtotal:</strong> Rs {{ number_format($order->subtotal, 0) }}</p>
-            <p><strong>Shipping:</strong> Rs {{ number_format($order->shipping, 0) }}</p>
+            <p><strong>Shipping:</strong> Rs {{ number_format($order->shipping, 250) }}</p>
             <p><strong>Discount:</strong> Rs {{ number_format($order->discount, 0) }}</p>
             <p class="text-xl font-bold mt-2">Total: Rs {{ number_format($order->total, 0) }}</p>
         </div>
