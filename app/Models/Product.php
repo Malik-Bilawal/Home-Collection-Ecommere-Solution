@@ -104,6 +104,8 @@ public function orderItems()
             ->exists();
     }
 
+
+    
     // Check if user has reviewed this product
     public function currentUserHasReviewed()
     {
