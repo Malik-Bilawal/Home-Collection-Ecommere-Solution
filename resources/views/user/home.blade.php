@@ -701,7 +701,7 @@
                              @endif
 
                              <img 
-                                src="{{ $product->image_url ?? 'https://placehold.co/600x800/E2DBD1/680626?text=Image' }}" 
+                                src="{{ $product->images->image_path ?? 'https://placehold.co/600x800/E2DBD1/680626?text=Image' }}" 
                                 alt="{{ $product->name }}" 
                                 class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
                             >

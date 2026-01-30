@@ -32,7 +32,7 @@ class HomeController extends Controller
         $products = Product::with('defaultImage', 'images', 'colors.images', 'sizes')->take(8)->get();
         $sale = Sale::where('is_active', 1)->get();
         
-        $topSellingProduct = Product::where('is_top_selling', 1)->get();
+        $topSellingProduct = Product::with('images') -> where('is_top_selling', 1)->get();
     
         $categories = Category::where('status', 1)->take(3)->get();
         $banners = HeroSlider::where('status', 1)->get();               
