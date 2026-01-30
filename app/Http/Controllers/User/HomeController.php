@@ -34,7 +34,6 @@ class HomeController extends Controller
         
         $topSellingProduct = Product::with('defaultImage') -> where('is_top_selling', 1)->get();
     
-        {{ dd($product->defaultImage) }}
 
         $categories = Category::where('status', 1)->take(3)->get();
         $banners = HeroSlider::where('status', 1)->get();               

@@ -1338,7 +1338,7 @@
             }
 
             // Sale countdown timer
-            @if($activeSale = $sale - > first())
+            @if($activeSale = $sale -> first())
             const endDate = new Date("{{ $activeSale->ends_at->toIso8601String() }}").getTime();
 
             function updateCountdown() {
