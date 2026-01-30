@@ -825,7 +825,6 @@
     }
 </script>
 
-<<<<<<< HEAD
     <div class="container mx-auto px-6 lg:px-12 relative z-10">
 
     <div class="flex flex-col md:flex-row justify-between items-end mb-32 gap-8">
@@ -896,8 +895,6 @@
     </div>
     </div>
     </section>
-    =======
-    >>>>>>> 26d0e50 (hello world)
 
     <section
         class="bg-[#FBF7EE] py-24 overflow-hidden select-none"

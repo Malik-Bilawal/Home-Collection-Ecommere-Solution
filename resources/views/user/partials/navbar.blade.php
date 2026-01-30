@@ -397,10 +397,10 @@
                 @php
                     $navLinks = [
                         ['route' => 'home', 'label' => 'Home', 'icon' => 'fa-home'],
-                        ['route' => 'product', 'label' => 'Boutique', 'icon' => 'fa-shopping-bag'],
+                        ['route' => 'product', 'label' => 'Products', 'icon' => 'fa-shopping-bag'],
                         ['route' => 'category', 'label' => 'Collections', 'icon' => 'fa-gem'],
-                        ['route' => 'about', 'label' => 'Heritage', 'icon' => 'fa-leaf'],
-                        ['route' => 'contact', 'label' => 'Concierge', 'icon' => 'fa-envelope'],
+                        ['route' => 'about', 'label' => 'About', 'icon' => 'fa-leaf'],
+                        ['route' => 'contact', 'label' => 'Contact', 'icon' => 'fa-envelope'],
                     ];
                 @endphp
                 @foreach($navLinks as $link)

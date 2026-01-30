@@ -7,28 +7,7 @@
 
     <div class="container mx-auto px-6 relative z-10">
 
-        <div class="flex flex-col lg:flex-row justify-between items-start gap-16 mb-24 pb-16 border-b border-white/5">
-            <div class="max-w-xl">
-                <span class="text-[var(--secondary-color)] uppercase tracking-[0.4em] text-xs font-bold mb-6 block">Stay Connected</span>
-                <h3 class="text-4xl md:text-5xl font-serif italic leading-tight mb-8">
-                    Join the inner circle for <br>
-                    <span class="not-italic font-light opacity-90">curated inspirations.</span>
-                </h3>
-            </div>
-
-            <div class="w-full lg:w-1/3">
-                <form class="relative group">
-                    <input type="email" placeholder="Your Distinguished Email"
-                        class="w-full bg-transparent border-b border-white/20 py-4 text-sm uppercase tracking-widest text-white placeholder-white/30 focus:outline-none focus:border-[var(--secondary-color)] transition-all duration-500">
-                    <button type="submit"
-                        class="absolute right-0 bottom-4 text-[var(--secondary-color)] uppercase text-[10px] tracking-[0.2em] font-bold hover:text-white transition-colors">
-                        Subscribe
-                    </button>
-                </form>
-                <p class="mt-4 text-[10px] text-white/30 uppercase tracking-widest">Privacy is our ultimate luxury.</p>
-            </div>
-        </div>
-
+     
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-20">
 
             <div class="col-span-2 lg:col-span-2 space-y-8">
