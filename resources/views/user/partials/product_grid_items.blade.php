@@ -10,11 +10,9 @@
 {{-- START PRODUCT LOOP --}}
 @foreach($products as $product)
     @php
-        // 2. PRODUCT SPECIFIC LOGIC (Must be inside the loop)
         
-        // A. Image Logic
         $mainImage = $product->images->firstWhere('is_default', true) ?? $product->images->first();
-        $mainImagePath = $mainImage ? asset('storage/' . $mainImage->image_path) : asset('images/default-product.jpg');
+        $mainImagePath = $mainImage ? asset('storage/app/public/' . $mainImage->image_path) : asset('images/default-product.jpg');
         
         // B. Rating Logic
         $rating = $product->reviews->avg('rating') ?? 0;
@@ -24,16 +22,13 @@
         $discountPercent = 0;
         $saleBadgeText = null;
 
-        // Priority 1: Individual Product Sale Price
         if ($product->sale_price && $product->price > $product->sale_price) {
             $discountPercent = round((($product->price - $product->sale_price) / $product->price) * 100);
             $saleBadgeText = "-{$discountPercent}%";
         } 
-        // Priority 2: Global Sale Event (Only if individual sale isn't already applied)
         elseif ($activeSale && $activeSale->discount_percent > 0) {
             $discountPercent = $activeSale->discount_percent;
             $saleBadgeText = $activeSale->name ?? "-{$discountPercent}%";
-            // Note: You might want to visually apply this discount to the price here if not done in backend
         }
     @endphp
 

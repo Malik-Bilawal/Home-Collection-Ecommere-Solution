@@ -20,7 +20,7 @@
     
     <!-- Product Image -->
     <div class="relative overflow-hidden h-3/4">
-        <img src="{{ asset('storage/' . $colorImagePath) }}" 
+        <img src="{{ asset('storage/app/public/' . $colorImagePath) }}" 
              alt="{{ $product->name }}"
              class="w-full h-full object-cover product-image transition-transform duration-500">
     </div>
