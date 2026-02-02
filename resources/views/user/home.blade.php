@@ -952,8 +952,10 @@ OUR TOP PICKS
                             @endif
 
                             <div class="relative aspect-[4/5] overflow-hidden bg-[#FBF7EE]">
-                                <img
-                                    src="{{ $product->image_url ?? 'https://placehold.co/800x1000/F4F0EB/680626?text=' . urlencode($product->name) }}"
+                            <img
+                                    src="{{ $product->defaultImage
+        ? asset('storage/' . $product->defaultImage->image_path)
+        : 'https://placehold.co/600x800/E2DBD1/680626?text=Image' }}"
                                     alt="{{ $product->name }}"
                                     class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-[2s] ease-out group-hover:scale-110">
 
