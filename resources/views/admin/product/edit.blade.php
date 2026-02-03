@@ -178,6 +178,13 @@
                         </div>
 
                         <div>
+                            <label for="cut_price" class="block text-sm font-medium text-gray-700 mb-1">Cut Price ($)</label>
+                            <input type="number" id="cut_price" name="cut_price" step="0.01" min="0" 
+                                class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary"
+                                value="{{ old('price', $product->cut_price) }}">
+                        </div>
+
+                        <div>
                             <label for="rating" class="block text-sm font-medium text-gray-700 mb-1">Rating</label>
                             <input type="number" id="rating" name="rating" step="0.01" max="5" required
                                 class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary"

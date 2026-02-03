@@ -159,6 +159,12 @@
                                 class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
                         </div>
 
+                        
+                        <div>
+                            <label for="cut_price" class="block text-sm font-medium text-gray-700 mb-1">Cut Price</label>
+                            <input type="number" id="cut_price" name="cut_price"  
+                                class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                        </div>
 
                         <div>
                             <label for="rating" class="block text-sm font-medium text-gray-700 mb-1">Rating</label>

@@ -38,6 +38,7 @@ class ProductController extends Controller
                 'description' => $request->description,
                 'sku' => $request->sku,
                 'price' => $request->price,
+                'cut_price'         => $request->cut_price,
                 'rating' => $request->rating,
                 'category_id' => $request->category_id,
                 'is_active' => $request->status === 'active' ? 1 : 0,
@@ -179,6 +180,8 @@ class ProductController extends Controller
                     'name'        => $request->product_name,
                     'description' => $request->description,
                     'sku'         => $request->sku,
+                    'cut_price'         => $request->cut_price,
+
                     'price'       => $request->price,
                     'rating'      => $request->rating,
                     'category_id' => $request->category_id,
