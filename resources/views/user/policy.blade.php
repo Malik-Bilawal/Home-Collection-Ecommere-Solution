@@ -411,7 +411,7 @@
                         <ul class="space-y-2 mb-6">
                             <li class="flex items-start">
                                 <i class="fas fa-exchange-alt mt-1 mr-2" style="color: var(--secondary-color);"></i>
-                                <span>Items must be returned within 30 days of delivery</span>
+                                <span>Items must be returned within 7 days of delivery</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fas fa-exchange-alt mt-1 mr-2" style="color: var(--secondary-color);"></i>

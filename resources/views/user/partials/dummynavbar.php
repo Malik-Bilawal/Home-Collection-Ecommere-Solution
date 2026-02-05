@@ -358,14 +358,14 @@
 
 <div class="w-full bg-[var(--primary-color)] text-[var(--text-on-primary)] text-xs uppercase tracking-widest overflow-hidden select-none z-50 fixed top-0 left-0">
     <div class="marquee flex whitespace-nowrap gap-12 px-4 py-1 animate-marquee">
-        <span>World Wide Shipping</span>
+        <span>National Wide Shipping</span>
         <span class="text-[var(--secondary-color)]">•</span>
         <span>Premium Quality</span>
         <span class="text-[var(--secondary-color)]">•</span>
         <span>30-Day Returns</span>
 
         <!-- Duplicate for smooth scroll -->
-        <span>World Wide Shipping</span>
+        <span>National Wide Shipping</span>
         <span class="text-[var(--secondary-color)]">•</span>
         <span>Premium Quality</span>
         <span class="text-[var(--secondary-color)]">•</span>
