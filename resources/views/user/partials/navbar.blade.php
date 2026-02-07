@@ -384,14 +384,13 @@
 
         <div class="container mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between h-full">
             
-            <a href="{{ route('home') }}" class="flex items-center group shrink-0">
-                <div class="relative flex items-center justify-center w-9 h-9 md:w-12 md:h-12 rounded-full bg-[#680626] text-white shadow-2xl transition-transform duration-500 group-hover:rotate-[360deg]">
-                    <i class="fas fa-crown text-xs md:text-lg"></i>
-                </div>
-                <span class="ml-3 font-serif text-xl md:text-2xl tracking-tighter text-[#680626] hidden sm:block">
-                    MAISON <span class="italic font-light text-[#B89A6B]">ELITE</span>
-                </span>
-            </a>
+        <a href="{{ route('home') }}"  class="flex items-center mb-16 group shrink-0 relative">
+    <img src="{{ asset('logo.png') }}" 
+         alt="Maison Elite Logo" 
+         class="absolute top-[-15px] left-3 h-20 md:h-28 w-auto object-contain drop-shadow-xl max-w-none transition-transform duration-300 group-hover:scale-110">
+    
+    <div class="w-20 md:w-28 h-1"></div>
+</a>
 
             <div class="hidden lg:flex items-center bg-white/40 px-2 py-1.5 rounded-full border border-[#E2DBD1] shadow-inner">
                 @php
