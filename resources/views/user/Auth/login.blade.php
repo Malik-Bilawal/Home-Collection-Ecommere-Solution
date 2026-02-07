@@ -66,7 +66,7 @@
 
             <div class="flex items-center">
                 <input type="checkbox" id="remember" name="remember" class="h-4 w-4 rounded border-gray-300 text-theme-primary focus:ring-theme-accent">
-                <label for="remember" class="ml-2 block text-sm text-gray-600">Remember me for 30 days</label>
+                <label for="remember" class="ml-2 block text-sm text-gray-600">Remember me for 7 days</label>
             </div>
 
             <button type="submit" 
