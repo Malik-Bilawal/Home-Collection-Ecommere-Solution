@@ -12,7 +12,7 @@
     @php
         
         $mainImage = $product->images->firstWhere('is_default', true) ?? $product->images->first();
-        $mainImagePath = $mainImage ? asset('storage/' . $mainImage->image_path) : asset('images/default-product.jpg');
+        $mainImagePath = $mainImage ? asset('storage/app/public/' . $mainImage->image_path) : asset('images/default-product.jpg');
         
         // B. Rating Logic
         $rating = $product->reviews->avg('rating') ?? 0;

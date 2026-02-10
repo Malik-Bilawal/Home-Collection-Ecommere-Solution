@@ -709,7 +709,7 @@ OUR TOP PICKS
 
                                 <img
                                     src="{{ $product->defaultImage
-        ? asset('storage/' . $product->defaultImage->image_path)
+        ? asset('storage/app/public/' . $product->defaultImage->image_path)
         : 'https://placehold.co/600x800/E2DBD1/680626?text=Image' }}"
                                     alt="{{ $product->name }}"
                                     class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110">
@@ -954,7 +954,7 @@ OUR TOP PICKS
                             <div class="relative aspect-[4/5] overflow-hidden bg-[#FBF7EE]">
                             <img
                                     src="{{ $product->defaultImage
-        ? asset('storage/' . $product->defaultImage->image_path)
+        ? asset('storage/app/public/' . $product->defaultImage->image_path)
         : 'https://placehold.co/600x800/E2DBD1/680626?text=Image' }}"
                                     alt="{{ $product->name }}"
                                     class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-[2s] ease-out group-hover:scale-110">

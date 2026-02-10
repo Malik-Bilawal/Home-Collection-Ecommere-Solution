@@ -2,7 +2,7 @@
 
 @php
     $mainImage = $product->images->firstWhere('is_default', true) ?? $product->images->first();
-    $imagePath = $mainImage ? asset('storage/' . $mainImage->image_path) : asset('images/default-product.jpg');
+    $imagePath = $mainImage ? asset('storage/app/public/' . $mainImage->image_path) : asset('images/default-product.jpg');
     $currentPrice = $product->sale_price ?? $product->price;
 @endphp
 

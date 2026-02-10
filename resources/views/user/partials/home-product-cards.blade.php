@@ -4,7 +4,7 @@
                     @if($product->defaultImage)
                     <img
                                     src="{{ $product->defaultImage
-        ? asset('storage/' . $product->defaultImage->image_path)
+        ? asset('storage/app/public/' . $product->defaultImage->image_path)
         : 'https://placehold.co/600x800/E2DBD1/680626?text=Image' }}"
                                     alt="{{ $product->name }}"
                             class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
