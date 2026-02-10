@@ -368,13 +368,13 @@
             <span class="text-[#B89A6B]">•</span>
             <span>Premium Quality</span>
             <span class="text-[#B89A6B]">•</span>
-            <span>30-Day Returns</span>
+            <span>7-Day Returns</span>
             
             <span>National Wide Shipping</span>
             <span class="text-[#B89A6B]">•</span>
             <span>Premium Quality</span>
             <span class="text-[#B89A6B]">•</span>
-            <span>30-Day Returns</span>
+            <span>7-Day Returns</span>
         </div>
     </div>
 
@@ -498,7 +498,7 @@
                             
                             <div class="flex-none flex items-center justify-between px-6 py-5 border-b border-[#E2DBD1] bg-white">
                                 <span class="font-serif text-xl tracking-tighter text-[#680626]">
-                                    MAISON <span class="italic font-light text-[#B89A6B]">ELITE</span>
+                                    Inhouse <span class="italic font-light text-[#B89A6B]">Textiles</span>
                                 </span>
                                 <button @click="mobileMenuOpen = false" class="rounded-full p-2 text-gray-500 hover:text-[#680626] hover:bg-gray-100 transition-all">
                                     <i class="fas fa-times text-xl"></i>
