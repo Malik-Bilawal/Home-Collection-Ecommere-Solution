@@ -14,7 +14,7 @@
 
     <style>
         :root {
-        
+
             --card-background: #FFFFFF;
         }
 
@@ -352,176 +352,177 @@
 </head>
 
 <body class="font-sans bg-background">
-<style>
-    html, body {
-        overflow-x: hidden;
-        width: 100%;
-        position: relative;
-    }
-</style>
+    <style>
+        html,
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+    </style>
 
-<div x-data="{ mobileMenuOpen: false, searchOpen: false }">
+    <div x-data="{ mobileMenuOpen: false, searchOpen: false }">
 
-    <div class="fixed top-0 left-0 right-0 z-[60] h-8 w-full bg-[#680626] text-white text-[10px] uppercase tracking-widest overflow-hidden select-none flex items-center">
-        <div class="marquee flex whitespace-nowrap gap-12 px-4 w-full animate-marquee">
-            <span>National Wide Shipping</span>
-            <span class="text-[#B89A6B]">•</span>
-            <span>Premium Quality</span>
-            <span class="text-[#B89A6B]">•</span>
-            <span>7-Day Returns</span>
-            
-            <span>National Wide Shipping</span>
-            <span class="text-[#B89A6B]">•</span>
-            <span>Premium Quality</span>
-            <span class="text-[#B89A6B]">•</span>
-            <span>7-Day Returns</span>
+        <div class="fixed top-0 left-0 right-0 z-[60] h-8 w-full bg-[#680626] text-white text-[10px] uppercase tracking-widest overflow-hidden select-none flex items-center">
+            <div class="marquee flex whitespace-nowrap gap-12 px-4 w-full animate-marquee">
+                <span>National Wide Shipping</span>
+                <span class="text-[#B89A6B]">•</span>
+                <span>Premium Quality</span>
+                <span class="text-[#B89A6B]">•</span>
+                <span>7-Day Returns</span>
+
+                <span>National Wide Shipping</span>
+                <span class="text-[#B89A6B]">•</span>
+                <span>Premium Quality</span>
+                <span class="text-[#B89A6B]">•</span>
+                <span>7-Day Returns</span>
+            </div>
         </div>
-    </div>
 
-    <nav class="fixed top-8 left-0 right-0 z-50 bg-[#FBF7EE]/90 backdrop-blur-xl border-b border-[#E2DBD1] transition-all duration-500 h-[70px] md:h-[80px]">
-        
-        <div class="h-1 w-full bg-gradient-to-r from-[#680626] via-[#B89A6B] to-[#680626]"></div>
+        <nav class="fixed top-8 left-0 right-0 z-50 bg-[#FBF7EE]/90 backdrop-blur-xl border-b border-[#E2DBD1] transition-all duration-500 h-[70px] md:h-[80px]">
 
-        <div class="container mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between h-full">
-            
-        <a href="{{ route('home') }}"  class="flex items-center mb-16 group shrink-0 relative">
-    <img src="{{ asset('logo.png') }}" 
-         alt="Maison Elite Logo" 
-         class="absolute top-[-15px] left-3 h-20 md:h-28 w-auto object-contain drop-shadow-xl max-w-none transition-transform duration-300 group-hover:scale-110">
-    
-    <div class="w-20 md:w-28 h-1"></div>
+            <div class="h-1 w-full bg-gradient-to-r from-[#680626] via-[#B89A6B] to-[#680626]"></div>
+
+            <div class="container mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between h-full">
+            <a href="{{ route('home') }}" class="relative flex items-center h-full group">
+    <img src="{{ asset('logo.png') }}"
+         alt="Maison Elite Logo"
+         class="absolute left-0 top-1/2 -translate-y-1/2 h-[90px] md:h-[130px] w-auto max-w-none object-contain drop-shadow-2xl z-[60] transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1/2">
+
+    <div class="w-24 md:w-40"></div>
 </a>
 
-            <div class="hidden lg:flex items-center bg-white/40 px-2 py-1.5 rounded-full border border-[#E2DBD1] shadow-inner">
-                @php
+                <div class="hidden lg:flex items-center bg-white/40 px-2 py-1.5 rounded-full border border-[#E2DBD1] shadow-inner">
+                    @php
                     $navLinks = [
-                        ['route' => 'home', 'label' => 'Home', 'icon' => 'fa-home'],
-                        ['route' => 'product', 'label' => 'Products', 'icon' => 'fa-shopping-bag'],
-                        ['route' => 'category', 'label' => 'Collections', 'icon' => 'fa-gem'],
-                        ['route' => 'about', 'label' => 'About', 'icon' => 'fa-leaf'],
-                        ['route' => 'contact', 'label' => 'Contact', 'icon' => 'fa-envelope'],
+                    ['route' => 'home', 'label' => 'Home', 'icon' => 'fa-home'],
+                    ['route' => 'product', 'label' => 'Products', 'icon' => 'fa-shopping-bag'],
+                    ['route' => 'category', 'label' => 'Collections', 'icon' => 'fa-gem'],
+                    ['route' => 'about', 'label' => 'About', 'icon' => 'fa-leaf'],
+                    ['route' => 'contact', 'label' => 'Contact', 'icon' => 'fa-envelope'],
                     ];
-                @endphp
-                @foreach($navLinks as $link)
+                    @endphp
+                    @foreach($navLinks as $link)
                     <a href="{{ route($link['route']) }}"
                         class="px-5 py-2.5 text-[11px] uppercase tracking-[0.2em] font-bold text-gray-600 rounded-full hover:bg-[#680626] hover:text-white transition-all duration-500 flex items-center">
                         {{ $link['label'] }}
                     </a>
-                @endforeach
-            </div>
-
-            <div class="flex items-center gap-1.5 sm:gap-4">
-                
-                <button id="search-button" class="group flex items-center justify-center w-9 h-9 rounded-full bg-white border border-[#E5D5C3] hover:border-[#6B4226] transition-colors duration-300">
-                    <i class="fas fa-search text-[#6B4226] text-xs group-hover:scale-110 transition-transform"></i>
-                </button>
-
-                <a href="{{ route('cart.index') }}" class="relative w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#E2DBD1] text-[#680626] hover:bg-[#680626] hover:text-white transition-all duration-500 shadow-sm">
-                    <i class="fas fa-shopping-cart text-xs"></i>
-                    @php
-                        $cartCount = 0;
-                        if (auth()->check()) {
-                            $cartCount = \App\Models\Cart::where('user_id', auth()->id())->sum('quantity');
-                        } else {
-                            $guestToken = session()->get('guest_token');
-                            $cartCount = $guestToken ? \App\Models\Cart::where('guest_token', $guestToken)->sum('quantity') : collect(session('cart', []))->sum('quantity');
-                        }
-                    @endphp
-                    @if($cartCount > 0)
-                    <span class="absolute -top-1 -right-1 h-4 w-4 flex items-center justify-center bg-[#B89A6B] text-white text-[8px] font-bold rounded-full border-2 border-[#FBF7EE]">
-                        {{ $cartCount > 99 ? '99+' : $cartCount }}
-                    </span>
-                    @endif
-                </a>
-
-                <div class="relative inline-block text-left">
-                    <button onclick="toggleUserMenu()" id="user-menu-btn" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#E2DBD1] text-[#680626] hover:shadow-lg transition-all duration-300">
-                        <i class="fas fa-user text-xs"></i> 
-                    </button>
-                    <div id="user-menu-dropdown" class="hidden absolute right-0 mt-4 w-72 bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-[#E2DBD1] overflow-hidden z-[999]">
-                        @auth
-                        <div class="p-6 text-center border-b border-[#FBF7EE] bg-[#FBF7EE]/50">
-                            <p class="font-serif text-lg text-[#1A1A1A]">{{ auth()->user()->name }}</p>
-                            <p class="text-[10px] uppercase tracking-widest text-[#B89A6B]">{{ auth()->user()->email }}</p>
-                        </div>
-                        <div class="p-2">
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="w-full flex items-center px-4 py-3 text-[11px] uppercase tracking-widest font-bold text-gray-500 hover:bg-red-50 hover:text-red-600 transition-all rounded-xl">Logout</button>
-                            </form>
-                        </div>
-                        @else
-                        <div class="p-6">
-                            <div class="space-y-3">
-                                <a href="{{ route('user.login') }}" class="block w-full text-center bg-[#680626] text-white py-3 rounded-xl text-xs font-bold uppercase tracking-widest">Login</a>
-                                <a href="{{ route('user.register') }}" class="block w-full text-center border border-[#680626] text-[#680626] py-3 rounded-xl text-xs font-bold uppercase tracking-widest">Join Now</a>
-                            </div>
-                        </div>
-                        @endauth
-                    </div>
+                    @endforeach
                 </div>
 
-                <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden w-9 h-9 flex items-center justify-center rounded-full bg-[#680626] text-white transition-transform active:scale-95">
-                    <i class="fas fa-bars text-sm"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
+                <div class="flex items-center gap-1.5 sm:gap-4">
 
-    <div x-show="mobileMenuOpen"
-         style="display: none;"
-         class="fixed inset-0 z-[9999] lg:hidden"
-         role="dialog" aria-modal="true">
-        
-        <div x-show="mobileMenuOpen"
-             x-transition:enter="ease-in-out duration-500"
-             x-transition:enter-start="opacity-0"
-             x-transition:enter-end="opacity-100"
-             x-transition:leave="ease-in-out duration-500"
-             x-transition:leave-start="opacity-100"
-             x-transition:leave-end="opacity-0"
-             class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
-             @click="mobileMenuOpen = false"></div>
+                    <button id="search-button" class="group flex items-center justify-center w-9 h-9 rounded-full bg-white border border-[#E5D5C3] hover:border-[#6B4226] transition-colors duration-300">
+                        <i class="fas fa-search text-[#6B4226] text-xs group-hover:scale-110 transition-transform"></i>
+                    </button>
 
-        <div class="fixed inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute inset-0 overflow-hidden">
-                <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-                    
-                    <div x-show="mobileMenuOpen"
-                         x-transition:enter="transform transition ease-in-out duration-500"
-                         x-transition:enter-start="translate-x-full"
-                         x-transition:enter-end="translate-x-0"
-                         x-transition:leave="transform transition ease-in-out duration-500"
-                         x-transition:leave-start="translate-x-0"
-                         x-transition:leave-end="translate-x-full"
-                         class="pointer-events-auto relative w-screen max-w-sm h-full"> <div class="flex h-full flex-col bg-[#FBF7EE] shadow-2xl border-l border-[#E2DBD1]">
-                            
-                            <div class="flex-none flex items-center justify-between px-6 py-5 border-b border-[#E2DBD1] bg-white">
-                                <span class="font-serif text-xl tracking-tighter text-[#680626]">
-                                    Inhouse <span class="italic font-light text-[#B89A6B]">Textiles</span>
-                                </span>
-                                <button @click="mobileMenuOpen = false" class="rounded-full p-2 text-gray-500 hover:text-[#680626] hover:bg-gray-100 transition-all">
-                                    <i class="fas fa-times text-xl"></i>
-                                </button>
+                    <a href="{{ route('cart.index') }}" class="relative w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#E2DBD1] text-[#680626] hover:bg-[#680626] hover:text-white transition-all duration-500 shadow-sm">
+                        <i class="fas fa-shopping-cart text-xs"></i>
+                        @php
+                        $cartCount = 0;
+                        if (auth()->check()) {
+                        $cartCount = \App\Models\Cart::where('user_id', auth()->id())->sum('quantity');
+                        } else {
+                        $guestToken = session()->get('guest_token');
+                        $cartCount = $guestToken ? \App\Models\Cart::where('guest_token', $guestToken)->sum('quantity') : collect(session('cart', []))->sum('quantity');
+                        }
+                        @endphp
+                        @if($cartCount > 0)
+                        <span class="absolute -top-1 -right-1 h-4 w-4 flex items-center justify-center bg-[#B89A6B] text-white text-[8px] font-bold rounded-full border-2 border-[#FBF7EE]">
+                            {{ $cartCount > 99 ? '99+' : $cartCount }}
+                        </span>
+                        @endif
+                    </a>
+
+                    <div class="relative inline-block text-left">
+                        <button onclick="toggleUserMenu()" id="user-menu-btn" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#E2DBD1] text-[#680626] hover:shadow-lg transition-all duration-300">
+                            <i class="fas fa-user text-xs"></i>
+                        </button>
+                        <div id="user-menu-dropdown" class="hidden absolute right-0 mt-4 w-72 bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-[#E2DBD1] overflow-hidden z-[999]">
+                            @auth
+                            <div class="p-6 text-center border-b border-[#FBF7EE] bg-[#FBF7EE]/50">
+                                <p class="font-serif text-lg text-[#1A1A1A]">{{ auth()->user()->name }}</p>
+                                <p class="text-[10px] uppercase tracking-widest text-[#B89A6B]">{{ auth()->user()->email }}</p>
                             </div>
-
-                            <div class="flex-1 overflow-y-auto px-6 py-6">
-                                <p class="text-[10px] uppercase tracking-[0.4em] text-[#B89A6B] font-bold mb-6 pl-1">Navigation</p>
+                            <div class="p-2">
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="w-full flex items-center px-4 py-3 text-[11px] uppercase tracking-widest font-bold text-gray-500 hover:bg-red-50 hover:text-red-600 transition-all rounded-xl">Logout</button>
+                                </form>
+                            </div>
+                            @else
+                            <div class="p-6">
                                 <div class="space-y-3">
-                                    @foreach($navLinks as $link)
-                                        <a href="{{ route($link['route']) }}" 
-                                           class="group flex items-center justify-between p-4 rounded-xl bg-white border border-transparent hover:border-[#E2DBD1] hover:shadow-md transition-all duration-300">
+                                    <a href="{{ route('user.login') }}" class="block w-full text-center bg-[#680626] text-white py-3 rounded-xl text-xs font-bold uppercase tracking-widest">Login</a>
+                                    <a href="{{ route('user.register') }}" class="block w-full text-center border border-[#680626] text-[#680626] py-3 rounded-xl text-xs font-bold uppercase tracking-widest">Join Now</a>
+                                </div>
+                            </div>
+                            @endauth
+                        </div>
+                    </div>
+
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden w-9 h-9 flex items-center justify-center rounded-full bg-[#680626] text-white transition-transform active:scale-95">
+                        <i class="fas fa-bars text-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div x-show="mobileMenuOpen"
+            style="display: none;"
+            class="fixed inset-0 z-[9999] lg:hidden"
+            role="dialog" aria-modal="true">
+
+            <div x-show="mobileMenuOpen"
+                x-transition:enter="ease-in-out duration-500"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="ease-in-out duration-500"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+                @click="mobileMenuOpen = false"></div>
+
+            <div class="fixed inset-0 overflow-hidden pointer-events-none">
+                <div class="absolute inset-0 overflow-hidden">
+                    <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+
+                        <div x-show="mobileMenuOpen"
+                            x-transition:enter="transform transition ease-in-out duration-500"
+                            x-transition:enter-start="translate-x-full"
+                            x-transition:enter-end="translate-x-0"
+                            x-transition:leave="transform transition ease-in-out duration-500"
+                            x-transition:leave-start="translate-x-0"
+                            x-transition:leave-end="translate-x-full"
+                            class="pointer-events-auto relative w-screen max-w-sm h-full">
+                            <div class="flex h-full flex-col bg-[#FBF7EE] shadow-2xl border-l border-[#E2DBD1]">
+
+                                <div class="flex-none flex items-center justify-between px-6 py-5 border-b border-[#E2DBD1] bg-white">
+                                    <span class="font-serif text-xl tracking-tighter text-[#680626]">
+                                        Inhouse <span class="italic font-light text-[#B89A6B]">Textiles</span>
+                                    </span>
+                                    <button @click="mobileMenuOpen = false" class="rounded-full p-2 text-gray-500 hover:text-[#680626] hover:bg-gray-100 transition-all">
+                                        <i class="fas fa-times text-xl"></i>
+                                    </button>
+                                </div>
+
+                                <div class="flex-1 overflow-y-auto px-6 py-6">
+                                    <p class="text-[10px] uppercase tracking-[0.4em] text-[#B89A6B] font-bold mb-6 pl-1">Navigation</p>
+                                    <div class="space-y-3">
+                                        @foreach($navLinks as $link)
+                                        <a href="{{ route($link['route']) }}"
+                                            class="group flex items-center justify-between p-4 rounded-xl bg-white border border-transparent hover:border-[#E2DBD1] hover:shadow-md transition-all duration-300">
                                             <span class="text-lg font-serif text-[#680626] group-hover:translate-x-2 transition-transform duration-300">
                                                 {{ $link['label'] }}
                                             </span>
                                             <i class="fas {{ $link['icon'] }} text-[#E5D5C3] group-hover:text-[#B89A6B] transition-colors"></i>
                                         </a>
-                                    @endforeach
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="flex-none border-t border-[#E2DBD1] bg-white p-6 pb-8">
-                                @guest
+                                <div class="flex-none border-t border-[#E2DBD1] bg-white p-6 pb-8">
+                                    @guest
                                     <div class="grid grid-cols-2 gap-3">
                                         <a href="{{ route('user.login') }}" class="flex items-center justify-center bg-[#680626] text-white py-3.5 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-[#52041E] transition-all">
                                             Login
@@ -530,7 +531,7 @@
                                             Join
                                         </a>
                                     </div>
-                                @else
+                                    @else
                                     <a href="{{ route('home') }}" class="flex items-center p-3 rounded-xl bg-[#FBF7EE]">
                                         <div class="w-10 h-10 rounded-full bg-[#680626] text-white flex items-center justify-center font-serif mr-3">
                                             {{ substr(auth()->user()->name, 0, 1) }}
@@ -540,32 +541,32 @@
                                             <p class="text-[10px] text-gray-500">View Account</p>
                                         </div>
                                     </a>
-                                @endguest
-                            </div>
+                                    @endguest
+                                </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    function toggleUserMenu() {
-        const menu = document.getElementById('user-menu-dropdown');
-        menu.classList.toggle('hidden');
-    }
-
-    document.addEventListener('click', function(event) {
-        const menu = document.getElementById('user-menu-dropdown');
-        const btn = document.getElementById('user-menu-btn');
-        if (menu && btn && !menu.contains(event.target) && !btn.contains(event.target)) {
-            menu.classList.add('hidden');
+    <script>
+        function toggleUserMenu() {
+            const menu = document.getElementById('user-menu-dropdown');
+            menu.classList.toggle('hidden');
         }
-    });
-</script>
-<div class="h-20"></div>
+
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('user-menu-dropdown');
+            const btn = document.getElementById('user-menu-btn');
+            if (menu && btn && !menu.contains(event.target) && !btn.contains(event.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+    </script>
+    <div class="h-20"></div>
     <!-- Search Drawer -->
     <div id="search-drawer"
         class="fixed inset-y-0 right-0 w-full md:w-3/4 lg:w-1/2 xl:w-2/5 bg-card shadow-2xl transform translate-x-full z-[60] transition-transform duration-500 ease-out">
@@ -694,9 +695,9 @@
 
     @php
     $categories = \App\Models\Category::where('status', 1)
-        ->limit(6)
-        ->get();
-@endphp
+    ->limit(6)
+    ->get();
+    @endphp
     <!-- Overlay -->
     <div id="search-overlay"
         class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[55] opacity-0 pointer-events-none transition-opacity duration-300 drawer-overlay"></div>
@@ -854,25 +855,28 @@
             }
 
             function loadCategories() {
-    const categories = [
-        @foreach($categories as $category)
-        {
-            id: {{ $category->id }},
-            name: @json($category->name),
-            image: @json(
-                $category->image
-                    ? asset('storage/app/public/'.$category->image)
-                    : asset('images/category-placeholder.jpg')
-            ),
-        },
-        @endforeach
-    ];
+                const categories = [
+                    @foreach($categories as $category) {
+                        id: {
+                            {
+                                $category -> id
+                            }
+                        },
+                        name: @json($category -> name),
+                        image: @json(
+                            $category -> image ?
+                            asset('storage/app/public/'.$category -> image) :
+                            asset('images/category-placeholder.jpg')
+                        ),
+                    },
+                    @endforeach
+                ];
 
-    const container = $('#categories-grid');
-    let html = '';
+                const container = $('#categories-grid');
+                let html = '';
 
-    categories.forEach(category => {
-        html += `
+                categories.forEach(category => {
+                    html += `
             <div class="category-card cursor-pointer group" data-id="${category.id}">
                 <div class="relative overflow-hidden rounded-xl shadow-sm
                             transition-all duration-300 transform group-hover:scale-105">
@@ -889,14 +893,14 @@
                 </div>
             </div>
         `;
-    });
+                });
 
-    container.html(html);
-}
+                container.html(html);
+            }
 
-$(document).ready(function () {
-    loadCategories();
-});
+            $(document).ready(function() {
+                loadCategories();
+            });
 
             function loadSuggestions() {
                 const suggestions = [

@@ -68,10 +68,10 @@
         </div>
 
         <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p class="text-white/20 text-[10px] uppercase tracking-[0.2em]">© {{ date('Y') }} Inhouse Textiles. Pakistani Heritage.</p>
+            <p class="text-white/20 text-[10px] uppercase tracking-[0.2em]">© {{ date('Y') }} Developed By The Helpex Pvt Ltd.</p>
 
             <div class="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none opacity-[0.02]">
-                <h2 class="text-[18vw] font-serif leading-none translate-y-1/2">SIGNATURE</h2>
+                <h2 class="text-[18vw] font-serif leading-none translate-y-1/2">INHOUSE</h2>
             </div>
 
             <div class="flex gap-8 text-[10px] uppercase tracking-[0.2em] text-white/30">

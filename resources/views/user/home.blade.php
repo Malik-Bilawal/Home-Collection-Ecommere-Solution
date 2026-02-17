@@ -576,7 +576,7 @@
         <div class="text-center mb-16">
             <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-[#B89A6B] mb-2 block">2026 Series</span>
             <!-- <h2 class="text-4xl md:text-6xl font-serif text-[#680626] italic">Curated <span class="not-italic">Mosaic</span></h2> -->
-            <h2 class="text-4xl md:text-6xl font-serif text-[#680626] italic">SHOP BY <span class="not-italic">CATEGORY</span></h2>
+            <h2 class="text-5xl md:text-6xl font-serif text-[#680626] italic">SHOP BY <span class="not-italic">CATEGORY</span></h2>
 
         </div>
 
