@@ -88,9 +88,9 @@
             </h3>
 
             <div class="flex items-center gap-3 text-sm font-medium mt-1">
-                @if($product->sale_price && $product->price > $product->sale_price)
-                    <span class="text-red-700">${{ number_format($product->sale_price, 2) }}</span>
-                    <span class="text-gray-400 line-through text-xs">${{ number_format($product->price, 2) }}</span>
+                @if($product->cut_price && $product->price < $product->cut_price)
+                    <span class="text text-[var(--primary-color)]">${{ number_format($product->price, 2) }}</span>
+                    <span class="text-gray-400 line-through text-xs">${{ number_format($product->cut_price, 2) }}</span>
                 @else
                     <span class="text-gray-900">${{ number_format($product->price, 2) }}</span>
                 @endif

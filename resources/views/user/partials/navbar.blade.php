@@ -856,20 +856,17 @@
 
             function loadCategories() {
                 const categories = [
-                    @foreach($categories as $category) {
-                        id: {
-                            {
-                                $category -> id
-                            }
-                        },
-                        name: @json($category -> name),
-                        image: @json(
-                            $category -> image ?
-                            asset('storage/app/public/'.$category -> image) :
-                            asset('images/category-placeholder.jpg')
-                        ),
-                    },
-                    @endforeach
+                    @foreach($categories as $category)
+{
+    id: {{ $category->id }},
+    name: @json($category->name),
+    image: @json(
+        $category->image
+            ? asset('storage/app/public/' . $category->image)
+            : asset('images/category-placeholder.jpg')
+    ),
+},
+@endforeach
                 ];
 
                 const container = $('#categories-grid');
