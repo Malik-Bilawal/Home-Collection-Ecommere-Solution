@@ -465,8 +465,8 @@ body {
             
             <div class="space-y-6">
                 <div class="flex items-center justify-between text-xs font-serif text-[#680626]">
-                    <span>${{ $minPrice }}</span>
-                    <span>${{ $maxPrice }}</span>
+                    <span>Rs.{{ $minPrice }}</span>
+                    <span>Rs.{{ $maxPrice }}</span>
                 </div>
                 
                 <div class="relative h-1 bg-[#FBF7EE] w-full">
@@ -483,7 +483,7 @@ body {
 
                 <div class="text-left">
                     <span class="text-xs text-[#680626]">
-                        Max: <span class="font-serif italic text-lg ml-2">$<span id="current-price">{{ $defaultPrice }}</span></span>
+                        Max: <span class="font-serif italic text-lg ml-2">Rs.<span id="current-price">{{ $defaultPrice }}</span></span>
                     </span>
                 </div>
             </div>

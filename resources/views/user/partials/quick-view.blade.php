@@ -71,10 +71,10 @@
             <div class="flex items-center justify-between">
                 <div class="flex items-baseline gap-2">
                     <span class="text-lg font-bold text-[var(--primary-color)]">
-                        ${{ number_format($product->sale_price ?? $product->price, 2) }}
+                        Rs.{{ number_format($product->sale_price ?? $product->price, 2) }}
                     </span>
                     @if($product->sale_price)
-                        <span class="text-sm text-gray-400 line-through">${{ number_format($product->price, 2) }}</span>
+                        <span class="text-sm text-gray-400 line-through">Rs.{{ number_format($product->price, 2) }}</span>
                     @endif
                 </div>
                 @if($product->rating)
@@ -93,10 +93,10 @@
                 </h3>
                 <div class="flex items-center justify-center gap-2">
                     <span class="text-base font-bold text-[var(--primary-color)]">
-                        ${{ number_format($product->sale_price ?? $product->price, 2) }}
+                        Rs.{{ number_format($product->sale_price ?? $product->price, 2) }}
                     </span>
                     @if($product->sale_price)
-                        <span class="text-xs text-gray-400 line-through">${{ number_format($product->price, 2) }}</span>
+                        <span class="text-xs text-gray-400 line-through">Rs.{{ number_format($product->price, 2) }}</span>
                     @endif
                 </div>
             </div>

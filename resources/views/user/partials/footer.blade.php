@@ -7,7 +7,7 @@
 
     <div class="container mx-auto px-6 relative z-10">
 
-     
+
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-20">
 
             <div class="col-span-2 lg:col-span-2 space-y-8">
@@ -75,14 +75,25 @@
             </div>
 
             <div class="flex gap-8 text-[10px] uppercase tracking-[0.2em] text-white/30">
-                <a href="{{ url('/policies') }}" class="hover:text-[var(--secondary-color)] transition-colors">Privacy</a>
-                <a href="{{ url('/policies') }}" class="hover:text-[var(--secondary-color)] transition-colors">Terms</a>
-                <a href="{{ url('/policies') }}" class="hover:text-[var(--secondary-color)] transition-colors">Shipping</a>
+                <a href="" data-name="privacy" class=" link hover:text-[var(--secondary-color)] transition-colors">Privacy</a>
+                <a href="" data-name="terms" class="link hover:text-[var(--secondary-color)] transition-colors">Terms</a>
+                <a href="" data-name="shipping" class="link hover:text-[var(--secondary-color)] transition-colors">Shipping</a>
 
             </div>
         </div>
     </div>
 </footer>
+<script>
+const links = document.querySelectorAll('.link');
+links.forEach(li => {
+    li.addEventListener('click', (e) => {
+        const page = li.getAttribute('data-name');
+        localStorage.setItem('selectedPolicy', page); 
+        window.location.href = '/policies'; 
+    });
+});
+
+</script>
 
 <style>
     /* Premium Hover Animation */

@@ -89,10 +89,10 @@
 
             <div class="flex items-center gap-3 text-sm font-medium mt-1">
                 @if($product->cut_price && $product->price < $product->cut_price)
-                    <span class="text text-[var(--primary-color)]">${{ number_format($product->price, 2) }}</span>
-                    <span class="text-gray-400 line-through text-xs">${{ number_format($product->cut_price, 2) }}</span>
+                    <span class="text text-[var(--primary-color)]">Rs.{{ number_format($product->price, 2) }}</span>
+                    <span class="text-gray-400 line-through text-xs">Rs.{{ number_format($product->cut_price, 2) }}</span>
                 @else
-                    <span class="text-gray-900">${{ number_format($product->price, 2) }}</span>
+                    <span class="text-gray-900">Rs.{{ number_format($product->price, 2) }}</span>
                 @endif
             </div>
 

@@ -584,18 +584,10 @@
 
             @foreach($categories as $index => $category)
             @php
-            // --- 1. MOBILE LOGIC (The one you liked) ---
-            // Pattern: [Small] [Small] [Big Full Width]
-            // The cycle repeats every 3 items.
+
             $mPos = ($index + 1) % 3;
             $mobileClass = ($mPos === 0) ? 'col-span-2 aspect-square' : 'col-span-1 aspect-square';
 
-            // --- 2. DESKTOP LOGIC (The "Bento" Puzzle) ---
-            // Pattern: Repeats every 6 items to create a weaving effect.
-            // 0 = Big (Left)
-            // 1, 2 = Small Stacked (Right)
-            // 3, 4 = Small Stacked (Left)
-            // 5 = Big (Right)
 
             $dPos = $index % 6;
             $desktopClass = '';
@@ -673,8 +665,8 @@
     @mouseleave="startAutoplay()">
     <div class="container mx-auto px-6 mb-12 text-center relative z-10">
         <h2 class="text-4xl md:text-5xl font-serif text-[#680626] font-medium tracking-tight mb-4">
-OUR TOP PICKS
-    </h2>
+            OUR TOP PICKS
+        </h2>
         <p class="text-[#B89A6B] uppercase tracking-[0.2em] text-xs font-medium">Excellence in Every Detail</p>
     </div>
 
@@ -784,7 +776,7 @@ OUR TOP PICKS
             currentIndex: 0,
             totalItems: {
                 {
-                    $topSellingProduct -> count()
+                    $topSellingProduct-> count()
                 }
             },
             transitionDuration: 1000,
@@ -836,8 +828,8 @@ OUR TOP PICKS
             <span class="text-[10px] font-bold uppercase tracking-[0.5em] text-[#B89A6B] mb-4 block">
                 Classic Collection
             </span>
-            <h2 class="text-5xl md:text-7xl lg:text-8xl font-serif text-[#680626] leading-[1.1] tracking-tight">
-                TOP <br> <span class="italic font-light ml-0 md:ml-4">CATEGORY</span>
+            <h2 class="text-4xl md:text-7xl lg:text-8xl font-serif text-[#680626] leading-[1.1] tracking-tight">
+                TOP  <span class="italic font-light ml-0 md:ml-4">CATEGORY</span>
             </h2>
         </div>
 
@@ -910,17 +902,17 @@ OUR TOP PICKS
     @mouseenter="stopAutoplay()"
     @mouseleave="startAutoplay()">
     <div class="text-center mb-12 md:mb-20" data-aos="fade-up">
-            <span class="inline-block px-3 py-1 md:px-4 md:py-1.5 mb-4 md:mb-6 text-[10px] md:text-[11px] font-bold tracking-[0.3em] uppercase text-[var(--secondary-color)] border border-[var(--border-color)] rounded-full">
-                Best Seller
-            </span>
-            <h2 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light mb-4 md:mb-6 text-[var(--primary-color)]">
-                OUR BEST CHOICES
-            </h2>
-            <div class="w-12 md:w-16 h-px bg-[var(--secondary-color)] mx-auto mb-4 md:mb-6"></div>
-            <p class="text-neutral-600 max-w-xl mx-auto leading-relaxed text-sm md:text-base">
-                Three generations of textile expertise, bringing top-quality fabrics to your home.
-            </p>
-        </div>
+        <span class="inline-block px-3 py-1 md:px-4 md:py-1.5 mb-4 md:mb-6 text-[10px] md:text-[11px] font-bold tracking-[0.3em] uppercase text-[var(--secondary-color)] border border-[var(--border-color)] rounded-full">
+            Best Seller
+        </span>
+        <h2 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light mb-4 md:mb-6 text-[var(--primary-color)]">
+            OUR BEST CHOICES
+        </h2>
+        <div class="w-12 md:w-16 h-px bg-[var(--secondary-color)] mx-auto mb-4 md:mb-6"></div>
+        <p class="text-neutral-600 max-w-xl mx-auto leading-relaxed text-sm md:text-base">
+            Three generations of textile expertise, bringing top-quality fabrics to your home.
+        </p>
+    </div>
 
     <div class="relative w-full">
         <div class="absolute left-0 top-0 bottom-0 w-20 md:w-64 bg-gradient-to-r from-[#FBF7EE] to-transparent z-20 pointer-events-none"></div>
@@ -952,7 +944,7 @@ OUR TOP PICKS
                             @endif
 
                             <div class="relative aspect-[4/5] overflow-hidden bg-[#FBF7EE]">
-                            <img
+                                <img
                                     src="{{ $product->defaultImage
         ? asset('storage/app/public/' . $product->defaultImage->image_path)
         : 'https://placehold.co/600x800/E2DBD1/680626?text=Image' }}"
@@ -961,14 +953,16 @@ OUR TOP PICKS
 
                                 <div class="absolute inset-0 bg-[#680626]/0 group-hover:bg-[#680626]/5 transition-all duration-700 flex flex-col justify-end p-6">
                                     <div class="translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
-                                        <button
-                                            class="btn-cta w-full bg-white text-[#680626] py-4 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-[#680626] hover:text-white transition-all shadow-xl"
-                                            data-url="{{ route('product.detail', $product->id) }}">
+                                        <a
+                                            class="btn-cta w-full block  text-center  bg-white text-[#680626] py-4 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-[#680626] hover:text-white transition-all shadow-xl"
+                                            href="{{ route('product.detail', $product->id) }}">
                                             Experience Quality
-                                        </button>
+                                        </a>
+
                                     </div>
                                 </div>
                             </div>
+
 
                             <div class="mt-8 mb-4 text-center">
                                 <p class="text-[#B89A6B] text-[9px] uppercase tracking-[0.3em] font-bold mb-2">{{ $product->category->name ?? 'Premium Collection' }}</p>
@@ -1070,19 +1064,19 @@ OUR TOP PICKS
 <section class="py-16 md:py-24 bg-[var(--background-color)]">
     <div class="container mx-auto px-4 md:px-6">
 
- 
-<div class="container mx-auto px-6 mb-16 relative z-10 text-center">
-    <h2 class="text-5xl md:text-6xl font-serif text-[#680626] font-light tracking-tight mb-4 italic">
-        FEATURED <span class="font-medium not-italic">Products</span>
-    </h2>
-    <div class="flex items-center justify-center gap-4">
-        <div class="h-[1px] w-12 bg-[#B89A6B]/40"></div>
-        <p class="text-[#B89A6B] uppercase tracking-[0.4em] text-[10px] font-bold">
-            Top Picks
-        </p>
-        <div class="h-[1px] w-12 bg-[#B89A6B]/40"></div>
-    </div>
-</div>
+
+        <div class="container mx-auto px-6 mb-16 relative z-10 text-center">
+            <h2 class="text-3xl md:text-6xl font-serif text-[#680626] font-light tracking-tight mb-4 italic">
+                FEATURED <span class="font-medium not-italic">Products</span>
+            </h2>
+            <div class="flex items-center justify-center gap-4">
+                <div class="h-[1px] w-12 bg-[#B89A6B]/40"></div>
+                <p class="text-[#B89A6B] uppercase tracking-[0.4em] text-[10px] font-bold">
+                    Top Picks
+                </p>
+                <div class="h-[1px] w-12 bg-[#B89A6B]/40"></div>
+            </div>
+        </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
             @foreach ($products as $product)
@@ -1188,7 +1182,7 @@ OUR TOP PICKS
         const countDownDate = {
             {
                 \
-                Carbon\ Carbon::parse($activeSale-> ends_at) -> timestamp * 1000
+                Carbon\ Carbon::parse($activeSale -> ends_at) -> timestamp * 1000
             }
         };
 
