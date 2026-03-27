@@ -2,33 +2,33 @@
 
     <div class="relative w-full aspect-[4/5] overflow-hidden bg-[#F3EFEC]">
         @if($product->defaultImage)
-            <img 
-                src="{{ $product->defaultImage ? asset('storage/app/public/' . $product->defaultImage->image_path) : 'https://placehold.co/600x800/E2DBD1/680626?text=Image' }}" 
-                alt="{{ $product->name }}" 
-                class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105">
+        <img
+            src="{{ $product->defaultImage ? asset('storage/app/public/' . $product->defaultImage->image_path) : 'https://placehold.co/600x800/E2DBD1/680626?text=Image' }}"
+            alt="{{ $product->name }}"
+            class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105">
         @else
-            <div class="w-full h-full flex items-center justify-center text-[var(--secondary-color)] text-xs tracking-widest uppercase">
-                Coming Soon
-            </div>
+        <div class="w-full h-full flex items-center justify-center text-[var(--secondary-color)] text-xs tracking-widest uppercase">
+            Coming Soon
+        </div>
         @endif
 
         @if($product->old_price && $product->old_price > $product->price)
-            <div class="absolute top-4 left-4 flex flex-col gap-1">
-                <span class="px-2 py-1 text-[10px] font-bold text-white bg-red-600 uppercase">
-                    {{ round((($product->old_price - $product->price) / $product->old_price) * 100) }}% OFF
-                </span>
-                @if($product->is_featured)
-                    <span class="px-3 py-1 text-[9px] font-bold tracking-tighter text-white bg-[var(--secondary-color)] uppercase">
-                        Exclusive
-                    </span>
-                @endif
-            </div>
+        <div class="absolute top-4 left-4 flex flex-col gap-1">
+            <span class="px-2 py-1 text-[10px] font-bold text-white bg-red-600 uppercase">
+                {{ round((($product->old_price - $product->price) / $product->old_price) * 100) }}% OFF
+            </span>
+            @if($product->is_featured)
+            <span class="px-3 py-1 text-[9px] font-bold tracking-tighter text-white bg-[var(--secondary-color)] uppercase">
+                Exclusive
+            </span>
+            @endif
+        </div>
         @elseif($product->is_featured)
-            <div class="absolute top-4 left-4">
-                <span class="px-3 py-1 text-[9px] font-bold tracking-tighter text-white bg-[var(--secondary-color)] uppercase">
-                    Exclusive
-                </span>
-            </div>
+        <div class="absolute top-4 left-4">
+            <span class="px-3 py-1 text-[9px] font-bold tracking-tighter text-white bg-[var(--secondary-color)] uppercase">
+                Exclusive
+            </span>
+        </div>
         @endif
 
         <div class="absolute top-4 right-4 flex flex-col gap-2 opacity-0 translate-y-2 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
@@ -57,27 +57,31 @@
             </a>
         </h3>
 
+        <div class="mt-2 text-[12px] leading-tight text-gray-500 line-clamp-2 overflow-hidden">
+    {!! strip_tags($product->description, '<b><strong><i><em>') !!}
+</div>
+
         <div class="flex items-center justify-center gap-3">
             <span class="text-base font-medium text-[var(--primary-color)]">
                 Rs.{{ number_format($product->price, 2) }}
             </span>
             @if($product->cut_price)
-                <span class="text-sm text-neutral-400 line-through decoration-[var(--secondary-color)]">
-                    Rs.{{ number_format($product->cut_price, 2) }}
-                </span>
+            <span class="text-sm text-neutral-400 line-through decoration-[var(--secondary-color)]">
+                Rs.{{ number_format($product->cut_price, 2) }}
+            </span>
             @endif
         </div>
 
         @if($product->rating)
-            <div class="flex items-center justify-center gap-1 mt-3">
-                <div class="flex text-[var(--secondary-color)]">
-                    @for($i = 0; $i < 5; $i++)
-                        <svg class="w-3 h-3 {{ $i < $product->rating ? 'fill-current' : 'text-neutral-300' }}" viewBox="0 0 20 20">
-                            <polygon points="10,1 12.6,7 19,7 13.7,11 15.6,17 10,13.5 4.4,17 6.3,11 1,7 7.4,7" />
-                        </svg>
+        <div class="flex items-center justify-center gap-1 mt-3">
+            <div class="flex text-[var(--secondary-color)]">
+                @for($i = 0; $i < 5; $i++)
+                    <svg class="w-3 h-3 {{ $i < $product->rating ? 'fill-current' : 'text-neutral-300' }}" viewBox="0 0 20 20">
+                    <polygon points="10,1 12.6,7 19,7 13.7,11 15.6,17 10,13.5 4.4,17 6.3,11 1,7 7.4,7" />
+                    </svg>
                     @endfor
-                </div>
             </div>
+        </div>
         @endif
     </div>
 </div>

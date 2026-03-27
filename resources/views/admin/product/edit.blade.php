@@ -3,6 +3,7 @@
 <title>Edit Product | Grocery Store</title>
 
 @push("script")
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 <script>
     tailwind.config = {
         theme: {
@@ -59,6 +60,37 @@
         position: relative;
         display: inline-block;
         margin: 5px;
+    }
+    
+    /* CKEditor Custom Styles */
+    .ck-editor__editable {
+        min-height: 400px;
+        border-radius: 0.5rem !important;
+        border: 1px solid #e5e7eb !important;
+    }
+    
+    .ck.ck-editor {
+        width: 100% !important;
+    }
+    
+    .ck.ck-toolbar {
+        border-radius: 0.5rem 0.5rem 0 0 !important;
+        background: #f9fafb !important;
+        border: 1px solid #e5e7eb !important;
+        border-bottom: none !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .ck.ck-toolbar .ck-toolbar__items {
+        flex-wrap: wrap !important;
+    }
+    
+    .ck.ck-button {
+        min-height: 32px !important;
+    }
+    
+    .ck.ck-toolbar .ck.ck-toolbar__separator {
+        background: #e5e7eb !important;
     }
 </style>
 @endpush
@@ -181,7 +213,7 @@
                             <label for="cut_price" class="block text-sm font-medium text-gray-700 mb-1">Cut Price ($)</label>
                             <input type="number" id="cut_price" name="cut_price" step="0.01" min="0" 
                                 class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary"
-                                value="{{ old('price', $product->cut_price) }}">
+                                value="{{ old('cut_price', $product->cut_price) }}">
                         </div>
 
                         <div>
@@ -200,26 +232,26 @@
                         </div>
 
                         <!-- Is Featured -->
-<div class="flex items-center gap-3 mt-4">
-    <input
-        type="checkbox"
-        name="is_top_selling"
-        id="is_top_selling"
-        value="1"
-        class="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary"
-        {{ old('is_top_selling', $product->is_top_selling) ? 'checked' : '' }}
-    >
-    <label for="is_top_selling" class="text-sm font-medium text-gray-700">
-        Top Selling Product
-    </label>
-</div>
-
+                        <div class="flex items-center gap-3 mt-4">
+                            <input
+                                type="checkbox"
+                                name="is_top_selling"
+                                id="is_top_selling"
+                                value="1"
+                                class="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary"
+                                {{ old('is_top_selling', $product->is_top_selling) ? 'checked' : '' }}
+                            >
+                            <label for="is_top_selling" class="text-sm font-medium text-gray-700">
+                                Top Selling Product
+                            </label>
+                        </div>
                         
-                        <!-- Description -->
+                        <!-- Description with CKEditor -->
                         <div class="md:col-span-2">
                             <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                            <textarea id="description" name="description" rows="4"
-                                class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">{{ old('description', $product->description) }}</textarea>
+                            <textarea id="description" name="description" rows="15"
+                                class="w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">{{ old('description', $product->description) }}</textarea>
+                            <p class="text-sm text-gray-500 mt-2">Use the toolbar to format your product description with rich text, images, tables, and more.</p>
                         </div>
                         
                         <!-- Status -->
@@ -486,6 +518,110 @@
 @push("script")
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Initialize CKEditor with Full MS Word-like Toolbar
+        ClassicEditor
+            .create(document.querySelector('#description'), {
+                toolbar: {
+                    items: [
+                        'undo', 'redo',
+                        '|',
+                        'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript',
+                        '|',
+                        'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor',
+                        '|',
+                        'heading',
+                        '|',
+                        'alignment:left', 'alignment:center', 'alignment:right', 'alignment:justify',
+                        '|',
+                        'bulletedList', 'numberedList', 'outdent', 'indent',
+                        '|',
+                        'link', 'insertTable',
+                        '|',
+                        'blockQuote', 'codeBlock',
+                        '|',
+                        'removeFormat', 'specialCharacters', 'horizontalLine',
+                        '|',
+                        'sourceEditing', 'selectAll',
+                        '|',
+                        'help'
+                    ],
+                    shouldNotGroupWhenFull: true
+                },
+                fontSize: {
+                    options: [8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72],
+                    supportAllValues: true
+                },
+                fontFamily: {
+                    options: [
+                        'default',
+                        'Arial, Helvetica, sans-serif',
+                        'Courier New, Courier, monospace',
+                        'Georgia, serif',
+                        'Tahoma, Geneva, sans-serif',
+                        'Times New Roman, Times, serif',
+                        'Verdana, Geneva, sans-serif'
+                    ],
+                    supportAllValues: true
+                },
+                fontColor: {
+                    colors: [
+                        { color: '#000000', label: 'Black' },
+                        { color: '#FF0000', label: 'Red' },
+                        { color: '#00FF00', label: 'Green' },
+                        { color: '#0000FF', label: 'Blue' },
+                        { color: '#FFFF00', label: 'Yellow' },
+                        { color: '#FF00FF', label: 'Magenta' },
+                        { color: '#00FFFF', label: 'Cyan' }
+                    ]
+                },
+                fontBackgroundColor: {
+                    colors: [
+                        { color: '#FFFFFF', label: 'White' },
+                        { color: '#FFFF00', label: 'Yellow' },
+                        { color: '#FFC0CB', label: 'Pink' },
+                        { color: '#90EE90', label: 'Light Green' }
+                    ]
+                },
+                heading: {
+                    options: [
+                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+                        { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+                        { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
+                        { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
+                        { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
+                    ]
+                },
+                alignment: {
+                    options: ['left', 'center', 'right', 'justify']
+                },
+                table: {
+                    contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
+                },
+                placeholder: 'Write your product description here...',
+                language: 'en',
+                removePlugins: [],
+                initialData: `{{ old('description', $product->description) }}`
+            })
+            .then(editor => {
+                console.log('CKEditor initialized successfully');
+                window.editor = editor;
+                
+                // Update textarea before form submission
+                const form = document.getElementById('productForm');
+                if (form) {
+                    form.addEventListener('submit', function(e) {
+                        const editorData = editor.getData();
+                        document.querySelector('#description').value = editorData;
+                        console.log('Form submitted with editor content');
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('CKEditor initialization error:', error);
+            });
+        
         // Arrays to track deleted items
         let deletedImages = [];
         let deletedColors = [];
@@ -496,57 +632,61 @@
         const defaultImagePreview = document.getElementById('defaultImagePreview');
         const defaultImagePreviewImg = defaultImagePreview.querySelector('img');
         
-        defaultImageInput.addEventListener('change', function() {
-            if (this.files && this.files[0]) {
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    defaultImagePreviewImg.src = e.target.result;
-                    defaultImagePreview.classList.remove('hidden');
+        if (defaultImageInput) {
+            defaultImageInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        defaultImagePreviewImg.src = e.target.result;
+                        defaultImagePreview.classList.remove('hidden');
+                    }
+                    
+                    reader.readAsDataURL(this.files[0]);
+                } else {
+                    defaultImagePreview.classList.add('hidden');
                 }
-                
-                reader.readAsDataURL(this.files[0]);
-            } else {
-                defaultImagePreview.classList.add('hidden');
-            }
-        });
+            });
+        }
         
         // Gallery images preview
         const galleryImagesInput = document.getElementById('gallery_images');
         const galleryPreview = document.getElementById('galleryPreview');
         const galleryImagesContainer = document.getElementById('galleryImagesContainer');
         
-        galleryImagesInput.addEventListener('change', function() {
-            // Clear previous previews
-            galleryImagesContainer.innerHTML = '';
-            
-            if (this.files && this.files.length > 0) {
-                for (let i = 0; i < this.files.length; i++) {
-                    const file = this.files[i];
-                    const reader = new FileReader();
-                    
-                    reader.onload = function(e) {
-                        const imageId = `gallery_image_${Date.now()}_${i}`;
-                        const imageHtml = `
-                            <div class="image-container">
-                                <img src="${e.target.result}" alt="Gallery preview" class="image-preview">
-                                <button type="button" class="remove-btn remove-new-gallery-image" data-file-index="${i}">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        `;
+        if (galleryImagesInput) {
+            galleryImagesInput.addEventListener('change', function() {
+                // Clear previous previews
+                galleryImagesContainer.innerHTML = '';
+                
+                if (this.files && this.files.length > 0) {
+                    for (let i = 0; i < this.files.length; i++) {
+                        const file = this.files[i];
+                        const reader = new FileReader();
                         
-                        galleryImagesContainer.insertAdjacentHTML('beforeend', imageHtml);
+                        reader.onload = function(e) {
+                            const imageId = `gallery_image_${Date.now()}_${i}`;
+                            const imageHtml = `
+                                <div class="image-container">
+                                    <img src="${e.target.result}" alt="Gallery preview" class="image-preview">
+                                    <button type="button" class="remove-btn remove-new-gallery-image" data-file-index="${i}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            `;
+                            
+                            galleryImagesContainer.insertAdjacentHTML('beforeend', imageHtml);
+                        }
+                        
+                        reader.readAsDataURL(file);
                     }
                     
-                    reader.readAsDataURL(file);
+                    galleryPreview.classList.remove('hidden');
+                } else {
+                    galleryPreview.classList.add('hidden');
                 }
-                
-                galleryPreview.classList.remove('hidden');
-            } else {
-                galleryPreview.classList.add('hidden');
-            }
-        });
+            });
+        }
 
         // Remove existing image
         document.addEventListener('click', function(e) {
@@ -597,9 +737,6 @@
                 if (imageContainer) {
                     imageContainer.remove();
                 }
-                
-                // Note: We can't remove individual files from a multiple file input,
-                // so we'll handle this during form submission
             }
 
             // Remove existing color image
@@ -656,9 +793,12 @@
         let newColorCounter = {{ $product->colors ? count($product->colors) : 0 }};
         
         // Add color button
-        document.getElementById('addColorBtn').addEventListener('click', function() {
-            addNewColor();
-        });
+        const addColorBtn = document.getElementById('addColorBtn');
+        if (addColorBtn) {
+            addColorBtn.addEventListener('click', function() {
+                addNewColor();
+            });
+        }
         
         // Function to add a new color (not existing in database)
         function addNewColor() {
@@ -723,15 +863,17 @@
             const colorHexInput = document.getElementById(`color_hex_${colorId}`);
             const colorHexTextInput = document.getElementById(`color_hex_text_${colorId}`);
             
-            colorHexInput.addEventListener('input', function() {
-                colorHexTextInput.value = this.value;
-            });
-            
-            colorHexTextInput.addEventListener('input', function() {
-                if (this.value.match(/^#[0-9A-F]{6}$/i)) {
-                    colorHexInput.value = this.value;
-                }
-            });
+            if (colorHexInput && colorHexTextInput) {
+                colorHexInput.addEventListener('input', function() {
+                    colorHexTextInput.value = this.value;
+                });
+                
+                colorHexTextInput.addEventListener('input', function() {
+                    if (this.value.match(/^#[0-9A-F]{6}$/i)) {
+                        colorHexInput.value = this.value;
+                    }
+                });
+            }
             
             // Add event listener for the upload images button
             document.querySelector(`#${colorId} .upload-color-images`).addEventListener('click', function() {
@@ -780,9 +922,12 @@
         let newSizeCounter = {{ $product->sizes ? count($product->sizes) : 0 }};
         
         // Add size button
-        document.getElementById('addSizeBtn').addEventListener('click', function() {
-            addNewSize();
-        });
+        const addSizeBtn = document.getElementById('addSizeBtn');
+        if (addSizeBtn) {
+            addSizeBtn.addEventListener('click', function() {
+                addNewSize();
+            });
+        }
         
         // Function to add a new size (not existing in database)
         function addNewSize() {
@@ -865,25 +1010,27 @@
                 const colorId = this.getAttribute('data-color');
                 const previewContainer = document.getElementById(`new_color_images_${colorId}`);
                 
-                for (let i = 0; i < this.files.length; i++) {
-                    const file = this.files[i];
-                    const reader = new FileReader();
-                    
-                    reader.onload = function(e) {
-                        const imageId = `image_${colorId}_${Date.now()}_${i}`;
-                        const imageHtml = `
-                            <div class="image-container">
-                                <img src="${e.target.result}" alt="Preview" class="image-preview">
-                                <button type="button" class="remove-btn remove-new-color-image" data-color="${colorId}" data-file-index="${i}">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        `;
+                if (previewContainer) {
+                    for (let i = 0; i < this.files.length; i++) {
+                        const file = this.files[i];
+                        const reader = new FileReader();
                         
-                        previewContainer.insertAdjacentHTML('beforeend', imageHtml);
+                        reader.onload = function(e) {
+                            const imageId = `image_${colorId}_${Date.now()}_${i}`;
+                            const imageHtml = `
+                                <div class="image-container">
+                                    <img src="${e.target.result}" alt="Preview" class="image-preview">
+                                    <button type="button" class="remove-btn remove-new-color-image" data-color="${colorId}" data-file-index="${i}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            `;
+                            
+                            previewContainer.insertAdjacentHTML('beforeend', imageHtml);
+                        }
+                        
+                        reader.readAsDataURL(file);
                     }
-                    
-                    reader.readAsDataURL(file);
                 }
             });
         });
@@ -892,22 +1039,11 @@
         document.querySelectorAll('.upload-color-images').forEach(button => {
             button.addEventListener('click', function() {
                 const colorId = this.getAttribute('data-color');
-                document.querySelector(`input[data-color="${colorId}"]`).click();
+                const fileInput = document.querySelector(`input[data-color="${colorId}"]`);
+                if (fileInput) {
+                    fileInput.click();
+                }
             });
-        });
-
-        // Form submission
-        document.getElementById('productForm').addEventListener('submit', function(e) {
-            console.log('Form submitted for update');
-            // The form will now include:
-            // - deleted_images: Array of image IDs to delete
-            // - deleted_colors: Array of color IDs to delete  
-            // - deleted_sizes: Array of size IDs to delete
-            // - existing_default_image: ID of existing default image (if not removed)
-            // - existing_gallery_images[]: Array of existing gallery image IDs (if not removed)
-            // - colors[color_id][existing_images][]: Array of existing color image IDs (if not removed)
-            // - new_colors[]: Array of new colors to add
-            // - new_sizes[]: Array of new sizes to add
         });
     });
 </script>

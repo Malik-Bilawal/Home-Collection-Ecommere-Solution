@@ -3,6 +3,23 @@
 <title>Add Product | Grocery Store</title>
 
 @push("script")
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: '#10b981',
+                    secondary: '#1f2937'
+                }
+            }
+        }
+    }
+</script>
+@endpush
+
+@push("script")
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 <script>
     tailwind.config = {
         theme: {
@@ -46,6 +63,38 @@
         flex-wrap: wrap;
         gap: 10px;
         margin-top: 10px;
+    }
+    
+    /* CKEditor Custom Styles */
+    .ck-editor__editable {
+        min-height: 400px;
+        border-radius: 0.5rem !important;
+        border: 1px solid #e5e7eb !important;
+    }
+    
+    .ck.ck-editor {
+        width: 100% !important;
+    }
+    
+    .ck.ck-toolbar {
+        border-radius: 0.5rem 0.5rem 0 0 !important;
+        background: #f9fafb !important;
+        border: 1px solid #e5e7eb !important;
+        border-bottom: none !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .ck.ck-toolbar .ck-toolbar__items {
+        flex-wrap: wrap !important;
+    }
+    
+    /* Make toolbar buttons more visible */
+    .ck.ck-button {
+        min-height: 32px !important;
+    }
+    
+    .ck.ck-toolbar .ck.ck-toolbar__separator {
+        background: #e5e7eb !important;
     }
 </style>
 @endpush
@@ -180,25 +229,25 @@
                         </div>
 
                         <!-- Is Featured -->
-<div class="flex items-center gap-3 mt-4">
-    <input
-        type="checkbox"
-        name="is_top_selling"
-        id="is_top_selling"
-        value="1"
-        class="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary"
-    >
-    <label for="is_featured" class="text-sm font-medium text-gray-700">
-        Top Selling Product
-    </label>
-</div>
-
+                        <div class="flex items-center gap-3 mt-4">
+                            <input
+                                type="checkbox"
+                                name="is_top_selling"
+                                id="is_top_selling"
+                                value="1"
+                                class="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary"
+                            >
+                            <label for="is_featured" class="text-sm font-medium text-gray-700">
+                                Top Selling Product
+                            </label>
+                        </div>
                         
-                        <!-- Description -->
+                        <!-- Description with CKEditor -->
                         <div class="md:col-span-2">
                             <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                            <textarea id="description" name="description" rows="4"
-                                class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary"></textarea>
+                            <textarea id="description" name="description" rows="15"
+                                class="w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"></textarea>
+                            <p class="text-sm text-gray-500 mt-2">Use the toolbar to format your product description with rich text, images, tables, and more.</p>
                         </div>
                         
                         <!-- Status -->
@@ -295,79 +344,290 @@
 @push("script")
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Initialize CKEditor with Full MS Word-like Toolbar
+ClassicEditor
+    .create(document.querySelector('#description'), {
+        toolbar: {
+            items: [
+                // Undo/Redo
+                'undo', 'redo',
+                '|',
+                
+                // Text Formatting
+                'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript',
+                '|',
+                
+                // Font & Size
+                'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor',
+                '|',
+                
+                // Paragraph Styles
+                'heading', 'style',
+                '|',
+                
+                // Alignment
+                'alignment:left', 'alignment:center', 'alignment:right', 'alignment:justify',
+                '|',
+                
+                // Lists
+                'bulletedList', 'numberedList', 'outdent', 'indent',
+                '|',
+                
+                // Links & Media
+                'link', 'imageInsert', 'insertTable', 'mediaEmbed',
+                '|',
+                
+                // Blocks
+                'blockQuote', 'codeBlock', 'htmlEmbed',
+                '|',
+                
+                // Tools
+                'findAndReplace', 'selectAll', 'sourceEditing',
+                '|',
+                
+                // Formatting
+                'removeFormat', 'specialCharacters', 'horizontalLine',
+                '|',
+                
+                // Insert
+                'pageBreak',
+                '|',
+                
+                // Help
+                'help'
+            ],
+            shouldNotGroupWhenFull: true
+        },
+        
+        // Font Family Options
+        fontFamily: {
+            options: [
+                'default',
+                'Arial, Helvetica, sans-serif',
+                'Courier New, Courier, monospace',
+                'Georgia, serif',
+                'Lucida Sans Unicode, Lucida Grande, sans-serif',
+                'Tahoma, Geneva, sans-serif',
+                'Times New Roman, Times, serif',
+                'Trebuchet MS, Helvetica, sans-serif',
+                'Verdana, Geneva, sans-serif'
+            ],
+            supportAllValues: true
+        },
+        
+        // Font Size Options
+        fontSize: {
+            options: [
+                8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72
+            ],
+            supportAllValues: true
+        },
+        
+        // Font Color
+        fontColor: {
+            colors: [
+                { color: 'hsl(0, 0%, 0%)', label: 'Black' },
+                { color: 'hsl(0, 0%, 30%)', label: 'Dim grey' },
+                { color: 'hsl(0, 0%, 60%)', label: 'Grey' },
+                { color: 'hsl(0, 0%, 90%)', label: 'Light grey' },
+                { color: 'hsl(0, 100%, 50%)', label: 'Red' },
+                { color: 'hsl(30, 100%, 50%)', label: 'Orange' },
+                { color: 'hsl(60, 100%, 50%)', label: 'Yellow' },
+                { color: 'hsl(120, 100%, 50%)', label: 'Green' },
+                { color: 'hsl(180, 100%, 50%)', label: 'Cyan' },
+                { color: 'hsl(240, 100%, 50%)', label: 'Blue' },
+                { color: 'hsl(300, 100%, 50%)', label: 'Magenta' }
+            ]
+        },
+        
+        // Background Color
+        fontBackgroundColor: {
+            colors: [
+                { color: 'hsl(0, 0%, 100%)', label: 'White' },
+                { color: 'hsl(0, 0%, 90%)', label: 'Light grey' },
+                { color: 'hsl(0, 100%, 90%)', label: 'Light red' },
+                { color: 'hsl(60, 100%, 90%)', label: 'Light yellow' },
+                { color: 'hsl(120, 100%, 90%)', label: 'Light green' },
+                { color: 'hsl(180, 100%, 90%)', label: 'Light cyan' },
+                { color: 'hsl(240, 100%, 90%)', label: 'Light blue' }
+            ]
+        },
+        
+        // Heading Options
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+                { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+                { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
+                { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
+                { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
+            ]
+        },
+        
+        // Table Options
+        table: {
+            contentToolbar: [
+                'tableColumn', 'tableRow', 'mergeTableCells',
+                'tableProperties', 'tableCellProperties'
+            ],
+            tableProperties: {
+                borderColors: [
+                    { color: 'hsl(0, 0%, 0%)', label: 'Black' },
+                    { color: 'hsl(0, 100%, 50%)', label: 'Red' },
+                    { color: 'hsl(120, 100%, 50%)', label: 'Green' },
+                    { color: 'hsl(240, 100%, 50%)', label: 'Blue' }
+                ],
+                backgroundColors: [
+                    { color: 'hsl(0, 0%, 100%)', label: 'White' },
+                    { color: 'hsl(0, 0%, 90%)', label: 'Light grey' }
+                ]
+            }
+        },
+        
+        // Image Options
+        image: {
+            toolbar: [
+                'imageTextAlternative', 'imageStyle:inline', 
+                'imageStyle:block', 'imageStyle:side', 
+                'linkImage'
+            ],
+            styles: [
+                'full', 'side', 'alignLeft', 'alignCenter', 'alignRight'
+            ]
+        },
+        
+        // Link Options
+        link: {
+            addTargetToExternalLinks: true,
+            defaultProtocol: 'http://',
+            decorators: {
+                toggleDownloadable: {
+                    mode: 'manual',
+                    label: 'Downloadable',
+                    attributes: {
+                        download: 'file'
+                    }
+                }
+            }
+        },
+        
+        // Alignment Options
+        alignment: {
+            options: [ 'left', 'center', 'right', 'justify' ]
+        },
+        
+        // List Options
+        list: {
+            properties: {
+                styles: true,
+                startIndex: true,
+                reversed: true
+            }
+        },
+        
+        // HTML Embed
+        htmlEmbed: {
+            showPreviews: true
+        },
+        
+        // Language
+        language: 'en',
+        
+        // Enable placeholder
+        placeholder: 'Write your product description here...',
+        
+        // Remove branding
+        removePlugins: [],
+        
+        // Initial data
+        initialData: '',
+        
+        // Styling
+        shouldNotGroupWhenFull: true
+    })
+    .then(editor => {
+        console.log('CKEditor initialized successfully with full toolbar');
+        window.editor = editor;
+        
+        // Update textarea before form submission
+        const form = document.getElementById('productForm');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                const editorData = editor.getData();
+                document.querySelector('#description').value = editorData;
+                console.log('Form submitted with editor content');
+            });
+        }
+    })
+    .catch(error => {
+        console.error('CKEditor initialization error:', error);
+    });
+        
         // Default image preview
         const defaultImageInput = document.getElementById('default_image');
-        const defaultImagePreview = document.getElementById('defaultImagePreview');
-        const defaultImagePreviewImg = defaultImagePreview.querySelector('img');
-        
-        defaultImageInput.addEventListener('change', function() {
-            if (this.files && this.files[0]) {
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    defaultImagePreviewImg.src = e.target.result;
-                    defaultImagePreview.classList.remove('hidden');
+        if (defaultImageInput) {
+            const defaultImagePreview = document.getElementById('defaultImagePreview');
+            const defaultImagePreviewImg = defaultImagePreview.querySelector('img');
+            
+            defaultImageInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        defaultImagePreviewImg.src = e.target.result;
+                        defaultImagePreview.classList.remove('hidden');
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                } else {
+                    defaultImagePreview.classList.add('hidden');
                 }
-                
-                reader.readAsDataURL(this.files[0]);
-            } else {
-                defaultImagePreview.classList.add('hidden');
-            }
-        });
+            });
+        }
         
         // Gallery images preview
         const galleryImagesInput = document.getElementById('gallery_images');
-        const galleryPreview = document.getElementById('galleryPreview');
-        const galleryImagesContainer = document.getElementById('galleryImagesContainer');
-        
-        galleryImagesInput.addEventListener('change', function() {
-            // Clear previous previews
-            galleryImagesContainer.innerHTML = '';
+        if (galleryImagesInput) {
+            const galleryPreview = document.getElementById('galleryPreview');
+            const galleryImagesContainer = document.getElementById('galleryImagesContainer');
             
-            if (this.files && this.files.length > 0) {
-                for (let i = 0; i < this.files.length; i++) {
-                    const file = this.files[i];
-                    const reader = new FileReader();
-                    
-                    reader.onload = function(e) {
-                        const imageId = `gallery_image_${Date.now()}_${i}`;
-                        const imageHtml = `
-                            <div class="relative">
-                                <img src="${e.target.result}" alt="Gallery preview" class="image-preview">
-                                <button type="button" class="remove-btn remove-gallery-image" data-image="${imageId}">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        `;
-                        
-                        galleryImagesContainer.insertAdjacentHTML('beforeend', imageHtml);
-                        
-                        // Add event listener to remove button
-                        document.querySelector(`[data-image="${imageId}"]`).addEventListener('click', function() {
-                            this.closest('.relative').remove();
-                            // You might also want to remove the file from the input files array
-                            // This is more complex and might require using a FileList polyfill
-                        });
-                    }
-                    
-                    reader.readAsDataURL(file);
-                }
+            galleryImagesInput.addEventListener('change', function() {
+                galleryImagesContainer.innerHTML = '';
                 
-                galleryPreview.classList.remove('hidden');
-            } else {
-                galleryPreview.classList.add('hidden');
-            }
-        });
+                if (this.files && this.files.length > 0) {
+                    for (let i = 0; i < this.files.length; i++) {
+                        const file = this.files[i];
+                        const reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                            const imageId = `gallery_image_${Date.now()}_${i}`;
+                            const imageHtml = `
+                                <div class="relative">
+                                    <img src="${e.target.result}" alt="Gallery preview" class="image-preview">
+                                    <button type="button" class="remove-btn remove-gallery-image" data-image="${imageId}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            `;
+                            galleryImagesContainer.insertAdjacentHTML('beforeend', imageHtml);
+                            
+                            document.querySelector(`[data-image="${imageId}"]`).addEventListener('click', function() {
+                                this.closest('.relative').remove();
+                            });
+                        }
+                        reader.readAsDataURL(file);
+                    }
+                    galleryPreview.classList.remove('hidden');
+                } else {
+                    galleryPreview.classList.add('hidden');
+                }
+            });
+        }
         
-        // Color counter
+        // Color management
         let colorCounter = 0;
+        const addColorBtn = document.getElementById('addColorBtn');
         
-        // Add color button
-        document.getElementById('addColorBtn').addEventListener('click', function() {
-            addColor();
-        });
-        
-        // Function to add a new color
         function addColor() {
             colorCounter++;
             const colorId = `color_${colorCounter}`;
@@ -400,57 +660,50 @@
                         </div>
                     </div>
                     
-                    <!-- Images Section -->
                     <div>
                         <div class="flex justify-between items-center mb-2">
                             <h6 class="text-sm font-medium text-gray-700">Color Images</h6>
                             <div>
-                                <input type="file" 
-                                       name="colors[${colorCounter}][images][]" 
-                                       data-color="${colorId}" 
-                                       multiple 
-                                       accept="image/*" 
-                                       class="hidden file-input">
+                                <input type="file" name="colors[${colorCounter}][images][]" data-color="${colorId}" multiple accept="image/*" class="hidden file-input">
                                 <button type="button" class="text-primary hover:text-emerald-600 text-sm upload-images" data-color="${colorId}">
                                     <i class="fas fa-upload mr-1"></i> Upload Images
                                 </button>
                             </div>
                         </div>
-                        
-                        <div class="images-preview grid grid-cols-3 gap-2 mt-2" id="images_${colorId}">
-                            <!-- Image previews will be added here -->
-                        </div>
+                        <div class="images-preview grid grid-cols-3 gap-2 mt-2" id="images_${colorId}"></div>
                     </div>
                 </div>
             `;
             
             document.getElementById('colorsContainer').insertAdjacentHTML('beforeend', colorHtml);
             
-            // Add event listener for the remove color button
+            // Remove color button
             document.querySelector(`#${colorId} .remove-color`).addEventListener('click', function() {
                 document.getElementById(colorId).remove();
             });
             
+            // Color hex sync
             const colorHexInput = document.getElementById(`color_hex_${colorCounter}`);
             const colorHexTextInput = document.getElementById(`color_hex_text_${colorCounter}`);
             
-            colorHexInput.addEventListener('input', function() {
-                colorHexTextInput.value = this.value;
-            });
+            if (colorHexInput && colorHexTextInput) {
+                colorHexInput.addEventListener('input', function() {
+                    colorHexTextInput.value = this.value;
+                });
+                
+                colorHexTextInput.addEventListener('input', function() {
+                    if (this.value.match(/^#[0-9A-F]{6}$/i)) {
+                        colorHexInput.value = this.value;
+                    }
+                });
+            }
             
-            colorHexTextInput.addEventListener('input', function() {
-                if (this.value.match(/^#[0-9A-F]{6}$/i)) {
-                    colorHexInput.value = this.value;
-                }
-            });
-            
-            // Add event listener for the upload images button
+            // Upload images
             document.querySelector(`#${colorId} .upload-images`).addEventListener('click', function() {
                 const colorId = this.getAttribute('data-color');
                 document.querySelector(`input[data-color="${colorId}"]`).click();
             });
             
-            // Add event listener for the file input change
             document.querySelector(`input[data-color="${colorId}"]`).addEventListener('change', function() {
                 const colorId = this.getAttribute('data-color');
                 const previewContainer = document.getElementById(`images_${colorId}`);
@@ -469,31 +722,26 @@
                                 </button>
                             </div>
                         `;
-                        
                         previewContainer.insertAdjacentHTML('beforeend', imageHtml);
                         
                         document.querySelector(`[data-image="${imageId}"]`).addEventListener('click', function() {
                             this.closest('.relative').remove();
                         });
                     }
-                    
                     reader.readAsDataURL(file);
                 }
             });
         }
         
-        // Add initial color
+        if (addColorBtn) {
+            addColorBtn.addEventListener('click', addColor);
+        }
         addColor();
         
-        // Size counter
+        // Size management
         let sizeCounter = 0;
+        const addSizeBtn = document.getElementById('addSizeBtn');
         
-        // Add size button
-        document.getElementById('addSizeBtn').addEventListener('click', function() {
-            addSize();
-        });
-        
-        // Function to add a new size
         function addSize() {
             sizeCounter++;
             const sizeId = `size_${sizeCounter}`;
@@ -508,23 +756,18 @@
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <!-- Size Name -->
                         <div>
                             <label for="size_name_${sizeCounter}" class="block text-sm font-medium text-gray-700 mb-1">Size Name</label>
                             <input type="text" id="size_name_${sizeCounter}" name="sizes[${sizeCounter}][name]" required
                                 class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary" 
                                 placeholder="e.g., Small, Medium, Large">
                         </div>
-
-                        <!-- Price -->
                         <div>
                             <label for="price_${sizeCounter}" class="block text-sm font-medium text-gray-700 mb-1">Price (PKR)</label>
                             <input type="number" step="0.01" id="price_${sizeCounter}" name="sizes[${sizeCounter}][price]" min="0" required
                                 class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary" 
                                 placeholder="e.g., 1200">
                         </div>
-
-                        <!-- Stock -->
                         <div>
                             <label for="stock_${sizeCounter}" class="block text-sm font-medium text-gray-700 mb-1">Stock Quantity</label>
                             <input type="number" id="stock_${sizeCounter}" name="sizes[${sizeCounter}][stock]" min="0"
@@ -542,11 +785,10 @@
             });
         }
         
+        if (addSizeBtn) {
+            addSizeBtn.addEventListener('click', addSize);
+        }
         addSize();
-        
-        document.getElementById('productForm').addEventListener('submit', function(e) {
-            console.log('Form submitted');
-        });
     });
 </script>
 @endpush

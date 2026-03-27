@@ -460,9 +460,6 @@
     @mouseenter="clearInterval(timer)"
     @mouseleave="startTimer()">
 
-    <div class="absolute inset-0 z-20 pointer-events-none opacity-[0.08] w-full h-full mix-blend-overlay"
-        style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.7%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22 opacity=%221%22/%3E%3C/svg%3E');">
-    </div>
 
     @foreach($banners as $index => $banner)
     <div x-show="activeSlide === {{ $index }}"
@@ -483,11 +480,10 @@
             alt="{{ $banner->title }}"
             class="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
             loading="{{ $index === 0 ? 'eager' : 'lazy' }}">
-        <div class="absolute inset-0 bg-black/40 lg:hidden"></div>
+        {{-- Removed solid overlay on mobile --}}
         @endif
 
-        <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent mix-blend-multiply pointer-events-none"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none"></div>
+        {{-- Removed linear and blend-mode overlays here --}}
 
         <div class="absolute inset-0 flex items-center z-30 pointer-events-none">
             <div class="w-full px-4 sm:px-6 md:px-12 pointer-events-auto">
@@ -500,7 +496,8 @@
                     </div>
 
                     <div class="overflow-hidden mb-2 md:mb-6">
-                        <h1 class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-medium leading-[1.1] tracking-tight transform transition-transform duration-1000 delay-300 translate-y-full break-words hyphens-auto"
+                        {{-- Added 'text-black' class just in case, though the default is text-[var(--text-on-primary)] --}}
+                        <h1 class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-medium leading-[1.1] tracking-tight transform transition-transform duration-1000 delay-300 translate-y-full break-words hyphens-auto text-white"
                             :class="{ '!translate-y-0': activeSlide === {{ $index }} }">
                             {{ $banner->title }}
                         </h1>
@@ -510,7 +507,8 @@
                         :class="{ '!opacity-100 !translate-y-0': activeSlide === {{ $index }} }">
                         <div class="w-12 h-px bg-[var(--secondary-color)] mt-4 hidden md:block"></div>
 
-                        <p class="hidden md:block text-lg md:text-xl font-light text-white/90 leading-relaxed max-w-xl">
+                        {{-- Adjust opacity here if needed since background is gone --}}
+                        <p class="hidden md:block text-lg md:text-xl font-light text-white leading-relaxed max-w-xl">
                             {{ $banner->description }}
                         </p>
                     </div>
@@ -576,7 +574,7 @@
         <div class="text-center mb-16">
             <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-[#B89A6B] mb-2 block">2026 Series</span>
             <!-- <h2 class="text-4xl md:text-6xl font-serif text-[#680626] italic">Curated <span class="not-italic">Mosaic</span></h2> -->
-            <h2 class="text-4xl md:text-6xl font-serif text-[#680626] italic">SHOP BY <span class="not-italic">CATEGORY</span></h2>
+            <h2 class="text-3xl md:text-6xl font-serif text-[#680626] italic">SHOP BY <span class="not-italic">CATEGORY</span></h2>
 
         </div>
 
@@ -657,6 +655,7 @@
         </div>
     </div>
 </section>
+
 <section
     class="bg-[#FBF7EE] py-20 overflow-hidden select-none"
     x-data="infiniteCarousel()"
@@ -724,6 +723,10 @@
                                 {{ $product->name }}
                             </h3>
 
+                            <div class="text-[11px] text-gray-500 leading-snug line-clamp-2 px-2 mb-2">
+                                {!! strip_tags($product->description, '<b><strong><i><em>') !!}
+                            </div>
+
                             <div class="flex justify-center gap-1 mb-3">
                                 @php $rating = $product->rating ?? 0; @endphp
                                 @for($i = 1; $i <= 5; $i++)
@@ -776,7 +779,7 @@
             currentIndex: 0,
             totalItems: {
                 {
-                    $topSellingProduct-> count()
+                    $topSellingProduct -> count()
                 }
             },
             transitionDuration: 1000,
@@ -829,7 +832,7 @@
                 Classic Collection
             </span>
             <h2 class="text-4xl md:text-7xl lg:text-8xl font-serif text-[#680626] leading-[1.1] tracking-tight">
-                TOP  <span class="italic font-light ml-0 md:ml-4">CATEGORY</span>
+                TOP <span class="italic font-light ml-0 md:ml-4">CATEGORY</span>
             </h2>
         </div>
 
@@ -969,6 +972,10 @@
                                 <h3 class="text-[#1A1A1A] text-2xl font-serif mb-4 group-hover:text-[#680626] transition-colors duration-500 truncate px-4">
                                     {{ $product->name }}
                                 </h3>
+
+                                <div class="text-[11px] text-gray-500 leading-snug line-clamp-2 px-6 mb-3">
+                                    {!! strip_tags($product->description, '<b><strong><i><em>') !!}
+                                </div>
 
                                 <div class="flex items-center justify-center gap-3">
                                     @if($product->offer_price)
