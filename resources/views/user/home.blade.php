@@ -687,73 +687,72 @@
                 $allProducts = $originals->concat($clones);
                 @endphp
 
-                @foreach($allProducts as $index => $product)
-                <div class="w-full md:w-1/4 flex-shrink-0 px-3 md:px-6 relative group">
-                    <div class="bg-white h-full flex flex-col relative overflow-hidden transition-all duration-500 hover:shadow-[0_10px_40px_-15px_rgba(104,6,38,0.2)] border border-transparent hover:border-[#D6CEC3]/30">
+@foreach($allProducts as $index => $product)
+<div class="w-full md:w-1/4 flex-shrink-0 px-3 md:px-6 relative group cursor-pointer">
+    <div class="bg-white h-full flex flex-col relative overflow-hidden transition-all duration-500 hover:shadow-[0_10px_40px_-15px_rgba(104,6,38,0.2)] border border-transparent hover:border-[#D6CEC3]/30">
+        
+        <a href="{{ route('product.detail', $product->id) }}" class="absolute inset-0 z-10" aria-label="{{ $product->name }}"></a>
 
-                        <div class="relative aspect-[3/4] overflow-hidden bg-[#F0EBE6]">
-                            @if($product->offer_price && $product->offer_price < $product->price)
-                                <div class="absolute top-3 left-3 bg-white/95 backdrop-blur text-[#680626] text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-20 shadow-sm">
-                                    Sale
-                                </div>
-                                @endif
-
-                                <img
-                                    src="{{ $product->defaultImage
-        ? asset('storage/app/public/' . $product->defaultImage->image_path)
-        : 'https://placehold.co/600x800/E2DBD1/680626?text=Image' }}"
-                                    alt="{{ $product->name }}"
-                                    class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110">
-
-                                <div class="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] z-20">
-                                    <button
-                                        class="btn-cta w-full bg-[#680626] text-white py-4 uppercase text-xs tracking-[0.2em] font-medium hover:bg-[#52041E] transition-colors"
-                                        data-url="{{ route('product.detail', $product->id) }}">
-                                        Add to Cart
-                                    </button>
-                                </div>
-                        </div>
-
-                        <div class="p-6 flex flex-col flex-grow text-center bg-white relative z-10">
-                            <div class="text-[#B89A6B] text-[10px] font-bold uppercase tracking-widest mb-3">
-                                {{ $product->category->name ?? 'Signature Collection' }}
-                            </div>
-
-                            <h3 class="text-[#1A1A1A] text-xl font-serif mb-2 group-hover:text-[#680626] transition-colors duration-300 truncate">
-                                {{ $product->name }}
-                            </h3>
-
-                            <div class="text-[11px] text-gray-500 leading-snug line-clamp-2 px-2 mb-2">
-                                {!! strip_tags($product->description, '<b><strong><i><em>') !!}
-                            </div>
-
-                            <div class="flex justify-center gap-1 mb-3">
-                                @php $rating = $product->rating ?? 0; @endphp
-                                @for($i = 1; $i <= 5; $i++)
-                                    <svg class="w-3 h-3 {{ $i <= $rating ? 'text-[#B89A6B] fill-current' : 'text-[#E2DBD1] fill-current' }}" viewBox="0 0 24 24">
-                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                                    </svg>
-                                    @endfor
-                            </div>
-
-                            <div class="mt-auto pt-3 border-t border-[#FBF7EE] flex justify-center items-baseline gap-3">
-                                @if($product->offer_price)
-                                <span class="text-gray-400 line-through text-xs font-light">
-                                    Rs.{{ number_format($product->price, 2) }}
-                                </span>
-                                <span class="text-[#680626] text-lg font-medium">
-                                    Rs.{{ number_format($product->offer_price, 2) }}
-                                </span>
-                                @else
-                                <span class="text-[#680626] text-lg font-medium">
-                                    Rs.{{ number_format($product->price, 2) }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
+        <div class="relative aspect-[3/4] overflow-hidden bg-[#F0EBE6]">
+            @if($product->offer_price && $product->offer_price < $product->price)
+                <div class="absolute top-3 left-3 bg-white/95 backdrop-blur text-[#680626] text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-20 shadow-sm">
+                    Sale
                 </div>
-                @endforeach
+            @endif
+
+            <img
+                src="{{ $product->defaultImage ? asset('storage/app/public/' . $product->defaultImage->image_path) : 'https://placehold.co/600x800/E2DBD1/680626?text=Image' }}"
+                alt="{{ $product->name }}"
+                class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110">
+
+            <div class="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] z-30">
+                <a href="{{ route('product.detail', $product->id) }}" 
+                   class="btn-cta block w-full bg-[#680626] text-white py-4 text-center uppercase text-xs tracking-[0.2em] font-medium hover:bg-[#52041E] transition-colors">
+                    Add to Cart
+                </a>
+            </div>
+        </div>
+
+        <div class="p-6 flex flex-col flex-grow text-center bg-white relative z-20 pointer-events-none">
+            <div class="text-[#B89A6B] text-[10px] font-bold uppercase tracking-widest mb-3">
+                {{ $product->category->name ?? 'Signature Collection' }}
+            </div>
+
+            <h3 class="text-[#1A1A1A] text-xl font-serif mb-2 group-hover:text-[#680626] transition-colors duration-300 truncate">
+                {{ $product->name }}
+            </h3>
+
+            <div class="text-[11px] text-gray-500 leading-snug line-clamp-2 px-2 mb-2">
+                {!! strip_tags($product->description, '<b><strong><i><em>') !!}
+            </div>
+
+            <div class="flex justify-center gap-1 mb-3">
+                @php $rating = $product->rating ?? 0; @endphp
+                @for($i = 1; $i <= 5; $i++)
+                    <svg class="w-3 h-3 {{ $i <= $rating ? 'text-[#B89A6B] fill-current' : 'text-[#E2DBD1] fill-current' }}" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                @endfor
+            </div>
+
+            <div class="mt-auto pt-3 border-t border-[#FBF7EE] flex justify-center items-baseline gap-3">
+                @if($product->offer_price)
+                    <span class="text-gray-400 line-through text-xs font-light">
+                        Rs.{{ number_format($product->price, 2) }}
+                    </span>
+                    <span class="text-[#680626] text-lg font-medium">
+                        Rs.{{ number_format($product->offer_price, 2) }}
+                    </span>
+                @else
+                    <span class="text-[#680626] text-lg font-medium">
+                        Rs.{{ number_format($product->price, 2) }}
+                    </span>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
         </div>
 
         <div class="flex justify-center mt-10 gap-2">
@@ -935,68 +934,66 @@
                 $clones = $clones->take(3);
                 $allProducts = $originals->concat($clones);
                 @endphp
+@foreach($allProducts as $index => $product)
+<div class="w-full md:w-1/3 flex-shrink-0 px-4 md:px-8 relative group cursor-pointer">
+    <div class="relative flex flex-col h-full bg-white p-4 border border-[#E2DBD1]/30 transition-all duration-700 hover:shadow-[0_20px_50px_rgba(104,6,38,0.08)]">
+        
+        <a href="{{ route('product.detail', $product->id) }}" class="absolute inset-0 z-10" aria-label="{{ $product->name }}"></a>
 
-                @foreach($allProducts as $index => $product)
-                <div class="w-full md:w-1/3 flex-shrink-0 px-4 md:px-8 relative group">
-                    <div class="relative flex flex-col h-full bg-white p-4 border border-[#E2DBD1]/30 transition-all duration-700 hover:shadow-[0_20px_50px_rgba(104,6,38,0.08)]">
+        @if($product->offer_price && $product->offer_price < $product->price)
+            <div class="absolute top-6 left-6 z-20">
+                <span class="bg-[#680626] text-white text-[9px] font-bold px-3 py-1 uppercase tracking-widest">EXPORT QUALITY</span>
+            </div>
+        @endif
 
-                        @if($product->offer_price && $product->offer_price < $product->price)
-                            <div class="absolute top-6 left-6 z-20">
-                                <span class="bg-[#680626] text-white text-[9px] font-bold px-3 py-1 uppercase tracking-widest">EXPORT QUALITY</span>
-                            </div>
-                            @endif
+        <div class="relative aspect-[4/5] overflow-hidden bg-[#FBF7EE]">
+            <img
+                src="{{ $product->defaultImage ? asset('storage/app/public/' . $product->defaultImage->image_path) : 'https://placehold.co/600x800/E2DBD1/680626?text=Image' }}"
+                alt="{{ $product->name }}"
+                class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-[2s] ease-out group-hover:scale-110">
 
-                            <div class="relative aspect-[4/5] overflow-hidden bg-[#FBF7EE]">
-                                <img
-                                    src="{{ $product->defaultImage
-        ? asset('storage/app/public/' . $product->defaultImage->image_path)
-        : 'https://placehold.co/600x800/E2DBD1/680626?text=Image' }}"
-                                    alt="{{ $product->name }}"
-                                    class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-[2s] ease-out group-hover:scale-110">
-
-                                <div class="absolute inset-0 bg-[#680626]/0 group-hover:bg-[#680626]/5 transition-all duration-700 flex flex-col justify-end p-6">
-                                    <div class="translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
-                                        <a
-                                            class="btn-cta w-full block  text-center  bg-white text-[#680626] py-4 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-[#680626] hover:text-white transition-all shadow-xl"
-                                            href="{{ route('product.detail', $product->id) }}">
-                                            Experience Quality
-                                        </a>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="mt-8 mb-4 text-center">
-                                <p class="text-[#B89A6B] text-[9px] uppercase tracking-[0.3em] font-bold mb-2">{{ $product->category->name ?? 'Premium Collection' }}</p>
-                                <h3 class="text-[#1A1A1A] text-2xl font-serif mb-4 group-hover:text-[#680626] transition-colors duration-500 truncate px-4">
-                                    {{ $product->name }}
-                                </h3>
-
-                                <div class="text-[11px] text-gray-500 leading-snug line-clamp-2 px-6 mb-3">
-                                    {!! strip_tags($product->description, '<b><strong><i><em>') !!}
-                                </div>
-
-                                <div class="flex items-center justify-center gap-3">
-                                    @if($product->offer_price)
-                                    <span class="text-[#B89A6B]/50 line-through text-xs font-light tracking-wider">
-                                        Rs.{{ number_format($product->price, 0) }}
-                                    </span>
-                                    <span class="text-[#680626] text-xl font-medium tracking-tight">
-                                        Rs.{{ number_format($product->offer_price, 0) }}
-                                    </span>
-                                    @else
-                                    <span class="text-[#680626] text-xl font-medium tracking-tight">
-                                        Rs.{{ number_format($product->price, 0) }}
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#680626] group-hover:w-full transition-all duration-700"></div>
-                    </div>
+            <div class="absolute inset-0 bg-[#680626]/0 group-hover:bg-[#680626]/5 transition-all duration-700 flex flex-col justify-end p-6">
+                <div class="translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 z-30">
+                    <a class="btn-cta w-full block text-center bg-white text-[#680626] py-4 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-[#680626] hover:text-white transition-all shadow-xl"
+                       href="{{ route('product.detail', $product->id) }}">
+                        Experience Quality
+                    </a>
                 </div>
-                @endforeach
+            </div>
+        </div>
+
+        <div class="mt-8 mb-4 text-center relative z-20 pointer-events-none">
+            <p class="text-[#B89A6B] text-[9px] uppercase tracking-[0.3em] font-bold mb-2">
+                {{ $product->category->name ?? 'Premium Collection' }}
+            </p>
+            <h3 class="text-[#1A1A1A] text-2xl font-serif mb-4 group-hover:text-[#680626] transition-colors duration-500 truncate px-4">
+                {{ $product->name }}
+            </h3>
+
+            <div class="text-[11px] text-gray-500 leading-snug line-clamp-2 px-6 mb-3">
+                {!! strip_tags($product->description, '<b><strong><i><em>') !!}
+            </div>
+
+            <div class="flex items-center justify-center gap-3">
+                @if($product->offer_price)
+                    <span class="text-[#B89A6B]/50 line-through text-xs font-light tracking-wider">
+                        Rs.{{ number_format($product->price, 0) }}
+                    </span>
+                    <span class="text-[#680626] text-xl font-medium tracking-tight">
+                        Rs.{{ number_format($product->offer_price, 0) }}
+                    </span>
+                @else
+                    <span class="text-[#680626] text-xl font-medium tracking-tight">
+                        Rs.{{ number_format($product->price, 0) }}
+                    </span>
+                @endif
+            </div>
+        </div>
+
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#680626] group-hover:w-full transition-all duration-700 z-20"></div>
+    </div>
+</div>
+@endforeach
         </div>
 
         <div class="flex justify-center mt-16 gap-3">

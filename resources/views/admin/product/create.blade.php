@@ -18,22 +18,6 @@
 </script>
 @endpush
 
-@push("script")
-<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-<script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                colors: {
-                    primary: '#10b981',
-                    secondary: '#1f2937'
-                }
-            }
-        }
-    }
-</script>
-@endpush
-
 @push("style")
 <style>
     .image-preview {
@@ -57,12 +41,19 @@
         justify-content: center;
         font-size: 12px;
         cursor: pointer;
+        border: none;
+        outline: none;
     }
     .gallery-preview {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
         margin-top: 10px;
+    }
+    .image-container {
+        position: relative;
+        display: inline-block;
+        margin: 5px;
     }
     
     /* CKEditor Custom Styles */
@@ -96,6 +87,35 @@
     .ck.ck-toolbar .ck.ck-toolbar__separator {
         background: #e5e7eb !important;
     }
+    
+    /* Ensure proper list rendering in editor */
+    .ck-content ul,
+    .ck-content ol {
+        padding-left: 2em;
+        margin: 1em 0;
+    }
+    
+    .ck-content li {
+        margin-bottom: 0.5em;
+    }
+    
+    .ck-content ul {
+        list-style-type: disc;
+    }
+    
+    .ck-content ol {
+        list-style-type: decimal;
+    }
+    
+    .ck-content ul ul,
+    .ck-content ol ul {
+        list-style-type: circle;
+    }
+    
+    .ck-content ul ul ul,
+    .ck-content ol ul ul {
+        list-style-type: square;
+    }
 </style>
 @endpush
 
@@ -119,7 +139,6 @@
         @click="sidebarOpen = false"
     ></div>
 
-
     <!-- Sidebar -->
     <aside
         class="fixed inset-y-0 left-0 z-30 w-64 bg-gray-900 text-white transform transition-transform duration-300 ease-in-out lg:translate-x-0"
@@ -129,9 +148,8 @@
         @include("admin.layouts.partial.sidebar")
     </aside>
 
-
     <div class="flex-1 flex flex-col overflow-hidden lg:ml-64 bg-gradient-to-br from-gray-50 to-gray-100">
-    <!-- Main Content -->
+        <!-- Main Content -->
         <!-- Top Bar -->
         <header class="bg-white shadow-sm z-10">
             <div class="flex justify-between items-center p-4">
@@ -208,7 +226,6 @@
                                 class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
                         </div>
 
-                        
                         <div>
                             <label for="cut_price" class="block text-sm font-medium text-gray-700 mb-1">Cut Price</label>
                             <input type="number" id="cut_price" name="cut_price"  
@@ -247,7 +264,7 @@
                             <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
                             <textarea id="description" name="description" rows="15"
                                 class="w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"></textarea>
-                            <p class="text-sm text-gray-500 mt-2">Use the toolbar to format your product description with rich text, images, tables, and more.</p>
+                            <p class="text-sm text-gray-500 mt-2">Use the toolbar to format your product description with rich text, images, tables, and more. Press Enter for new paragraph, use bullet and numbered lists for better organization.</p>
                         </div>
                         
                         <!-- Status -->
@@ -274,7 +291,12 @@
                                 class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
                             <div id="defaultImagePreview" class="mt-3 hidden">
                                 <p class="text-sm font-medium text-gray-700 mb-2">Preview:</p>
-                                <img src="" alt="Default image preview" class="image-preview">
+                                <div class="image-container">
+                                    <img src="" alt="Default image preview" class="image-preview">
+                                    <button type="button" class="remove-btn remove-default-preview">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         
@@ -344,226 +366,109 @@
 @push("script")
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Initialize CKEditor with Full MS Word-like Toolbar
-ClassicEditor
-    .create(document.querySelector('#description'), {
-        toolbar: {
-            items: [
-                // Undo/Redo
-                'undo', 'redo',
-                '|',
+        // Initialize CKEditor with Full MS Word-like Toolbar and Proper List Support
+        ClassicEditor
+            .create(document.querySelector('#description'), {
+                toolbar: {
+                    items: [
+                        'undo', 'redo',
+                        '|',
+                        'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript',
+                        '|',
+                        'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor',
+                        '|',
+                        'heading',
+                        '|',
+                        'alignment:left', 'alignment:center', 'alignment:right', 'alignment:justify',
+                        '|',
+                        'bulletedList', 'numberedList', 'outdent', 'indent',
+                        '|',
+                        'link', 'insertTable',
+                        '|',
+                        'blockQuote', 'codeBlock',
+                        '|',
+                        'removeFormat', 'specialCharacters', 'horizontalLine',
+                        '|',
+                        'sourceEditing', 'selectAll',
+                        '|',
+                        'help'
+                    ],
+                    shouldNotGroupWhenFull: true
+                },
+                fontSize: {
+                    options: [8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72],
+                    supportAllValues: true
+                },
+                fontFamily: {
+                    options: [
+                        'default',
+                        'Arial, Helvetica, sans-serif',
+                        'Courier New, Courier, monospace',
+                        'Georgia, serif',
+                        'Tahoma, Geneva, sans-serif',
+                        'Times New Roman, Times, serif',
+                        'Verdana, Geneva, sans-serif'
+                    ],
+                    supportAllValues: true
+                },
+                fontColor: {
+                    colors: [
+                        { color: '#000000', label: 'Black' },
+                        { color: '#FF0000', label: 'Red' },
+                        { color: '#00FF00', label: 'Green' },
+                        { color: '#0000FF', label: 'Blue' },
+                        { color: '#FFFF00', label: 'Yellow' },
+                        { color: '#FF00FF', label: 'Magenta' },
+                        { color: '#00FFFF', label: 'Cyan' }
+                    ]
+                },
+                fontBackgroundColor: {
+                    colors: [
+                        { color: '#FFFFFF', label: 'White' },
+                        { color: '#FFFF00', label: 'Yellow' },
+                        { color: '#FFC0CB', label: 'Pink' },
+                        { color: '#90EE90', label: 'Light Green' }
+                    ]
+                },
+                heading: {
+                    options: [
+                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+                        { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+                        { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
+                        { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
+                        { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
+                    ]
+                },
+                alignment: {
+                    options: ['left', 'center', 'right', 'justify']
+                },
+                table: {
+                    contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
+                },
+                placeholder: 'Write your product description here...',
+                language: 'en',
+                removePlugins: [],
+                initialData: ''
+            })
+            .then(editor => {
+                console.log('CKEditor initialized successfully');
+                window.editor = editor;
                 
-                // Text Formatting
-                'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript',
-                '|',
-                
-                // Font & Size
-                'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor',
-                '|',
-                
-                // Paragraph Styles
-                'heading', 'style',
-                '|',
-                
-                // Alignment
-                'alignment:left', 'alignment:center', 'alignment:right', 'alignment:justify',
-                '|',
-                
-                // Lists
-                'bulletedList', 'numberedList', 'outdent', 'indent',
-                '|',
-                
-                // Links & Media
-                'link', 'imageInsert', 'insertTable', 'mediaEmbed',
-                '|',
-                
-                // Blocks
-                'blockQuote', 'codeBlock', 'htmlEmbed',
-                '|',
-                
-                // Tools
-                'findAndReplace', 'selectAll', 'sourceEditing',
-                '|',
-                
-                // Formatting
-                'removeFormat', 'specialCharacters', 'horizontalLine',
-                '|',
-                
-                // Insert
-                'pageBreak',
-                '|',
-                
-                // Help
-                'help'
-            ],
-            shouldNotGroupWhenFull: true
-        },
-        
-        // Font Family Options
-        fontFamily: {
-            options: [
-                'default',
-                'Arial, Helvetica, sans-serif',
-                'Courier New, Courier, monospace',
-                'Georgia, serif',
-                'Lucida Sans Unicode, Lucida Grande, sans-serif',
-                'Tahoma, Geneva, sans-serif',
-                'Times New Roman, Times, serif',
-                'Trebuchet MS, Helvetica, sans-serif',
-                'Verdana, Geneva, sans-serif'
-            ],
-            supportAllValues: true
-        },
-        
-        // Font Size Options
-        fontSize: {
-            options: [
-                8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72
-            ],
-            supportAllValues: true
-        },
-        
-        // Font Color
-        fontColor: {
-            colors: [
-                { color: 'hsl(0, 0%, 0%)', label: 'Black' },
-                { color: 'hsl(0, 0%, 30%)', label: 'Dim grey' },
-                { color: 'hsl(0, 0%, 60%)', label: 'Grey' },
-                { color: 'hsl(0, 0%, 90%)', label: 'Light grey' },
-                { color: 'hsl(0, 100%, 50%)', label: 'Red' },
-                { color: 'hsl(30, 100%, 50%)', label: 'Orange' },
-                { color: 'hsl(60, 100%, 50%)', label: 'Yellow' },
-                { color: 'hsl(120, 100%, 50%)', label: 'Green' },
-                { color: 'hsl(180, 100%, 50%)', label: 'Cyan' },
-                { color: 'hsl(240, 100%, 50%)', label: 'Blue' },
-                { color: 'hsl(300, 100%, 50%)', label: 'Magenta' }
-            ]
-        },
-        
-        // Background Color
-        fontBackgroundColor: {
-            colors: [
-                { color: 'hsl(0, 0%, 100%)', label: 'White' },
-                { color: 'hsl(0, 0%, 90%)', label: 'Light grey' },
-                { color: 'hsl(0, 100%, 90%)', label: 'Light red' },
-                { color: 'hsl(60, 100%, 90%)', label: 'Light yellow' },
-                { color: 'hsl(120, 100%, 90%)', label: 'Light green' },
-                { color: 'hsl(180, 100%, 90%)', label: 'Light cyan' },
-                { color: 'hsl(240, 100%, 90%)', label: 'Light blue' }
-            ]
-        },
-        
-        // Heading Options
-        heading: {
-            options: [
-                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
-                { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
-                { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
-                { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
-                { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
-            ]
-        },
-        
-        // Table Options
-        table: {
-            contentToolbar: [
-                'tableColumn', 'tableRow', 'mergeTableCells',
-                'tableProperties', 'tableCellProperties'
-            ],
-            tableProperties: {
-                borderColors: [
-                    { color: 'hsl(0, 0%, 0%)', label: 'Black' },
-                    { color: 'hsl(0, 100%, 50%)', label: 'Red' },
-                    { color: 'hsl(120, 100%, 50%)', label: 'Green' },
-                    { color: 'hsl(240, 100%, 50%)', label: 'Blue' }
-                ],
-                backgroundColors: [
-                    { color: 'hsl(0, 0%, 100%)', label: 'White' },
-                    { color: 'hsl(0, 0%, 90%)', label: 'Light grey' }
-                ]
-            }
-        },
-        
-        // Image Options
-        image: {
-            toolbar: [
-                'imageTextAlternative', 'imageStyle:inline', 
-                'imageStyle:block', 'imageStyle:side', 
-                'linkImage'
-            ],
-            styles: [
-                'full', 'side', 'alignLeft', 'alignCenter', 'alignRight'
-            ]
-        },
-        
-        // Link Options
-        link: {
-            addTargetToExternalLinks: true,
-            defaultProtocol: 'http://',
-            decorators: {
-                toggleDownloadable: {
-                    mode: 'manual',
-                    label: 'Downloadable',
-                    attributes: {
-                        download: 'file'
-                    }
+                // Update textarea before form submission
+                const form = document.getElementById('productForm');
+                if (form) {
+                    form.addEventListener('submit', function(e) {
+                        const editorData = editor.getData();
+                        document.querySelector('#description').value = editorData;
+                        console.log('Form submitted with editor content');
+                    });
                 }
-            }
-        },
-        
-        // Alignment Options
-        alignment: {
-            options: [ 'left', 'center', 'right', 'justify' ]
-        },
-        
-        // List Options
-        list: {
-            properties: {
-                styles: true,
-                startIndex: true,
-                reversed: true
-            }
-        },
-        
-        // HTML Embed
-        htmlEmbed: {
-            showPreviews: true
-        },
-        
-        // Language
-        language: 'en',
-        
-        // Enable placeholder
-        placeholder: 'Write your product description here...',
-        
-        // Remove branding
-        removePlugins: [],
-        
-        // Initial data
-        initialData: '',
-        
-        // Styling
-        shouldNotGroupWhenFull: true
-    })
-    .then(editor => {
-        console.log('CKEditor initialized successfully with full toolbar');
-        window.editor = editor;
-        
-        // Update textarea before form submission
-        const form = document.getElementById('productForm');
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                const editorData = editor.getData();
-                document.querySelector('#description').value = editorData;
-                console.log('Form submitted with editor content');
+            })
+            .catch(error => {
+                console.error('CKEditor initialization error:', error);
             });
-        }
-    })
-    .catch(error => {
-        console.error('CKEditor initialization error:', error);
-    });
         
         // Default image preview
         const defaultImageInput = document.getElementById('default_image');
@@ -583,6 +488,15 @@ ClassicEditor
                     defaultImagePreview.classList.add('hidden');
                 }
             });
+            
+            // Remove default preview button
+            const removeDefaultPreview = document.querySelector('.remove-default-preview');
+            if (removeDefaultPreview) {
+                removeDefaultPreview.addEventListener('click', function() {
+                    defaultImageInput.value = '';
+                    defaultImagePreview.classList.add('hidden');
+                });
+            }
         }
         
         // Gallery images preview
@@ -602,7 +516,7 @@ ClassicEditor
                         reader.onload = function(e) {
                             const imageId = `gallery_image_${Date.now()}_${i}`;
                             const imageHtml = `
-                                <div class="relative">
+                                <div class="image-container">
                                     <img src="${e.target.result}" alt="Gallery preview" class="image-preview">
                                     <button type="button" class="remove-btn remove-gallery-image" data-image="${imageId}">
                                         <i class="fas fa-times"></i>
@@ -612,7 +526,7 @@ ClassicEditor
                             galleryImagesContainer.insertAdjacentHTML('beforeend', imageHtml);
                             
                             document.querySelector(`[data-image="${imageId}"]`).addEventListener('click', function() {
-                                this.closest('.relative').remove();
+                                this.closest('.image-container').remove();
                             });
                         }
                         reader.readAsDataURL(file);
@@ -633,10 +547,10 @@ ClassicEditor
             const colorId = `color_${colorCounter}`;
             
             const colorHtml = `
-                <div class="border border-gray-200 rounded-lg p-4 bg-gray-50" id="${colorId}">
+                <div class="border border-gray-200 rounded-lg p-4 bg-gray-50 color-section" id="${colorId}">
                     <div class="flex justify-between items-center mb-4">
                         <h4 class="text-md font-medium text-gray-800">Color #${colorCounter}</h4>
-                        <button type="button" class="text-red-600 hover:text-red-800 remove-color">
+                        <button type="button" class="text-red-600 hover:text-red-800 remove-color" data-color-id="${colorId}">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -652,10 +566,10 @@ ClassicEditor
                             <label for="color_hex_${colorCounter}" class="block text-sm font-medium text-gray-700 mb-1">Color Hex Code</label>
                             <div class="flex items-center">
                                 <input type="color" id="color_hex_${colorCounter}" name="colors[${colorCounter}][hex]" 
-                                    class="h-10 w-10 border border-gray-300 rounded-md shadow-sm mr-2">
+                                    class="h-10 w-10 border border-gray-300 rounded-md shadow-sm mr-2" value="#FF0000">
                                 <input type="text" id="color_hex_text_${colorCounter}" 
                                     class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary" 
-                                    placeholder="#FF0000">
+                                    placeholder="#FF0000" value="#FF0000">
                             </div>
                         </div>
                     </div>
@@ -664,8 +578,8 @@ ClassicEditor
                         <div class="flex justify-between items-center mb-2">
                             <h6 class="text-sm font-medium text-gray-700">Color Images</h6>
                             <div>
-                                <input type="file" name="colors[${colorCounter}][images][]" data-color="${colorId}" multiple accept="image/*" class="hidden file-input">
-                                <button type="button" class="text-primary hover:text-emerald-600 text-sm upload-images" data-color="${colorId}">
+                                <input type="file" name="colors[${colorCounter}][images][]" data-color="${colorId}" multiple accept="image/*" class="hidden color-file-input">
+                                <button type="button" class="text-primary hover:text-emerald-600 text-sm upload-color-images" data-color="${colorId}">
                                     <i class="fas fa-upload mr-1"></i> Upload Images
                                 </button>
                             </div>
@@ -698,44 +612,48 @@ ClassicEditor
                 });
             }
             
-            // Upload images
-            document.querySelector(`#${colorId} .upload-images`).addEventListener('click', function() {
-                const colorId = this.getAttribute('data-color');
-                document.querySelector(`input[data-color="${colorId}"]`).click();
-            });
+            // Upload images for color
+            const uploadBtn = document.querySelector(`#${colorId} .upload-color-images`);
+            const fileInput = document.querySelector(`input[data-color="${colorId}"]`);
             
-            document.querySelector(`input[data-color="${colorId}"]`).addEventListener('change', function() {
-                const colorId = this.getAttribute('data-color');
-                const previewContainer = document.getElementById(`images_${colorId}`);
+            if (uploadBtn && fileInput) {
+                uploadBtn.addEventListener('click', function() {
+                    fileInput.click();
+                });
                 
-                for (let i = 0; i < this.files.length; i++) {
-                    const file = this.files[i];
-                    const reader = new FileReader();
+                fileInput.addEventListener('change', function() {
+                    const previewContainer = document.getElementById(`images_${colorId}`);
                     
-                    reader.onload = function(e) {
-                        const imageId = `image_${colorId}_${Date.now()}_${i}`;
-                        const imageHtml = `
-                            <div class="relative">
-                                <img src="${e.target.result}" alt="Preview" class="image-preview">
-                                <button type="button" class="remove-btn remove-image" data-image="${imageId}">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        `;
-                        previewContainer.insertAdjacentHTML('beforeend', imageHtml);
+                    for (let i = 0; i < this.files.length; i++) {
+                        const file = this.files[i];
+                        const reader = new FileReader();
                         
-                        document.querySelector(`[data-image="${imageId}"]`).addEventListener('click', function() {
-                            this.closest('.relative').remove();
-                        });
+                        reader.onload = function(e) {
+                            const imageId = `image_${colorId}_${Date.now()}_${i}`;
+                            const imageHtml = `
+                                <div class="image-container">
+                                    <img src="${e.target.result}" alt="Preview" class="image-preview">
+                                    <button type="button" class="remove-btn remove-color-image" data-image="${imageId}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            `;
+                            previewContainer.insertAdjacentHTML('beforeend', imageHtml);
+                            
+                            document.querySelector(`[data-image="${imageId}"]`).addEventListener('click', function() {
+                                this.closest('.image-container').remove();
+                            });
+                        }
+                        reader.readAsDataURL(file);
                     }
-                    reader.readAsDataURL(file);
-                }
-            });
+                });
+            }
         }
         
         if (addColorBtn) {
             addColorBtn.addEventListener('click', addColor);
         }
+        // Add one default color section
         addColor();
         
         // Size management
@@ -747,10 +665,10 @@ ClassicEditor
             const sizeId = `size_${sizeCounter}`;
             
             const sizeHtml = `
-                <div class="border border-gray-200 rounded-lg p-4 bg-gray-50" id="${sizeId}">
+                <div class="border border-gray-200 rounded-lg p-4 bg-gray-50 size-section" id="${sizeId}">
                     <div class="flex justify-between items-center mb-4">
                         <h4 class="text-md font-medium text-gray-800">Size #${sizeCounter}</h4>
-                        <button type="button" class="text-red-600 hover:text-red-800 remove-size">
+                        <button type="button" class="text-red-600 hover:text-red-800 remove-size" data-size-id="${sizeId}">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -780,6 +698,7 @@ ClassicEditor
             
             document.getElementById('sizesContainer').insertAdjacentHTML('beforeend', sizeHtml);
             
+            // Remove size button
             document.querySelector(`#${sizeId} .remove-size`).addEventListener('click', function() {
                 document.getElementById(sizeId).remove();
             });
@@ -788,7 +707,27 @@ ClassicEditor
         if (addSizeBtn) {
             addSizeBtn.addEventListener('click', addSize);
         }
+        // Add one default size section
         addSize();
+        
+        // Remove gallery image globally
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('remove-gallery-image') || e.target.closest('.remove-gallery-image')) {
+                const button = e.target.classList.contains('remove-gallery-image') ? e.target : e.target.closest('.remove-gallery-image');
+                const imageContainer = button.closest('.image-container');
+                if (imageContainer) {
+                    imageContainer.remove();
+                }
+            }
+            
+            if (e.target.classList.contains('remove-color-image') || e.target.closest('.remove-color-image')) {
+                const button = e.target.classList.contains('remove-color-image') ? e.target : e.target.closest('.remove-color-image');
+                const imageContainer = button.closest('.image-container');
+                if (imageContainer) {
+                    imageContainer.remove();
+                }
+            }
+        });
     });
 </script>
 @endpush

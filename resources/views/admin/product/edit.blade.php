@@ -92,6 +92,25 @@
     .ck.ck-toolbar .ck.ck-toolbar__separator {
         background: #e5e7eb !important;
     }
+    
+    /* Ensure proper rendering of CKEditor content */
+    .ck-content {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.6;
+    }
+    
+    .ck-content p {
+        margin-bottom: 1em;
+    }
+    
+    .ck-content ul, .ck-content ol {
+        padding-left: 2em;
+        margin-bottom: 1em;
+    }
+    
+    .ck-content li {
+        margin-bottom: 0.5em;
+    }
 </style>
 @endpush
 
@@ -518,9 +537,15 @@
 @push("script")
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Get the description content (unescaped HTML)
+        let descriptionContent = `{!! addslashes(old('description', $product->description)) !!}`;
+        
+        // Decode HTML entities if needed
+        const textarea = document.querySelector('#description');
+        
         // Initialize CKEditor with Full MS Word-like Toolbar
         ClassicEditor
-            .create(document.querySelector('#description'), {
+            .create(textarea, {
                 toolbar: {
                     items: [
                         'undo', 'redo',
@@ -602,7 +627,7 @@
                 placeholder: 'Write your product description here...',
                 language: 'en',
                 removePlugins: [],
-                initialData: `{{ old('description', $product->description) }}`
+                initialData: descriptionContent
             })
             .then(editor => {
                 console.log('CKEditor initialized successfully');
