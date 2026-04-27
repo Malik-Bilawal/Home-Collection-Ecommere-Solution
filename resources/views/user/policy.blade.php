@@ -4,7 +4,7 @@
 
 <style>
     :root {
-        --primary-color: #680626;
+        --primary-color: #111827;
         --primary-hover: #52041E;
         --secondary-color: #B89A6B;
         --secondary-hover: #967B52;

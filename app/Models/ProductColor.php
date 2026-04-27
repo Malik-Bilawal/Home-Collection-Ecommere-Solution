@@ -2,27 +2,34 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ProductColor extends Model
 {
-    use HasFactory;
+    protected $fillable = ['product_id', 'name', 'hex_code', 'is_active'];
 
-    protected $fillable = ['product_id', 'name', 'hex_code', 'stock_quantity'];
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
 
-    public function product()
+    public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
     }
 
-    public function images()
+    public function images(): HasMany
     {
-        // Use the actual column in your table: color_id
-        return $this->hasMany(ProductColorImage::class, 'color_id', 'id');
+        return $this->hasMany(ProductImage::class, 'color_id');
     }
 
-    public function getImageAttribute()
+    public function variants(): HasMany
+    {
+        return $this->hasMany(ProductVariant::class, 'color_id');
+    }
+
+    public function getImageAttribute(): ?string
     {
         $image = $this->images()->first();
         return $image ? asset('storage/' . $image->image_path) : null;

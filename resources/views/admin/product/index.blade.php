@@ -1,6 +1,6 @@
 @extends("admin.layouts.master-layouts.plain")
 
-<title>Product Management | Grocery Store</title>
+<title>Product Management | Footwear Premium</title>
 
 @push("script")
 <script>
@@ -190,11 +190,8 @@
 
                         <!-- Price Column -->
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">
-                            @if($product->sizes->count() > 0)
-                                Rs. {{ number_format($product->sizes->min('price'), 2) }} 
-                                @if($product->sizes->count() > 1)
-                                    - Rs. {{ number_format($product->sizes->max('price'), 2) }}
-                                @endif
+                            @if($product->allVariants->count() > 0)
+                                Rs. {{ number_format($product->price, 2) }}
                             @else
                                 Rs. {{ number_format($product->price, 2) }}
                             @endif
@@ -203,11 +200,11 @@
                         <!-- Stock Column -->
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
-                                {{ $product->sizes->sum('stock') }}
+                                {{ $product->total_stock }}
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1">
                                 @php
-                                    $stockPercent = $product->sizes->sum('stock') > 0 ? min(100, ($product->sizes->sum('stock') / 100) * 100) : 0;
+                                    $stockPercent = $product->total_stock > 0 ? min(100, ($product->total_stock / 100) * 100) : 0;
                                 @endphp
                                 <div class="bg-green-600 h-1.5 rounded-full" style="width: {{ $stockPercent }}%"></div>
                             </div>

@@ -7,18 +7,18 @@
 @push("style")
 <style>
   :root {
-    --primary-color: #680626;
-    --primary-hover: #52041E;
-    --secondary-color: #B89A6B;
-    --secondary-hover: #967B52;
-    --accent-color: #D6CEC3;
-    --accent-hover: #C8BFB3;
+    --primary-color: #111827;
+    --primary-hover: #000000;
+    --secondary-color: #ffffff;
+    --secondary-hover: #f3f4f6;
+    --accent-color: #10b981;
+    --accent-hover: #059669;
     --text-on-primary: #FFFFFF;
-    --text-on-secondary: #2A2A2A;
-    --background-color: #FBF7EE;
+    --text-on-secondary: #1f2937;
+    --background-color: #ffffff;
     --card-background: #FFFFFF;
-    --border-color: #E2DBD1;
-    --text-color: #2A2A2A;
+    --border-color: #e5e7eb;
+    --text-color: #1f2937;
   }
 
   body {

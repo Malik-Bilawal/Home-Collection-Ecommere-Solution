@@ -4,21 +4,21 @@
 @endphp
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <<<<<<< HEAD
-<title>Inhouse Textiles | Premium Textile Products</title>
+<title>Footwear Premium | Premium Shoe Products</title>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
 <style>
 :root {
-    --primary-color: #680626;
-    --primary-hover: #52041E;
-    --secondary-color: #B89A6B;
-    --secondary-hover: #967B52;
-    --accent-color: #D6CEC3;
-    --accent-hover: #C8BFB3;
+    --primary-color: #111827;
+    --primary-hover: #000000;
+    --secondary-color: #ffffff;
+    --secondary-hover: #f3f4f6;
+    --accent-color: #10b981;
+    --accent-hover: #059669;
     --text-on-primary: #FFFFFF;
-    --text-on-secondary: #2A2A2A;
-    --background-color: #FBF7EE;
+    --text-on-secondary: #1f2937;
+    --background-color: #ffffff;
     --surface-color: #FFFFFF;
     --border-color: #E2DBD1;
 }
@@ -68,15 +68,15 @@ body {
 
 <style>
 :root {
-    --primary-color: #680626;
-    --primary-hover: #52041E;
-    --secondary-color: #B89A6B;
-    --secondary-hover: #967B52;
-    --accent-color: #D6CEC3;
-    --accent-hover: #C8BFB3;
+    --primary-color: #111827;
+    --primary-hover: #000000;
+    --secondary-color: #ffffff;
+    --secondary-hover: #f3f4f6;
+    --accent-color: #10b981;
+    --accent-hover: #059669;
     --text-on-primary: #FFFFFF;
-    --text-on-secondary: #2A2A2A;
-    --background-color: #FBF7EE;
+    --text-on-secondary: #1f2937;
+    --background-color: #ffffff;
     --surface-color: #FFFFFF;
     --border-color: #E2DBD1;
 }
@@ -312,11 +312,11 @@ body {
 <section class="relative min-h-[85vh] flex items-center bg-[#FBF7EE] overflow-hidden pt-20 md:pt-0">
 
     <div class="absolute inset-0 pointer-events-none select-none">
-        <div class="container mx-auto px-4 h-full border-l border-r border-[#680626]/5">
+        <div class="container mx-auto px-4 h-full border-l border-r border-[#111827]/5">
             <div class="grid grid-cols-12 h-full">
-                <div class="col-span-3 border-r border-[#680626]/5 h-full hidden md:block"></div>
-                <div class="col-span-3 border-r border-[#680626]/5 h-full hidden md:block"></div>
-                <div class="col-span-3 border-r border-[#680626]/5 h-full hidden md:block"></div>
+                <div class="col-span-3 border-r border-[#111827]/5 h-full hidden md:block"></div>
+                <div class="col-span-3 border-r border-[#111827]/5 h-full hidden md:block"></div>
+                <div class="col-span-3 border-r border-[#111827]/5 h-full hidden md:block"></div>
             </div>
         </div>
     </div>
@@ -329,25 +329,25 @@ body {
             <div class="md:col-span-7 flex flex-col items-start text-left">
                 
                 <div class="flex items-center gap-4 mb-6 overflow-hidden">
-                    <div class="h-[1px] w-12 bg-[#B89A6B]"></div>
-                    <span class="text-[11px] font-bold tracking-[0.4em] uppercase text-[#B89A6B] animate-fade-in-up">
+                    <div class="h-[1px] w-12 bg-[#10b981]"></div>
+                    <span class="text-[11px] font-bold tracking-[0.4em] uppercase text-[#10b981] animate-fade-in-up">
                         Est. 2026 Collection
                     </span>
                 </div>
 
-                <h1 class="text-5xl md:text-7xl lg:text-8xl leading-[0.9] font-serif text-[#680626] mb-8">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl leading-[0.9] font-serif text-[#111827] mb-8">
                     <span class="block opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">Timeless</span>
                     <span class="block italic font-light ml-4 md:ml-12 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.2s_forwards]">
                         Aesthetics
                     </span>
                 </h1>
 
-                <p class="text-sm md:text-base leading-relaxed text-[#680626]/70 max-w-md ml-1 md:ml-2 mb-10 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.4s_forwards]">
+                <p class="text-sm md:text-base leading-relaxed text-[#111827]/70 max-w-md ml-1 md:ml-2 mb-10 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.4s_forwards]">
                     Where architectural precision meets organic warmth. Discover a curated selection of home essentials designed for the modern connoisseur.
                 </p>
 
                 <div class="opacity-0 animate-[fadeInUp_0.8s_ease-out_0.6s_forwards] ml-1 md:ml-2">
-                    <a href="#collection" class="group relative inline-flex items-center gap-3 px-8 py-4 bg-[#680626] text-[#FBF7EE] overflow-hidden transition-all duration-300 hover:pr-12">
+                    <a href="#collection" class="group relative inline-flex items-center gap-3 px-8 py-4 bg-[#111827] text-[#FBF7EE] overflow-hidden transition-all duration-300 hover:pr-12">
                         <span class="relative z-10 text-xs font-bold uppercase tracking-[0.2em]">Explore Catalogue</span>
                         <i class="fas fa-arrow-right absolute right-4 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 z-10"></i>
                         <div class="absolute inset-0 bg-[#4a041b] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out"></div>
@@ -363,7 +363,7 @@ body {
                              alt="Luxury Interior" 
                              class="w-full h-full object-cover transform scale-110 hover:scale-100 transition-transform duration-[2s] ease-out">
                     </div>
-                    <div class="absolute -bottom-4 -right-4 w-full h-full border border-[#B89A6B] z-[-1]"></div>
+                    <div class="absolute -bottom-4 -right-4 w-full h-full border border-[#10b981] z-[-1]"></div>
                 </div>
 
                 <div class="absolute bottom-12 left-0 w-40 h-48 shadow-2xl z-20 hidden md:block opacity-0 animate-[fadeInUp_1s_ease-out_0.5s_forwards]">
@@ -376,7 +376,7 @@ body {
 
                 <div class="absolute -top-6 -right-6 md:top-10 md:-right-10 z-30">
                     <div class="relative w-32 h-32 flex items-center justify-center animate-[spin_10s_linear_infinite]">
-                        <svg viewBox="0 0 100 100" class="w-full h-full fill-[#B89A6B]">
+                        <svg viewBox="0 0 100 100" class="w-full h-full fill-[#10b981]">
                             <path id="curve" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent"/>
                             <text class="text-[12px] uppercase font-bold tracking-widest">
                                 <textPath href="#curve">
@@ -385,7 +385,7 @@ body {
                             </text>
                         </svg>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <i class="fas fa-crown text-[#680626] text-xl"></i>
+                            <i class="fas fa-crown text-[#111827] text-xl"></i>
                         </div>
                     </div>
                 </div>
@@ -412,20 +412,20 @@ body {
             
         <div class="hidden lg:block w-full lg:w-1/4 xl:w-1/5">
     
-    <div class="filter-sidebar bg-white border-r border-b border-[#B89A6B]/30 p-8 sticky top-24">
+    <div class="filter-sidebar bg-white border-r border-b border-[#10b981]/30 p-8 sticky top-24">
         
-        <div class="flex items-center justify-between mb-10 border-b border-[#B89A6B]/20 pb-4">
-            <h3 class="font-serif text-2xl italic text-[#680626]">
+        <div class="flex items-center justify-between mb-10 border-b border-[#10b981]/20 pb-4">
+            <h3 class="font-serif text-2xl italic text-[#111827]">
                 Refine
             </h3>
             
-            <button id="clear-filters" class="text-[10px] uppercase tracking-widest text-[#B89A6B] hover:text-[#680626] border-b border-transparent hover:border-[#680626] transition-all duration-300">
+            <button id="clear-filters" class="text-[10px] uppercase tracking-widest text-[#10b981] hover:text-[#111827] border-b border-transparent hover:border-[#111827] transition-all duration-300">
                 Reset
             </button>
         </div>
         
         <div class="mb-12">
-            <h4 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#B89A6B] mb-6">
+            <h4 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#10b981] mb-6">
                 Collections
             </h4>
             
@@ -442,16 +442,16 @@ body {
                                    name="category[]" 
                                    value="{{ $category->id }}"
                                    {{ $isChecked ? 'checked' : '' }}
-                                   class="peer appearance-none w-4 h-4 border border-[#D6CEC3] checked:border-[#680626] checked:bg-[#680626] transition-all duration-300 cursor-pointer">
+                                   class="peer appearance-none w-4 h-4 border border-[#D6CEC3] checked:border-[#111827] checked:bg-[#111827] transition-all duration-300 cursor-pointer">
                             
                             <i class="fas fa-check text-[8px] text-white absolute left-[3px] opacity-0 peer-checked:opacity-100 transition-opacity duration-300 pointer-events-none"></i>
                         </div>
 
                         <div class="ml-4 flex-1 flex justify-between items-center">
-                            <span class="text-sm font-serif text-[#680626]/80 group-hover:text-[#680626] group-hover:italic transition-all duration-300">
+                            <span class="text-sm font-serif text-[#111827]/80 group-hover:text-[#111827] group-hover:italic transition-all duration-300">
                                 {{ $category->name }}
                             </span>
-                            <span class="text-[9px] text-[#B89A6B]">0{{ $category->products_count ?? 0 }}</span>
+                            <span class="text-[9px] text-[#10b981]">0{{ $category->products_count ?? 0 }}</span>
                         </div>
                     </label>
                 @endforeach
@@ -459,12 +459,12 @@ body {
         </div>
         
         <div class="mb-12">
-            <h4 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#B89A6B] mb-6">
+            <h4 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#10b981] mb-6">
                 Price Point
             </h4>
             
             <div class="space-y-6">
-                <div class="flex items-center justify-between text-xs font-serif text-[#680626]">
+                <div class="flex items-center justify-between text-xs font-serif text-[#111827]">
                     <span>Rs.{{ $minPrice }}</span>
                     <span>Rs.{{ $maxPrice }}</span>
                 </div>
@@ -478,11 +478,11 @@ body {
                            class="absolute w-full h-1 opacity-0 z-20 cursor-pointer">
                            
                     <div class="absolute inset-0 bg-[#E2DBD1] z-0"></div>
-                    <div class="absolute inset-y-0 left-0 bg-[#680626] z-10 w-1/2" id="price-track-visual"></div> <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-[#680626] rotate-45 z-10 pointer-events-none transition-all" id="price-thumb-visual"></div>
+                    <div class="absolute inset-y-0 left-0 bg-[#111827] z-10 w-1/2" id="price-track-visual"></div> <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-[#111827] rotate-45 z-10 pointer-events-none transition-all" id="price-thumb-visual"></div>
                 </div>
 
                 <div class="text-left">
-                    <span class="text-xs text-[#680626]">
+                    <span class="text-xs text-[#111827]">
                         Max: <span class="font-serif italic text-lg ml-2">Rs.<span id="current-price">{{ $defaultPrice }}</span></span>
                     </span>
                 </div>
@@ -490,7 +490,7 @@ body {
         </div>
         
         <div class="mb-12">
-            <h4 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#B89A6B] mb-6">
+            <h4 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#10b981] mb-6">
                 Rating
             </h4>
             <div class="space-y-3">
@@ -500,15 +500,15 @@ body {
                         <input type="checkbox" 
                                name="rating[]" 
                                value="{{ $i }}"
-                               class="peer appearance-none w-4 h-4 border border-[#D6CEC3] checked:border-[#680626] checked:bg-[#680626] transition-all duration-300 cursor-pointer">
+                               class="peer appearance-none w-4 h-4 border border-[#D6CEC3] checked:border-[#111827] checked:bg-[#111827] transition-all duration-300 cursor-pointer">
                          <i class="fas fa-check text-[8px] text-white absolute left-[3px] opacity-0 peer-checked:opacity-100 transition-opacity duration-300 pointer-events-none"></i>
                     </div>
                     
                     <div class="ml-4 flex items-center gap-1">
                         @for($j = 1; $j <= 5; $j++)
-                        <i class="{{ $j <= $i ? 'fas text-[#B89A6B]' : 'far text-[#D6CEC3]' }} fa-star text-[10px]"></i>
+                        <i class="{{ $j <= $i ? 'fas text-[#10b981]' : 'far text-[#D6CEC3]' }} fa-star text-[10px]"></i>
                         @endfor
-                        <span class="text-[10px] uppercase tracking-widest text-[#680626]/60 ml-2 group-hover:text-[#680626] transition-colors">& Up</span>
+                        <span class="text-[10px] uppercase tracking-widest text-[#111827]/60 ml-2 group-hover:text-[#111827] transition-colors">& Up</span>
                     </div>
                 </label>
                 @endfor
@@ -516,7 +516,7 @@ body {
         </div>
         
         <button id="apply-filters" 
-                class="w-full py-4 bg-[#680626] text-[#FBF7EE] hover:bg-[#4a041b] transition-all duration-500 group relative overflow-hidden">
+                class="w-full py-4 bg-[#111827] text-[#FBF7EE] hover:bg-[#4a041b] transition-all duration-500 group relative overflow-hidden">
             <span class="relative z-10 text-[10px] font-bold uppercase tracking-[0.2em] group-hover:tracking-[0.3em] transition-all duration-500">
                 Update View
             </span>
@@ -528,7 +528,7 @@ body {
     .custom-scrollbar::-webkit-scrollbar { width: 2px; }
     .custom-scrollbar::-webkit-scrollbar-track { bg: transparent; }
     .custom-scrollbar::-webkit-scrollbar-thumb { background: #E2DBD1; }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #B89A6B; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #10b981; }
 </style>
             
             <!-- Products Section -->
@@ -641,15 +641,15 @@ body {
         </div>
     </div>
     
-    <div id="mobile-filter-sidebar" class="lg:hidden fixed inset-y-0 left-0 w-[85vw] max-w-[320px] bg-white z-50 transform -translate-x-full transition-transform duration-500 border-r border-[#B89A6B]/30">
+    <div id="mobile-filter-sidebar" class="lg:hidden fixed inset-y-0 left-0 w-[85vw] max-w-[320px] bg-white z-50 transform -translate-x-full transition-transform duration-500 border-r border-[#10b981]/30">
     <div class="h-full flex flex-col">
         
-        <div class="p-8 border-b border-[#B89A6B]/20">
+        <div class="p-8 border-b border-[#10b981]/20">
             <div class="flex items-center justify-between">
-                <h3 class="font-serif text-2xl italic text-[#680626]">
+                <h3 class="font-serif text-2xl italic text-[#111827]">
                     Refine
                 </h3>
-                <button id="close-mobile-filters" class="group flex items-center gap-2 text-[10px] uppercase tracking-widest text-[#B89A6B] hover:text-[#680626] transition-colors">
+                <button id="close-mobile-filters" class="group flex items-center gap-2 text-[10px] uppercase tracking-widest text-[#10b981] hover:text-[#111827] transition-colors">
                     <span>Close</span>
                     <i class="fas fa-times text-lg group-hover:rotate-90 transition-transform duration-300"></i>
                 </button>
@@ -659,7 +659,7 @@ body {
         <div class="flex-1 overflow-y-auto p-8 custom-scrollbar">
             
             <div class="mb-10">
-                <h4 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#B89A6B] mb-6">
+                <h4 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#10b981] mb-6">
                     Collections
                 </h4>
                 <div class="space-y-4">
@@ -676,16 +676,16 @@ body {
                                        name="category[]" 
                                        value="{{ $category->id }}"
                                        {{ $isChecked ? 'checked' : '' }}
-                                       class="peer appearance-none w-4 h-4 border border-[#D6CEC3] checked:border-[#680626] checked:bg-[#680626] transition-all duration-300 cursor-pointer">
+                                       class="peer appearance-none w-4 h-4 border border-[#D6CEC3] checked:border-[#111827] checked:bg-[#111827] transition-all duration-300 cursor-pointer">
                                 
                                 <i class="fas fa-check text-[8px] text-white absolute left-[3px] opacity-0 peer-checked:opacity-100 transition-opacity duration-300 pointer-events-none"></i>
                             </div>
 
                             <div class="ml-4 flex-1 flex justify-between items-center">
-                                <span class="text-sm font-serif text-[#680626]/80 group-hover:text-[#680626] group-hover:italic transition-all duration-300">
+                                <span class="text-sm font-serif text-[#111827]/80 group-hover:text-[#111827] group-hover:italic transition-all duration-300">
                                     {{ $category->name }}
                                 </span>
-                                <span class="text-[9px] text-[#B89A6B]">0{{ $category->products_count ?? 0 }}</span>
+                                <span class="text-[9px] text-[#10b981]">0{{ $category->products_count ?? 0 }}</span>
                             </div>
                         </label>
                     @endforeach
@@ -693,11 +693,11 @@ body {
             </div>
             
             <div class="mb-10">
-                <h4 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#B89A6B] mb-6">
+                <h4 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#10b981] mb-6">
                     Price Point
                 </h4>
                 <div class="space-y-6">
-                    <div class="flex items-center justify-between text-xs font-serif text-[#680626]">
+                    <div class="flex items-center justify-between text-xs font-serif text-[#111827]">
                         <span>${{ $minPrice }}</span>
                         <span>${{ $maxPrice }}</span>
                     </div>
@@ -711,11 +711,11 @@ body {
                                class="absolute w-full h-1 opacity-0 z-20 cursor-pointer">
                         
                         <div class="absolute inset-0 bg-[#E2DBD1] z-0"></div>
-                        <div class="absolute inset-y-0 left-0 bg-[#680626] z-10 w-1/2"></div> <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-[#680626] rounded-full z-10 pointer-events-none shadow-md"></div>
+                        <div class="absolute inset-y-0 left-0 bg-[#111827] z-10 w-1/2"></div> <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-[#111827] rounded-full z-10 pointer-events-none shadow-md"></div>
                     </div>
 
                     <div class="text-left">
-                         <span class="text-xs text-[#680626]">
+                         <span class="text-xs text-[#111827]">
                             Max: <span class="font-serif italic text-lg ml-2">$<span id="mobile-current-price">{{ $defaultPrice }}</span></span>
                         </span>
                     </div>
@@ -723,7 +723,7 @@ body {
             </div>
             
             <div class="mb-10">
-                <h4 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#B89A6B] mb-6">
+                <h4 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#10b981] mb-6">
                     Rating
                 </h4>
                 <div class="space-y-3">
@@ -733,15 +733,15 @@ body {
                             <input type="checkbox" 
                                    name="rating[]" 
                                    value="{{ $i }}"
-                                   class="peer appearance-none w-4 h-4 border border-[#D6CEC3] checked:border-[#680626] checked:bg-[#680626] transition-all duration-300 cursor-pointer">
+                                   class="peer appearance-none w-4 h-4 border border-[#D6CEC3] checked:border-[#111827] checked:bg-[#111827] transition-all duration-300 cursor-pointer">
                              <i class="fas fa-check text-[8px] text-white absolute left-[3px] opacity-0 peer-checked:opacity-100 transition-opacity duration-300 pointer-events-none"></i>
                         </div>
                         
                         <div class="ml-4 flex items-center gap-1">
                             @for($j = 1; $j <= 5; $j++)
-                            <i class="{{ $j <= $i ? 'fas text-[#B89A6B]' : 'far text-[#D6CEC3]' }} fa-star text-[10px]"></i>
+                            <i class="{{ $j <= $i ? 'fas text-[#10b981]' : 'far text-[#D6CEC3]' }} fa-star text-[10px]"></i>
                             @endfor
-                            <span class="text-[10px] uppercase tracking-widest text-[#680626]/60 ml-2 group-hover:text-[#680626] transition-colors">& Up</span>
+                            <span class="text-[10px] uppercase tracking-widest text-[#111827]/60 ml-2 group-hover:text-[#111827] transition-colors">& Up</span>
                         </div>
                     </label>
                     @endfor
@@ -749,9 +749,9 @@ body {
             </div>
         </div>
         
-        <div class="p-8 border-t border-[#B89A6B]/20 bg-white">
+        <div class="p-8 border-t border-[#10b981]/20 bg-white">
             <button id="mobile-apply-filters" 
-                    class="w-full py-4 bg-[#680626] text-[#FBF7EE] hover:bg-[#4a041b] transition-all duration-300 shadow-none hover:shadow-lg">
+                    class="w-full py-4 bg-[#111827] text-[#FBF7EE] hover:bg-[#4a041b] transition-all duration-300 shadow-none hover:shadow-lg">
                 <span class="text-[10px] font-bold uppercase tracking-[0.2em]">
                     Update View
                 </span>
@@ -760,7 +760,7 @@ body {
     </div>
 </div>
 
-<div id="mobile-filter-overlay" class="lg:hidden fixed inset-0 bg-[#680626]/20 backdrop-blur-sm z-40 hidden transition-all duration-300"></div>
+<div id="mobile-filter-overlay" class="lg:hidden fixed inset-0 bg-[#111827]/20 backdrop-blur-sm z-40 hidden transition-all duration-300"></div>
    <!-- Add to Cart Modal -->
 <div id="add-to-cart-modal" 
      class="fixed inset-0 bg-black/50 z-[9999] hidden flex items-center justify-center p-4 overflow-auto">

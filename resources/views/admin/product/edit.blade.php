@@ -1,6 +1,6 @@
 @extends("admin.layouts.master-layouts.plain")
 
-<title>Edit Product | Grocery Store</title>
+<title>Edit Product | Footwear Premium</title>
 
 @push("script")
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>

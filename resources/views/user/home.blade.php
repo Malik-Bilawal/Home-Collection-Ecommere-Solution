@@ -2,7 +2,7 @@
 
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<title>Inhouse Textiles | Premium Home Textiles</title>
+<title>Footwear Premium | Premium Shoes & Sandals</title>
 
 @push("style")
 <style>
@@ -537,27 +537,27 @@
             <div class="hidden lg:flex flex-1 justify-end overflow-hidden ml-12">
                 <div class="animate-marquee flex whitespace-nowrap gap-12 opacity-60">
                     <span class="text-xs font-mono uppercase tracking-[0.3em] text-white/70">
-                        EXPORT GRADE QUALITY
+                        PREMIUM LEATHER
                     </span>
-                    <span class="text-xs font-mono text-[var(--secondary-color)]">•</span>
+                    <span class="text-xs font-mono text-[#10b981]">•</span>
                     <span class="text-xs font-mono uppercase tracking-[0.3em] text-white/70">
-                        THREE GENERATIONS OF EXPERTISE
+                        AUTHENTIC DESIGN
                     </span>
-                    <span class="text-xs font-mono text-[var(--secondary-color)]">•</span>
+                    <span class="text-xs font-mono text-[#10b981]">•</span>
                     <span class="text-xs font-mono uppercase tracking-[0.3em] text-white/70">
-                        TRUSTED BY PAKISTANI FAMILIES
+                        COMFORT FIT
                     </span>
 
                     <span class="text-xs font-mono uppercase tracking-[0.3em] text-white/70">
-                        EXPORT GRADE QUALITY
+                        PREMIUM LEATHER
                     </span>
-                    <span class="text-xs font-mono text-[var(--secondary-color)]">•</span>
+                    <span class="text-xs font-mono text-[#10b981]">•</span>
                     <span class="text-xs font-mono uppercase tracking-[0.3em] text-white/70">
-                        THREE GENERATIONS OF EXPERTISE
+                        AUTHENTIC DESIGN
                     </span>
-                    <span class="text-xs font-mono text-[var(--secondary-color)]">•</span>
+                    <span class="text-xs font-mono text-[#10b981]">•</span>
                     <span class="text-xs font-mono uppercase tracking-[0.3em] text-white/70">
-                        TRUSTED BY PAKISTANI FAMILIES
+                        COMFORT FIT
                     </span>
                 </div>
             </div>
@@ -568,66 +568,53 @@
     </div>
     </div>
 </section>
-<section class="py-12 md:py-24 bg-[#FBF7EE]">
+<section class="py-12 md:py-24 bg-white">
     <div class="container mx-auto px-2 md:px-12">
 
         <div class="text-center mb-16">
-            <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-[#B89A6B] mb-2 block">2026 Series</span>
-            <!-- <h2 class="text-4xl md:text-6xl font-serif text-[#680626] italic">Curated <span class="not-italic">Mosaic</span></h2> -->
-            <h2 class="text-3xl md:text-6xl font-serif text-[#680626] italic">SHOP BY <span class="not-italic">CATEGORY</span></h2>
+            <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-[#10b981] mb-2 block">Premium Collection</span>
+            <h2 class="text-3xl md:text-6xl font-serif text-gray-900 italic">SHOP BY <span class="not-italic">CATEGORY</span></h2>
 
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-2 auto-rows-[minmax(200px,auto)] md:grid-flow-dense">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
 
             @foreach($categories as $index => $category)
-            @php
+            <a href="{{ route('product', ['category_id' => $category->id]) }}" 
+               class="group relative overflow-hidden bg-gray-100 rounded-xl aspect-square hover:shadow-xl transition-all duration-500">
+                <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-4">
+                    @switch($category->slug)
+                        @case('sneakers')
+                            <i class="fas fa-running text-3xl text-white mb-3"></i>
+                            @break
+                        @case('formal-shoes')
+                            <i class="fas fa-briefcase text-3xl text-white mb-3"></i>
+                            @break
+                        @case('sandals')
+                            <i class="fas fa-feather-alt text-3xl text-white mb-3"></i>
+                            @break
+                        @case('loafers')
+                            <i class="fas fa-shoe-prints text-3xl text-white mb-3"></i>
+                            @break
+                        @case('boots')
+                            <i class="fas fa-boot text-3xl text-white mb-3"></i>
+                            @break
+                        @case('slippers')
+                            <i class="fas fa-home text-3xl text-white mb-3"></i>
+                            @break
+                        @default
+                            <i class="fas fa-shoe text-3xl text-white mb-3"></i>
+                    @endswitch
+                    <h3 class="text-sm font-medium text-white text-center">{{ $category->name }}</h3>
+                    <span class="text-xs text-gray-300 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">Explore &rarr;</span>
+                </div>
+            </a>
+            @endforeach
 
-            $mPos = ($index + 1) % 3;
-            $mobileClass = ($mPos === 0) ? 'col-span-2 aspect-square' : 'col-span-1 aspect-square';
-
-
-            $dPos = $index % 6;
-            $desktopClass = '';
-            $isDesktopBig = false;
-
-            switch ($dPos) {
-            case 0: // Big Box (Left Side)
-            $desktopClass = 'md:col-span-2 md:row-span-2';
-            $isDesktopBig = true;
-            break;
-            case 1: // Small (Right Top)
-            case 2: // Small (Right Bottom)
-            $desktopClass = 'md:col-span-1 md:row-span-1';
-            break;
-            case 3: // Small (Left Top)
-            case 4: // Small (Left Bottom)
-            $desktopClass = 'md:col-span-1 md:row-span-1'; // Logic handled by grid-flow-dense
-            break;
-            case 5: // Big Box (Right Side)
-            $desktopClass = 'md:col-span-2 md:row-span-2';
-            $isDesktopBig = true;
-            break;
-            }
-            @endphp
-
-            <div class="relative group {{ $mobileClass }} {{ $desktopClass }} overflow-hidden bg-[#E2DBD1]">
-
-                <a href="{{ route('product', ['category_id' => $category->id]) }}" class="block w-full h-full">
-
-                    <img src="{{ $category->image ? asset('storage/app/public/' . $category->image) : 'https://placehold.co/800x800/E2DBD1/680626?text=' . urlencode($category->name) }}"
-                        alt="{{ $category->name }}"
-                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105">
-
-                    <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-500"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-90 md:opacity-60 transition-opacity duration-500"></div>
-
-                    <div class="absolute inset-0 p-4 md:p-8 flex flex-col justify-end items-start">
-
-                        <h3 class="font-serif text-white leading-none mb-2 transition-all duration-500 group-hover:translate-x-2 
-                                {{ $isDesktopBig ? 'text-3xl md:text-5xl' : 'text-lg md:text-2xl' }}
-                                {{ ($mPos === 0) ? 'text-3xl' : '' }} ">
-                            {{ $category->name }}
+        </div>
+    </div>
+</section>
                         </h3>
 
                         <div class="flex items-center gap-3 opacity-80 group-hover:opacity-100 transition-opacity duration-500">
@@ -651,27 +638,27 @@
         </div>
 
         <div class="mt-8 text-center md:hidden">
-            <p class="text-[9px] text-[#680626]/40 uppercase tracking-widest">Swipe for more</p>
+            <p class="text-[9px] text-[#111827]/40 uppercase tracking-widest">Swipe for more</p>
         </div>
     </div>
 </section>
 
 <section
-    class="bg-[#FBF7EE] py-20 overflow-hidden select-none"
+    class="bg-white py-20 overflow-hidden select-none"
     x-data="infiniteCarousel()"
     x-init="initCarousel()"
     @mouseenter="stopAutoplay()"
     @mouseleave="startAutoplay()">
     <div class="container mx-auto px-6 mb-12 text-center relative z-10">
-        <h2 class="text-4xl md:text-5xl font-serif text-[#680626] font-medium tracking-tight mb-4">
-            OUR TOP PICKS
+        <h2 class="text-4xl md:text-5xl font-serif text-gray-900 font-medium tracking-tight mb-4">
+            TOP SELLING
         </h2>
-        <p class="text-[#B89A6B] uppercase tracking-[0.2em] text-xs font-medium">Excellence in Every Detail</p>
+        <p class="text-emerald-600 uppercase tracking-[0.2em] text-xs font-medium">Most Popular Choices</p>
     </div>
 
     <div class="relative w-full">
-        <div class="absolute left-0 top-0 bottom-0 w-12 md:w-40 bg-gradient-to-r from-[#FBF7EE] to-transparent z-20 pointer-events-none"></div>
-        <div class="absolute right-0 top-0 bottom-0 w-12 md:w-40 bg-gradient-to-l from-[#FBF7EE] to-transparent z-20 pointer-events-none"></div>
+        <div class="absolute left-0 top-0 bottom-0 w-12 md:w-40 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-12 md:w-40 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none"></div>
 
         <div
             x-ref="track"
@@ -685,67 +672,63 @@
                 }
                 $clones = $clones->take(4);
                 $allProducts = $originals->concat($clones);
-                @endphp
+            @endphp
 
 @foreach($allProducts as $index => $product)
 <div class="w-full md:w-1/4 flex-shrink-0 px-3 md:px-6 relative group cursor-pointer">
-    <div class="bg-white h-full flex flex-col relative overflow-hidden transition-all duration-500 hover:shadow-[0_10px_40px_-15px_rgba(104,6,38,0.2)] border border-transparent hover:border-[#D6CEC3]/30">
+    <div class="bg-white h-full flex flex-col relative overflow-hidden transition-all duration-500 hover:shadow-2xl border border-gray-100 hover:border-gray-300 rounded-xl">
         
         <a href="{{ route('product.detail', $product->id) }}" class="absolute inset-0 z-10" aria-label="{{ $product->name }}"></a>
 
-        <div class="relative aspect-[3/4] overflow-hidden bg-[#F0EBE6]">
-            @if($product->offer_price && $product->offer_price < $product->price)
-                <div class="absolute top-3 left-3 bg-white/95 backdrop-blur text-[#680626] text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-20 shadow-sm">
-                    Sale
+        <div class="relative aspect-square overflow-hidden bg-gray-50">
+            @if($product->cut_price && $product->cut_price < $product->price)
+                <div class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-20 shadow-sm rounded">
+                    {{ round((($product->price - $product->cut_price) / $product->price) * 100) }}% OFF
                 </div>
             @endif
 
             <img
-                src="{{ $product->defaultImage ? asset('storage/app/public/' . $product->defaultImage->image_path) : 'https://placehold.co/600x800/E2DBD1/680626?text=Image' }}"
+                src="{{ $product->defaultImage ? $product->defaultImage->image_path : 'https://placehold.co/600x600/f3f4f6/111827?text=Shoe' }}"
                 alt="{{ $product->name }}"
-                class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110">
+                class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">
 
             <div class="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] z-30">
                 <a href="{{ route('product.detail', $product->id) }}" 
-                   class="btn-cta block w-full bg-[#680626] text-white py-4 text-center uppercase text-xs tracking-[0.2em] font-medium hover:bg-[#52041E] transition-colors">
-                    Add to Cart
+                   class="btn-cta block w-full bg-emerald-500 text-white py-4 text-center uppercase text-xs tracking-[0.2em] font-medium hover:bg-emerald-600 transition-colors rounded-b-xl">
+                    View Details
                 </a>
             </div>
         </div>
 
-        <div class="p-6 flex flex-col flex-grow text-center bg-white relative z-20 pointer-events-none">
-            <div class="text-[#B89A6B] text-[10px] font-bold uppercase tracking-widest mb-3">
-                {{ $product->category->name ?? 'Signature Collection' }}
+        <div class="p-5 flex flex-col flex-grow text-center bg-white relative z-20 pointer-events-none">
+            <div class="text-emerald-600 text-[10px] font-bold uppercase tracking-widest mb-2">
+                {{ $product->category->name ?? 'Footwear' }}
             </div>
 
-            <h3 class="text-[#1A1A1A] text-xl font-serif mb-2 group-hover:text-[#680626] transition-colors duration-300 truncate">
+            <h3 class="text-gray-900 text-lg font-medium mb-2 group-hover:text-emerald-600 transition-colors duration-300 truncate px-2">
                 {{ $product->name }}
             </h3>
-
-            <div class="text-[11px] text-gray-500 leading-snug line-clamp-2 px-2 mb-2">
-                {!! strip_tags($product->description, '<b><strong><i><em>') !!}
-            </div>
 
             <div class="flex justify-center gap-1 mb-3">
                 @php $rating = $product->rating ?? 0; @endphp
                 @for($i = 1; $i <= 5; $i++)
-                    <svg class="w-3 h-3 {{ $i <= $rating ? 'text-[#B89A6B] fill-current' : 'text-[#E2DBD1] fill-current' }}" viewBox="0 0 24 24">
+                    <svg class="w-3 h-3 {{ $i <= $rating ? 'text-emerald-500 fill-current' : 'text-gray-200 fill-current' }}" viewBox="0 0 24 24">
                         <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
                     </svg>
                 @endfor
             </div>
 
-            <div class="mt-auto pt-3 border-t border-[#FBF7EE] flex justify-center items-baseline gap-3">
-                @if($product->offer_price)
-                    <span class="text-gray-400 line-through text-xs font-light">
-                        Rs.{{ number_format($product->price, 2) }}
+            <div class="mt-auto pt-2 border-t border-gray-100 flex justify-center items-baseline gap-2">
+                @if($product->cut_price)
+                    <span class="text-gray-400 line-through text-sm font-light">
+                        Rs.{{ number_format($product->price) }}
                     </span>
-                    <span class="text-[#680626] text-lg font-medium">
-                        Rs.{{ number_format($product->offer_price, 2) }}
+                    <span class="text-emerald-600 text-xl font-bold">
+                        Rs.{{ number_format($product->cut_price) }}
                     </span>
                 @else
-                    <span class="text-[#680626] text-lg font-medium">
-                        Rs.{{ number_format($product->price, 2) }}
+                    <span class="text-gray-900 text-xl font-bold">
+                        Rs.{{ number_format($product->price) }}
                     </span>
                 @endif
             </div>
@@ -753,14 +736,13 @@
     </div>
 </div>
 @endforeach
-        </div>
 
         <div class="flex justify-center mt-10 gap-2">
             @foreach($topSellingProduct as $index => $p)
             <button
                 @click="currentIndex = {{ $index }}"
                 class="h-1 rounded-full transition-all duration-500"
-                :class="(currentIndex % {{ $topSellingProduct->count() }}) === {{ $index }} ? 'w-8 bg-[#680626]' : 'w-2 bg-[#D6CEC3]'"></button>
+                :class="(currentIndex % {{ $topSellingProduct->count() }}) === {{ $index }} ? 'w-8 bg-[#111827]' : 'w-2 bg-[#f3f4f6]'"></button>
             @endforeach
         </div>
     </div>
@@ -827,16 +809,16 @@
 
     <div class="flex flex-col md:flex-row justify-between items-end mb-32 gap-8">
         <div class="max-w-2xl">
-            <span class="text-[10px] font-bold uppercase tracking-[0.5em] text-[#B89A6B] mb-4 block">
+            <span class="text-[10px] font-bold uppercase tracking-[0.5em] text-[#10b981] mb-4 block">
                 Classic Collection
             </span>
-            <h2 class="text-4xl md:text-7xl lg:text-8xl font-serif text-[#680626] leading-[1.1] tracking-tight">
+            <h2 class="text-4xl md:text-7xl lg:text-8xl font-serif text-[#111827] leading-[1.1] tracking-tight">
                 TOP <span class="italic font-light ml-0 md:ml-4">CATEGORY</span>
             </h2>
         </div>
 
         <div class="md:w-1/3 text-right">
-            <p class="text-xs text-[#680626]/60 font-light uppercase tracking-widest leading-loose border-r-2 border-[#B89A6B] pr-6">
+            <p class="text-xs text-[#111827]/60 font-light uppercase tracking-widest leading-loose border-r-2 border-[#10b981] pr-6">
                 Three generations of expertise,<br>woven into every thread.
             </p>
         </div>
@@ -858,28 +840,28 @@
         <div class="relative group {{ explode(' ', $currentStyle)[1] }}">
             <a href="{{ route('product', ['category_id' => $category->id]) }}" class="block">
 
-                <div class="relative w-full {{ explode(' ', $currentStyle)[0] }} overflow-hidden bg-[#D6CEC3]">
+                <div class="relative w-full {{ explode(' ', $currentStyle)[0] }} overflow-hidden bg-[#f3f4f6]">
                     <img src="{{ $category->image ? asset('storage/app/public/' . $category->image) : 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200' }}"
                         alt="{{ $category->name }}"
                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] ease-[cubic-bezier(0.2,1,0.3,1)] group-hover:scale-105">
 
-                    <div class="absolute inset-0 bg-[#680626]/5 group-hover:bg-transparent transition-colors duration-700"></div>
+                    <div class="absolute inset-0 bg-[#111827]/5 group-hover:bg-transparent transition-colors duration-700"></div>
                 </div>
 
                 <div class="mt-10 {{ ($index % 3 == 2) ? 'md:text-right' : 'text-left' }}">
                     <div class="inline-flex flex-col {{ ($index % 3 == 2) ? 'md:items-end' : 'items-start' }}">
-                        <span class="text-[9px] font-bold text-[#B89A6B] tracking-[0.4em] mb-4">
+                        <span class="text-[9px] font-bold text-[#10b981] tracking-[0.4em] mb-4">
                             SERIES // 0{{ $index + 1 }}
                         </span>
 
-                        <h3 class="text-3xl md:text-4xl font-serif text-[#680626] leading-none mb-6 group-hover:text-[#B89A6B] transition-colors duration-500">
+                        <h3 class="text-3xl md:text-4xl font-serif text-[#111827] leading-none mb-6 group-hover:text-[#10b981] transition-colors duration-500">
                             {{ $category->name }}
                         </h3>
 
-                        <div class="h-px w-8 bg-[#B89A6B] group-hover:w-20 transition-all duration-700"></div>
+                        <div class="h-px w-8 bg-[#10b981] group-hover:w-20 transition-all duration-700"></div>
 
                         <div class="mt-8 overflow-hidden">
-                            <span class="inline-block text-[10px] font-bold uppercase tracking-[0.3em] text-[#680626] transition-all duration-500 transform translate-y-full group-hover:translate-y-0">
+                            <span class="inline-block text-[10px] font-bold uppercase tracking-[0.3em] text-[#111827] transition-all duration-500 transform translate-y-full group-hover:translate-y-0">
                                 Explore Collection &rarr;
                             </span>
                         </div>
@@ -892,13 +874,13 @@
     </div>
 
     <div class="absolute bottom-10 left-6 pointer-events-none opacity-[0.03] select-none">
-        <span class="text-[10rem] font-serif italic text-[#680626]">Curated</span>
+        <span class="text-[10rem] font-serif italic text-[#111827]">Curated</span>
     </div>
 </div>
 </section>
 
 <section
-    class="bg-[#FBF7EE] py-24 overflow-hidden select-none"
+    class="bg-[#ffffff] py-24 overflow-hidden select-none"
     x-data="infiniteCarousel()"
     x-init="initCarousel()"
     @mouseenter="stopAutoplay()"
@@ -908,7 +890,7 @@
             Best Seller
         </span>
         <h2 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light mb-4 md:mb-6 text-[var(--primary-color)]">
-            OUR BEST CHOICES
+            OUR BEST SELLERS
         </h2>
         <div class="w-12 md:w-16 h-px bg-[var(--secondary-color)] mx-auto mb-4 md:mb-6"></div>
         <p class="text-neutral-600 max-w-xl mx-auto leading-relaxed text-sm md:text-base">
@@ -917,8 +899,8 @@
     </div>
 
     <div class="relative w-full">
-        <div class="absolute left-0 top-0 bottom-0 w-20 md:w-64 bg-gradient-to-r from-[#FBF7EE] to-transparent z-20 pointer-events-none"></div>
-        <div class="absolute right-0 top-0 bottom-0 w-20 md:w-64 bg-gradient-to-l from-[#FBF7EE] to-transparent z-20 pointer-events-none"></div>
+        <div class="absolute left-0 top-0 bottom-0 w-20 md:w-64 bg-gradient-to-r from-[#ffffff] to-transparent z-20 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-20 md:w-64 bg-gradient-to-l from-[#ffffff] to-transparent z-20 pointer-events-none"></div>
 
         <div
             x-ref="track"
@@ -936,25 +918,25 @@
                 @endphp
 @foreach($allProducts as $index => $product)
 <div class="w-full md:w-1/3 flex-shrink-0 px-4 md:px-8 relative group cursor-pointer">
-    <div class="relative flex flex-col h-full bg-white p-4 border border-[#E2DBD1]/30 transition-all duration-700 hover:shadow-[0_20px_50px_rgba(104,6,38,0.08)]">
+    <div class="relative flex flex-col h-full bg-white p-4 border border-[#e5e7eb]/30 transition-all duration-700 hover:shadow-[0_20px_50px_rgba(104,6,38,0.08)]">
         
         <a href="{{ route('product.detail', $product->id) }}" class="absolute inset-0 z-10" aria-label="{{ $product->name }}"></a>
 
         @if($product->offer_price && $product->offer_price < $product->price)
             <div class="absolute top-6 left-6 z-20">
-                <span class="bg-[#680626] text-white text-[9px] font-bold px-3 py-1 uppercase tracking-widest">EXPORT QUALITY</span>
+                <span class="bg-[#111827] text-white text-[9px] font-bold px-3 py-1 uppercase tracking-widest">EXPORT QUALITY</span>
             </div>
         @endif
 
-        <div class="relative aspect-[4/5] overflow-hidden bg-[#FBF7EE]">
+        <div class="relative aspect-[4/5] overflow-hidden bg-[#ffffff]">
             <img
                 src="{{ $product->defaultImage ? asset('storage/app/public/' . $product->defaultImage->image_path) : 'https://placehold.co/600x800/E2DBD1/680626?text=Image' }}"
                 alt="{{ $product->name }}"
                 class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-[2s] ease-out group-hover:scale-110">
 
-            <div class="absolute inset-0 bg-[#680626]/0 group-hover:bg-[#680626]/5 transition-all duration-700 flex flex-col justify-end p-6">
+            <div class="absolute inset-0 bg-[#111827]/0 group-hover:bg-[#111827]/5 transition-all duration-700 flex flex-col justify-end p-6">
                 <div class="translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 z-30">
-                    <a class="btn-cta w-full block text-center bg-white text-[#680626] py-4 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-[#680626] hover:text-white transition-all shadow-xl"
+                    <a class="btn-cta w-full block text-center bg-white text-[#111827] py-4 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-[#111827] hover:text-white transition-all shadow-xl"
                        href="{{ route('product.detail', $product->id) }}">
                         Experience Quality
                     </a>
@@ -963,10 +945,10 @@
         </div>
 
         <div class="mt-8 mb-4 text-center relative z-20 pointer-events-none">
-            <p class="text-[#B89A6B] text-[9px] uppercase tracking-[0.3em] font-bold mb-2">
+            <p class="text-[#10b981] text-[9px] uppercase tracking-[0.3em] font-bold mb-2">
                 {{ $product->category->name ?? 'Premium Collection' }}
             </p>
-            <h3 class="text-[#1A1A1A] text-2xl font-serif mb-4 group-hover:text-[#680626] transition-colors duration-500 truncate px-4">
+            <h3 class="text-[#1A1A1A] text-2xl font-serif mb-4 group-hover:text-[#111827] transition-colors duration-500 truncate px-4">
                 {{ $product->name }}
             </h3>
 
@@ -976,21 +958,21 @@
 
             <div class="flex items-center justify-center gap-3">
                 @if($product->offer_price)
-                    <span class="text-[#B89A6B]/50 line-through text-xs font-light tracking-wider">
+                    <span class="text-[#10b981]/50 line-through text-xs font-light tracking-wider">
                         Rs.{{ number_format($product->price, 0) }}
                     </span>
-                    <span class="text-[#680626] text-xl font-medium tracking-tight">
+                    <span class="text-[#111827] text-xl font-medium tracking-tight">
                         Rs.{{ number_format($product->offer_price, 0) }}
                     </span>
                 @else
-                    <span class="text-[#680626] text-xl font-medium tracking-tight">
+                    <span class="text-[#111827] text-xl font-medium tracking-tight">
                         Rs.{{ number_format($product->price, 0) }}
                     </span>
                 @endif
             </div>
         </div>
 
-        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#680626] group-hover:w-full transition-all duration-700 z-20"></div>
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#111827] group-hover:w-full transition-all duration-700 z-20"></div>
     </div>
 </div>
 @endforeach
@@ -1001,7 +983,7 @@
             <button
                 @click="currentIndex = {{ $index }}"
                 class="h-[2px] transition-all duration-700"
-                :class="(currentIndex % {{ $popularProducts->count() }}) === {{ $index }} ? 'w-12 bg-[#680626]' : 'w-4 bg-[#D6CEC3]'"></button>
+                :class="(currentIndex % {{ $popularProducts->count() }}) === {{ $index }} ? 'w-12 bg-[#111827]' : 'w-4 bg-[#f3f4f6]'"></button>
             @endforeach
         </div>
     </div>
@@ -1070,15 +1052,15 @@
 
 
         <div class="container mx-auto px-6 mb-16 relative z-10 text-center">
-            <h2 class="text-3xl md:text-6xl font-serif text-[#680626] font-light tracking-tight mb-4 italic">
+            <h2 class="text-3xl md:text-6xl font-serif text-[#111827] font-light tracking-tight mb-4 italic">
                 FEATURED <span class="font-medium not-italic">Products</span>
             </h2>
             <div class="flex items-center justify-center gap-4">
-                <div class="h-[1px] w-12 bg-[#B89A6B]/40"></div>
-                <p class="text-[#B89A6B] uppercase tracking-[0.4em] text-[10px] font-bold">
+                <div class="h-[1px] w-12 bg-[#10b981]/40"></div>
+                <p class="text-[#10b981] uppercase tracking-[0.4em] text-[10px] font-bold">
                     Top Picks
                 </p>
-                <div class="h-[1px] w-12 bg-[#B89A6B]/40"></div>
+                <div class="h-[1px] w-12 bg-[#10b981]/40"></div>
             </div>
         </div>
 

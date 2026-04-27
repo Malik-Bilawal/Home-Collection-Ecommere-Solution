@@ -33,38 +33,29 @@
   @stack('style')
   <style>
     :root {
-      /* Primary */
-      --primary-color: #680626;
-      /* Dark Maroon */
-      --primary-hover: #52041E;
-      /* Deeper Maroon */
-      --secondary-color: #B89A6B;
-      /* Rose-champagne gold */
-      --secondary-hover: #967B52;
-      /* Elegant darkening, stays refined */
-
-
-
+      /* Primary - Dark Premium Black */
+      --primary-color: #111827;
+      /* Darker Black */
+      --primary-hover: #000000;
+      /* Secondary - White */
+      --secondary-color: #ffffff;
+      /* White hover */
+      --secondary-hover: #f3f4f6;
+      /* Accent - Emerald Teal */
+      --accent-color: #10b981;
+      /* Deeper Teal */
+      --accent-hover: #059669;
       /* Cards */
       --card-background: #FFFFFF;
-
-      /* Accent (Greige – slightly warmer) */
-      --accent-color: #D6CEC3;
-      /* Warm Greige */
-      --accent-hover: #C8BFB3;
-      /* Natural darkening, not muddy */
-
       /* Text */
       --text-on-primary: #FFFFFF;
-      --text-on-secondary: #2A2A2A;
-
+      --text-on-secondary: #1f2937;
       /* Backgrounds */
-      --background-color: #FBF7EE;
-      /* Soft Ivory */
+      --background-color: #ffffff;
+      /* White */
       --surface-color: #FFFFFF;
-
       /* Borders */
-      --border-color: #E2DBD1;
+      --border-color: #e5e7eb;
     }
 
     [x-cloak] {
