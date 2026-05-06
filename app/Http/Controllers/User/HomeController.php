@@ -31,16 +31,19 @@ class HomeController extends Controller
         $banners = HeroSlider::where('status', 1)->get();
         $sale = Sale::where('is_active', 1)->get();
     
+        $popularProducts = Product::where('is_top_selling', 1)
+            ->with('defaultImage', 'category')
+            ->take(6)
+            ->get();
+
         return view('user.home', compact(
             'categories', 
             'banners', 
             'products', 
             'sale', 
             'topSellingProduct', 
-            'popularProducts' => collect()
+            'popularProducts'
         ));
     }
     
 }
-    
-

@@ -1,9 +1,8 @@
 @extends("user.layouts.master-layouts.plain")
 @php
-    $pageTitle = request('categories') ? 'Filtered Products | Home Collection' : 'Premium Home Collection';
+    $pageTitle = request('categories') ? 'Filtered Products | Footwear Premium' : 'Premium Footwear Collection';
 @endphp
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<<<<<<< HEAD
 <title>Footwear Premium | Premium Shoe Products</title>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -60,9 +59,6 @@ body {
 #grad2 stop[offset="50%"] { stop-color: var(--secondary-color); }
 #grad2 stop[offset="100%"] { stop-color: var(--primary-color); }
 </style>
-=======
-<title>{{ $pageTitle }}</title>
->>>>>>> 26d0e50 (hello world)
 
 @section("content")
 
@@ -309,19 +305,12 @@ body {
 </style>
 
 <!-- Hero Section -->
-<section class="relative min-h-[85vh] flex items-center bg-[#FBF7EE] overflow-hidden pt-20 md:pt-0">
-
-    <div class="absolute inset-0 pointer-events-none select-none">
-        <div class="container mx-auto px-4 h-full border-l border-r border-[#111827]/5">
-            <div class="grid grid-cols-12 h-full">
-                <div class="col-span-3 border-r border-[#111827]/5 h-full hidden md:block"></div>
-                <div class="col-span-3 border-r border-[#111827]/5 h-full hidden md:block"></div>
-                <div class="col-span-3 border-r border-[#111827]/5 h-full hidden md:block"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="absolute inset-0 opacity-[0.03] bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23680626\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+<section class="relative min-h-[80vh] flex items-center bg-[var(--primary-color)] overflow-hidden pt-20 md:pt-0">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-[0.03] bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2310b981\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+    
+    <!-- Gradient Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-r from-[var(--primary-color)] via-[var(--primary-color)]/90 to-transparent"></div>
 
     <div class="container mx-auto px-4 relative z-10 w-full">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
@@ -329,64 +318,79 @@ body {
             <div class="md:col-span-7 flex flex-col items-start text-left">
                 
                 <div class="flex items-center gap-4 mb-6 overflow-hidden">
-                    <div class="h-[1px] w-12 bg-[#10b981]"></div>
-                    <span class="text-[11px] font-bold tracking-[0.4em] uppercase text-[#10b981] animate-fade-in-up">
-                        Est. 2026 Collection
+                    <div class="h-[1px] w-12 bg-[var(--accent-color)]"></div>
+                    <span class="text-[11px] font-bold tracking-[0.4em] uppercase text-[var(--accent-color)] animate-fade-in-up">
+                        Premium Collection
                     </span>
                 </div>
 
-                <h1 class="text-5xl md:text-7xl lg:text-8xl leading-[0.9] font-serif text-[#111827] mb-8">
-                    <span class="block opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">Timeless</span>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl leading-[0.9] font-serif text-white mb-8">
+                    <span class="block opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">Step Into</span>
                     <span class="block italic font-light ml-4 md:ml-12 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.2s_forwards]">
-                        Aesthetics
+                        Style & Comfort
                     </span>
                 </h1>
 
-                <p class="text-sm md:text-base leading-relaxed text-[#111827]/70 max-w-md ml-1 md:ml-2 mb-10 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.4s_forwards]">
-                    Where architectural precision meets organic warmth. Discover a curated selection of home essentials designed for the modern connoisseur.
+                <p class="text-sm md:text-base leading-relaxed text-white/70 max-w-md ml-1 md:ml-2 mb-10 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.4s_forwards]">
+                    Discover our premium collection of shoes and sandals crafted for the modern lifestyle. Quality, comfort, and style in every step.
                 </p>
 
-                <div class="opacity-0 animate-[fadeInUp_0.8s_ease-out_0.6s_forwards] ml-1 md:ml-2">
-                    <a href="#collection" class="group relative inline-flex items-center gap-3 px-8 py-4 bg-[#111827] text-[#FBF7EE] overflow-hidden transition-all duration-300 hover:pr-12">
-                        <span class="relative z-10 text-xs font-bold uppercase tracking-[0.2em]">Explore Catalogue</span>
+                <div class="opacity-0 animate-[fadeInUp_0.8s_ease-out_0.6s_forwards] ml-1 md:ml-2 flex flex-wrap gap-4">
+                    <a href="#collection" class="group relative inline-flex items-center gap-3 px-8 py-4 bg-[var(--accent-color)] text-white overflow-hidden transition-all duration-300 hover:pr-12">
+                        <span class="relative z-10 text-xs font-bold uppercase tracking-[0.2em]">Shop Now</span>
                         <i class="fas fa-arrow-right absolute right-4 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 z-10"></i>
-                        <div class="absolute inset-0 bg-[#4a041b] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out"></div>
+                        <div class="absolute inset-0 bg-[var(--accent-hover)] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out"></div>
                     </a>
+                    <a href="#collection" class="inline-flex items-center gap-3 px-8 py-4 border-2 border-white/30 text-white hover:bg-white/10 transition-all duration-300">
+                        <span class="text-xs font-bold uppercase tracking-[0.2em]">View Collection</span>
+                    </a>
+                </div>
+
+                <!-- Stats -->
+                <div class="flex gap-8 mt-12 ml-1 md:ml-2 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.8s_forwards]">
+                    <div>
+                        <p class="text-3xl font-serif text-white">50+</p>
+                        <p class="text-xs text-white/50 uppercase tracking-wider">Styles</p>
+                    </div>
+                    <div class="w-px h-12 bg-white/20"></div>
+                    <div>
+                        <p class="text-3xl font-serif text-white">10K+</p>
+                        <p class="text-xs text-white/50 uppercase tracking-wider">Happy Customers</p>
+                    </div>
+                    <div class="w-px h-12 bg-white/20"></div>
+                    <div>
+                        <p class="text-3xl font-serif text-white">4.9</p>
+                        <p class="text-xs text-white/50 uppercase tracking-wider">Rating</p>
+                    </div>
                 </div>
             </div>
 
             <div class="md:col-span-5 relative mt-12 md:mt-0 h-[50vh] md:h-[70vh] flex items-center justify-center">
                 
                 <div class="relative w-[85%] h-[90%] z-10 opacity-0 animate-[scaleIn_1s_cubic-bezier(0.16,1,0.3,1)_0.2s_forwards]">
-                    <div class="absolute inset-0 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop" 
-                             alt="Luxury Interior" 
+                    <div class="absolute inset-0 overflow-hidden rounded-2xl">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000&auto=format&fit=crop" 
+                             alt="Premium Shoes" 
                              class="w-full h-full object-cover transform scale-110 hover:scale-100 transition-transform duration-[2s] ease-out">
                     </div>
-                    <div class="absolute -bottom-4 -right-4 w-full h-full border border-[#10b981] z-[-1]"></div>
+                    <div class="absolute -bottom-4 -right-4 w-full h-full border-2 border-[var(--accent-color)] z-[-1] rounded-2xl"></div>
                 </div>
 
-                <div class="absolute bottom-12 left-0 w-40 h-48 shadow-2xl z-20 hidden md:block opacity-0 animate-[fadeInUp_1s_ease-out_0.5s_forwards]">
-                    <div class="p-2 bg-white w-full h-full">
-                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=400&auto=format&fit=crop" 
-                             alt="Detail" 
-                             class="w-full h-full object-cover grayscale-[20%]">
+                <!-- Floating Badge -->
+                <div class="absolute top-4 right-4 md:top-10 md:right-10 z-30 bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+                    <div class="text-center">
+                        <i class="fas fa-shoe-prints text-[var(--accent-color)] text-2xl mb-2"></i>
+                        <p class="text-white font-bold text-lg">Premium</p>
+                        <p class="text-white/60 text-xs">Quality</p>
                     </div>
                 </div>
 
-                <div class="absolute -top-6 -right-6 md:top-10 md:-right-10 z-30">
-                    <div class="relative w-32 h-32 flex items-center justify-center animate-[spin_10s_linear_infinite]">
-                        <svg viewBox="0 0 100 100" class="w-full h-full fill-[#10b981]">
-                            <path id="curve" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent"/>
-                            <text class="text-[12px] uppercase font-bold tracking-widest">
-                                <textPath href="#curve">
-                                    • Premium Quality • Since 2026
-                                </textPath>
-                            </text>
-                        </svg>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <i class="fas fa-crown text-[#111827] text-xl"></i>
-                        </div>
+                <!-- Floating Card -->
+                <div class="absolute bottom-12 left-0 w-36 h-44 shadow-2xl z-20 hidden md:block opacity-0 animate-[fadeInUp_1s_ease-out_0.5s_forwards]">
+                    <div class="w-full h-full rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1603808033192-082d6919d3e1?q=80&w=400&auto=format&fit=crop" 
+                             alt="Sandal Detail" 
+                             class="w-full h-full object-cover">
                     </div>
                 </div>
 
@@ -763,25 +767,31 @@ body {
 <div id="mobile-filter-overlay" class="lg:hidden fixed inset-0 bg-[#111827]/20 backdrop-blur-sm z-40 hidden transition-all duration-300"></div>
    <!-- Add to Cart Modal -->
 <div id="add-to-cart-modal" 
-     class="fixed inset-0 bg-black/50 z-[9999] hidden flex items-center justify-center p-4 overflow-auto">
+     class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9999] hidden flex items-center justify-center p-4"
+     style="animation: fadeIn 0.3s ease-out;">
 
-    <div class="bg-white rounded-2xl w-full max-w-lg mx-auto relative">
-        <div class="p-6">
-            <!-- Header -->
-            <div class="flex items-center justify-between mb-6">
-                <h3 class="text-xl font-bold text-[var(--primary-color)]">Add to Cart</h3>
-                <button id="close-add-to-cart-modal" class="text-gray-500 hover:text-[var(--primary-color)]">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <!-- Modal Content Loaded via AJAX -->
-            <div id="add-to-cart-content" class="w-full flex justify-center">
-                <!-- AJAX content here -->
-            </div>
+    <!-- Modal Container -->
+    <div id="add-to-cart-modal-container" 
+         class="bg-white rounded-2xl w-full max-w-2xl mx-auto relative shadow-2xl"
+         style="animation: scaleIn 0.3s ease-out; max-height: 90vh; overflow-y: auto;">
+        
+        <!-- Modal Content Loaded via AJAX -->
+        <div id="add-to-cart-content" class="w-full">
+            <!-- AJAX content here -->
         </div>
     </div>
 </div>
+
+<style>
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @keyframes scaleIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+</style>
 
 </section>
 

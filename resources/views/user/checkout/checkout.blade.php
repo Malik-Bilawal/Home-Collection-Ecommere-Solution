@@ -1,5 +1,5 @@
 @extends('user.layouts.master-layouts.plain')
-    <title>FreshMart - Checkout</title>
+    <title>Footwear Premium - Checkout</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 

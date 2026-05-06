@@ -140,10 +140,11 @@ public function search(Request $request)
         if (strlen($query) < 2) return [];
 
         $suggestions = collect([
-            'furniture' => ['Sofa', 'Table', 'Chair', 'Bed', 'Wardrobe'],
-            'decor' => ['Wall Art', 'Vase', 'Mirror', 'Clock', 'Cushion'],
-            'lighting' => ['Chandelier', 'Lamp', 'LED', 'Floor Lamp', 'Spotlight'],
-            'textiles' => ['Curtain', 'Rug', 'Blanket', 'Carpet', 'Mat'],
+            'sneakers' => ['Running Shoes', 'Sports Sneakers', 'Canvas Sneakers', 'Leather Sneakers'],
+            'formal' => ['Oxford Shoes', 'Derby Shoes', 'Loafers', 'Brogues'],
+            'sandals' => ['Slides', 'Flip Flops', 'Strappy Sandals', 'Fisherman Sandals'],
+            'boots' => ['Chelsea Boots', 'Work Boots', 'Hiking Boots', 'Snow Boots'],
+            'slippers' => ['House Slippers', 'Moccasins', 'Boat Shoes', 'Slide Sandals'],
         ]);
 
         $matched = collect();
@@ -195,7 +196,7 @@ public function search(Request $request)
         $trending = Cache::remember('trending_products_navbar', 1800, function () {
             return Product::query()
                 ->with(['images', 'category'])
-                ->where('is_trending', true)
+                ->where('is_top_selling', true)
                 ->where('is_active', 1)
                 ->limit(4)
                 ->get()

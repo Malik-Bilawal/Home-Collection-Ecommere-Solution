@@ -610,22 +610,22 @@
 @section("content")
 
 <!-- Breadcrumb Navigation -->
-<nav class="bg-white shadow-sm py-4">
+<nav class="bg-gray-50 py-4">
     <div class="container mx-auto px-4">
         <div class="flex items-center space-x-2 text-sm">
-            <a href="{{ route('home') }}" class="breadcrumb-item text-gray-600 hover:text-primary transition-all">
+            <a href="{{ route('home') }}" class="text-gray-500 hover:text-emerald-600 transition-all">
                 <i class="fas fa-home mr-1"></i> Home
             </a>
-            <span class="text-gray-400"><i class="fas fa-chevron-right"></i></span>
-            <a href="{{ route('product') }}" class="breadcrumb-item text-gray-600 hover:text-primary transition-all">
-                Products
+            <span class="text-gray-300"><i class="fas fa-chevron-right text-xs"></i></span>
+            <a href="{{ route('product') }}" class="text-gray-500 hover:text-emerald-600 transition-all">
+                Shop
             </a>
-            <span class="text-gray-400"><i class="fas fa-chevron-right"></i></span>
-            <a href="{{ route('category') }}" class="breadcrumb-item text-gray-600 hover:text-primary transition-all">
+            <span class="text-gray-300"><i class="fas fa-chevron-right text-xs"></i></span>
+            <a href="{{ route('product', ['category_id' => $product->category->id ?? '']) }}" class="text-gray-500 hover:text-emerald-600 transition-all">
                 {{ $product->category->name ?? 'Category' }}
             </a>
-            <span class="text-gray-400"><i class="fas fa-chevron-right"></i></span>
-            <span class="text-primary font-medium">{{ $product->name }}</span>
+            <span class="text-gray-300"><i class="fas fa-chevron-right text-xs"></i></span>
+            <span class="text-gray-900 font-medium">{{ $product->name }}</span>
         </div>
     </div>
 </nav>
@@ -642,20 +642,15 @@
                 <div class="relative mb-6">
                     <!-- Badges -->
                     <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
-                        @if(isset($showNewTag) && $showNewTag && $product->created_at->gt(now()->subDays(30)))
-                        <span class="tag tag-new animate-pulse">NEW</span>
+                        @if($product->created_at && $product->created_at->gt(now()->subDays(30)))
+                        <span class="bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">New</span>
                         @endif
 
-                        @if(isset($showSaleTag) && $showSaleTag && $product->offer_price)
-                        <span class="tag tag-sale animate-bounce">
-                            -{{ round((($product->price - $product->offer_price) / $product->price) * 100) }}% OFF
+                        @if($product->cut_price && $product->cut_price < $product->price)
+                        <span class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                            {{ round((($product->price - $product->cut_price) / $product->price) * 100) }}% OFF
                         </span>
                         @endif
-
-                        @if(isset($showFeaturedTag) && $showFeaturedTag && $product->is_featured)
-                        <span class="tag tag-featured">FEATURED</span>
-                        @endif
-
                     </div>
 
                     <!-- Favorite Button -->
@@ -686,35 +681,35 @@
                 </div>
 
                 <!-- Product Stats -->
-                <div class="bg-gradient-to-r from-white to-gray-50 rounded-2xl p-6 shadow-lg">
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-gradient-to-r from-gray-50 to-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div class="text-center">
-                            <div class="w-12 h-12 mx-auto bg-primary/10 rounded-xl flex items-center justify-center mb-3">
-                                <i class="fas fa-shipping-fast text-xl text-primary"></i>
+                            <div class="w-10 h-10 mx-auto bg-emerald-100 rounded-xl flex items-center justify-center mb-2">
+                                <i class="fas fa-truck text-emerald-600"></i>
                             </div>
-                            <p class="text-sm font-medium text-gray-700">Instant Delievery</p>
-                            <p class="text-xs text-gray-500">Max 5 days</p>
+                            <p class="text-xs font-medium text-gray-700">Free Shipping</p>
+                            <p class="text-[10px] text-gray-500">On orders Rs.5000+</p>
                         </div>
                         <div class="text-center">
-                            <div class="w-12 h-12 mx-auto bg-secondary/10 rounded-xl flex items-center justify-center mb-3">
-                                <i class="fas fa-shield-alt text-xl text-secondary"></i>
+                            <div class="w-10 h-10 mx-auto bg-emerald-100 rounded-xl flex items-center justify-center mb-2">
+                                <i class="fas fa-shield-alt text-emerald-600"></i>
                             </div>
-                            <p class="text-sm font-medium text-gray-700">2 Year Warranty</p>
-                            <p class="text-xs text-gray-500">Quality Assured</p>
+                            <p class="text-xs font-medium text-gray-700">Quality Assured</p>
+                            <p class="text-[10px] text-gray-500">Premium Materials</p>
                         </div>
                         <div class="text-center">
-                            <div class="w-12 h-12 mx-auto bg-success-color/10 rounded-xl flex items-center justify-center mb-3">
-                                <i class="fas fa-undo-alt text-xl text-success-color"></i>
+                            <div class="w-10 h-10 mx-auto bg-emerald-100 rounded-xl flex items-center justify-center mb-2">
+                                <i class="fas fa-undo text-emerald-600"></i>
                             </div>
-                            <p class="text-sm font-medium text-gray-700">14-Day Returns</p>
-                            <p class="text-xs text-gray-500">Easy Returns</p>
+                            <p class="text-xs font-medium text-gray-700">Easy Returns</p>
+                            <p class="text-[10px] text-gray-500">30-day policy</p>
                         </div>
                         <div class="text-center">
-                            <div class="w-12 h-12 mx-auto bg-warning-color/10 rounded-xl flex items-center justify-center mb-3">
-                                <i class="fas fa-headset text-xl text-warning-color"></i>
+                            <div class="w-10 h-10 mx-auto bg-emerald-100 rounded-xl flex items-center justify-center mb-2">
+                                <i class="fas fa-headset text-emerald-600"></i>
                             </div>
-                            <p class="text-sm font-medium text-gray-700">24/7 Support</p>
-                            <p class="text-xs text-gray-500">We're Here to Help</p>
+                            <p class="text-xs font-medium text-gray-700">24/7 Support</p>
+                            <p class="text-[10px] text-gray-500">Always here to help</p>
                         </div>
                     </div>
                 </div>
@@ -728,10 +723,10 @@
 
                 <!-- Product Title & Category -->
                 <div class="mb-6">
-                    <span class="text-sm font-medium text-gray-500 uppercase tracking-wider">
-                        {{ $product->category->name ?? 'Premium Home Decor' }}
+                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-[0.2em]">
+                        {{ $product->category->name ?? 'Footwear' }}
                     </span>
-                    <h1 id="product-name" class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-3 gradient-text">
+                    <h1 id="product-name" class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mt-2 mb-3">
                         {{ $product->name }}
                     </h1>
 
@@ -760,26 +755,19 @@
 
                 <!-- Price -->
                 <div class="mb-8">
-                    <div class="flex items-center gap-4">
-                        <span id="product-price" class="text-4xl font-bold text-primary price-tag">
-                            Rs.{{ number_format($product->price ?? 2) }}
+                    <div class="flex items-center gap-4 flex-wrap">
+                        <span id="product-price" class="text-4xl font-bold text-emerald-600">
+                            Rs.{{ number_format($product->cut_price ?? $product->price) }}
                         </span>
-                        @if($product->cut_price)
-                        <span class="text-2xl text-gray-400 line-through">
-                            Rs.{{ number_format($product->cut_price, 2) }}
+                        @if($product->cut_price && $product->cut_price < $product->price)
+                        <span class="text-xl text-gray-400 line-through">
+                            Rs.{{ number_format($product->price) }}
                         </span>
-
-                        <span class="bg-red-100 text-red-600 text-sm font-bold px-3 py-1 rounded-full">
-                            Save Rs.{{ number_format($product->cut_price - $product->price, 2) }}
+                        <span class="bg-emerald-100 text-emerald-600 text-xs font-bold px-3 py-1 rounded-full">
+                            {{ round((($product->price - $product->cut_price) / $product->price) * 100) }}% OFF
                         </span>
                         @endif
                     </div>
-                    @if($product->cut_price)
-                    <p class="text-sm text-gray-500 mt-2">
-                        <i class="fas fa-clock mr-1"></i> Offer ends in
-                        <span class="font-semibold text-primary">2 days, 14 hours</span>
-                    </p>
-                    @endif
                 </div>
 
                 <!-- Product Description -->
@@ -862,33 +850,33 @@
                 <!-- Action Buttons -->
                 <div class="space-y-4 mb-8">
                     <button id="add-to-cart"
-                        class="btn-gradient w-full py-4 rounded-xl text-white font-bold text-lg hover:shadow-lg transition-all duration-300">
-                        <i class="fas fa-shopping-cart mr-3"></i> Add to Cart
+                        class="w-full py-4 rounded-xl bg-gray-900 hover:bg-emerald-600 text-white font-bold text-lg transition-all duration-300 flex items-center justify-center gap-3">
+                        <i class="fas fa-shopping-bag"></i> Add to Cart
                     </button>
 
                     <button id="buy-now"
-                        class="btn-outline-gold w-full py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all duration-300">
-                        <i class="fas fa-bolt mr-3"></i> Buy Now
+                        class="w-full py-4 rounded-xl border-2 border-gray-900 text-gray-900 font-bold text-lg hover:bg-gray-900 hover:text-white transition-all duration-300 flex items-center justify-center gap-3">
+                        <i class="fas fa-bolt"></i> Buy Now
                     </button>
                 </div>
 
                 <!-- Additional Info -->
-                <div class="border-t border-gray-200 pt-6">
-                    <div class="space-y-4">
+                <div class="border-t border-gray-100 pt-6">
+                    <div class="space-y-3">
                         <div class="flex items-center text-sm text-gray-600">
-                            <i class="fas fa-tag text-primary mr-3"></i>
-                            <span>SKU: <span class="font-mono">{{ $product->sku ?? 'N/A' }}</span></span>
+                            <i class="fas fa-tag text-emerald-600 w-6"></i>
+                            <span>SKU: <span class="font-mono text-gray-900">{{ $product->sku ?? 'N/A' }}</span></span>
                         </div>
                         <div class="flex items-center text-sm text-gray-600">
-                            <i class="fas fa-layer-group text-primary mr-3"></i>
+                            <i class="fas fa-folder text-emerald-600 w-6"></i>
                             <span>Category: {{ $product->category->name ?? 'Uncategorized' }}</span>
                         </div>
+                        @if($product->created_at)
                         <div class="flex items-center text-sm text-gray-600">
-                            <i class="fas fa-calendar-alt text-primary mr-3"></i>
-                            @if($product->created_at)
+                            <i class="fas fa-calendar text-emerald-600 w-6"></i>
                             <span>Added: {{ $product->created_at->format('M d, Y') }}</span>
-                            @endif
                         </div>
+                        @endif
                     </div>
                 </div>
 
@@ -899,28 +887,29 @@
 
 
 <!-- Reviews Section -->
-<section id="reviews" class="py-16">
+<section id="reviews" class="py-16 bg-gray-50">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Customer Reviews</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">Hear what our customers have to say about this product</p>
+            <span class="text-xs font-bold text-emerald-600 uppercase tracking-[0.3em]">Testimonials</span>
+            <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mt-2">Customer Reviews</h2>
+            <p class="text-gray-600 mt-4 max-w-xl mx-auto">Hear what our customers have to say about this product</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
             <!-- Reviews Summary -->
             <div class="lg:col-span-1">
-                <div class="bg-white rounded-3xl p-8 shadow-lg sticky top-24">
-                    <div class="text-center mb-8">
-                        <div class="text-5xl font-bold text-primary mb-2">
+                <div class="bg-white rounded-2xl p-6 shadow-sm sticky top-24">
+                    <div class="text-center mb-6">
+                        <div class="text-5xl font-bold text-emerald-600 mb-2">
                             {{ number_format($product->reviews->avg('rating') ?? 4.5, 1) }}
                         </div>
-                        <div class="flex justify-center mb-3">
+                        <div class="flex justify-center mb-2">
                             @for($i = 1; $i <= 5; $i++)
-                                <i class="fas fa-star text-yellow-400 text-lg"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
                                 @endfor
                         </div>
-                        <p class="text-gray-600">{{ $product->reviews->count() }} verified reviews</p>
+                        <p class="text-gray-500 text-sm">{{ $product->reviews->count() }} reviews</p>
                     </div>
 
                     <!-- Rating Distribution -->

@@ -1,125 +1,189 @@
-<footer class="relative mt-32 pt-24 pb-12 overflow-hidden bg-[var(--primary-color)] text-[var(--surface-color)]">
+<footer class="bg-[var(--primary-color)] text-white pt-16 pb-8">
+    <!-- Newsletter Section -->
+    <div class="border-b border-white/10">
+        <div class="container mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="text-center md:text-left">
+                    <h3 class="font-serif text-2xl md:text-3xl mb-2">Subscribe to Our Newsletter</h3>
+                    <p class="text-white/60 text-sm">Get the latest updates on new arrivals and exclusive offers</p>
+                </div>
+                <form class="flex w-full md:w-auto gap-2">
+                    <input type="email" 
+                           placeholder="Enter your email" 
+                           class="flex-1 md:w-72 px-4 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-[var(--accent-color)]">
+                    <button type="submit" 
+                            class="px-6 py-3 bg-[var(--accent-color)] text-white font-medium rounded-full hover:bg-[var(--accent-hover)] transition-colors">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-    <div class="absolute inset-0 opacity-[0.08] pointer-events-none mix-blend-overlay"
-        style="background-image: url('https://www.transparenttextures.com/patterns/asfalt-light.png');"></div>
-
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-[var(--secondary-color)] to-transparent"></div>
-
-    <div class="container mx-auto px-6 relative z-10">
-
-
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-20">
-
-            <div class="col-span-2 lg:col-span-2 space-y-8">
-                <a href="/" class="text-3xl font-serif tracking-widest text-white">
-                    INHOUSE<span class="text-[var(--secondary-color)]"> TEXTILES</span>
-
-                </a>
-                <p class="text-white/50 font-light leading-relaxed max-w-xs text-sm">
-                    Elevating the art of living through sustainable craftsmanship and timeless aesthetic. Your sanctuary, perfected.
+    <!-- Main Footer -->
+    <div class="container mx-auto px-6 py-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
+            
+            <!-- Brand -->
+            <div class="col-span-2 lg:col-span-1">
+                <div class="flex items-center gap-2 mb-4">
+                    <div class="w-10 h-10 bg-[var(--accent-color)] rounded-lg flex items-center justify-center">
+                        <i class="fas fa-shoe-prints text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="font-serif text-xl font-bold">FOOTWEAR</span>
+                        <span class="text-[var(--accent-color)] text-xs block -mt-1">PREMIUM</span>
+                    </div>
+                </div>
+                <p class="text-white/60 text-sm mb-6 leading-relaxed">
+                    Your destination for premium quality footwear. Crafted for comfort, designed for style.
                 </p>
-                <div class="flex gap-6 opacity-60">
-                    <a href="#" class="hover:text-[var(--secondary-color)] hover:-translate-y-1 transition-all duration-300">
-                        <i class="fab fa-instagram text-xl"></i>
+                <div class="flex gap-4">
+                    <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-[var(--accent-color)] transition-colors">
+                        <i class="fab fa-instagram text-sm"></i>
                     </a>
-                    <a href="#" class="hover:text-[var(--secondary-color)] hover:-translate-y-1 transition-all duration-300">
-                        <i class="fab fa-facebook-f text-xl"></i>
+                    <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-[var(--accent-color)] transition-colors">
+                        <i class="fab fa-facebook-f text-sm"></i>
                     </a>
-                    <a href="#" class="hover:text-[var(--secondary-color)] hover:-translate-y-1 transition-all duration-300">
-                        <i class="fab fa-pinterest-p text-xl"></i>
+                    <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-[var(--accent-color)] transition-colors">
+                        <i class="fab fa-twitter text-sm"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-[var(--accent-color)] transition-colors">
+                        <i class="fab fa-youtube text-sm"></i>
                     </a>
                 </div>
             </div>
+
+            <!-- Shop Categories -->
             @php
-            use App\Models\Category;
-            $categories = Category::where('status', 1)->take('5')->orderBy('created_at', 'desc')->get();
+            $categories = \App\Models\Category::where('status', 1)->take(6)->get();
             @endphp
             <div>
-                <h4 class="text-[var(--secondary-color)] font-bold tracking-[0.2em] text-[10px] uppercase mb-8">Collections</h4>
-                <ul class="space-y-4">
+                <h4 class="text-[var(--accent-color)] font-bold text-xs uppercase tracking-[0.2em] mb-6">Shop</h4>
+                <ul class="space-y-3">
                     @foreach($categories as $cat)
-                    <li><a href="{{ route('product', ['category_id' => $cat->id]) }}" class="footer-link text-xs uppercase tracking-widest text-white/60">{{ $cat->name }}</a></li>
+                    <li>
+                        <a href="{{ route('product', ['category_id' => $cat->id]) }}" 
+                           class="text-white/60 text-sm hover:text-[var(--accent-color)] hover:translate-x-1 transition-all">
+                            {{ $cat->name }}
+                        </a>
+                    </li>
                     @endforeach
+                    <li>
+                        <a href="{{ route('product') }}" 
+                           class="text-white/60 text-sm hover:text-[var(--accent-color)] hover:translate-x-1 transition-all">
+                            All Products
+                        </a>
+                    </li>
                 </ul>
             </div>
 
+            <!-- Quick Links -->
             <div>
-                <h4 class="text-[var(--secondary-color)] font-bold tracking-[0.2em] text-[10px] uppercase mb-8">Heritage</h4>
-                <ul class="space-y-4">
-                    <li><a href="{{ url('/') }}" class="footer-link text-xs uppercase tracking-widest text-white/60">Home</a></li>
-                    <li><a href="{{ url('/product')  }}" class="footer-link text-xs uppercase tracking-widest text-white/60">Product</a></li>
-                    <li><a href="{{ url('/category') }}" class="footer-link text-xs uppercase tracking-widest text-white/60">Category</a></li>
-                    <li><a href="{{ url('/about') }}" class="footer-link text-xs uppercase tracking-widest text-white/60">About</a></li>
-                    <li><a href="{{ url('/contact') }}" class="footer-link text-xs uppercase tracking-widest text-white/60">Contact</a></li>
-
+                <h4 class="text-[var(--accent-color)] font-bold text-xs uppercase tracking-[0.2em] mb-6">Quick Links</h4>
+                <ul class="space-y-3">
+                    <li><a href="{{ route('home') }}" class="text-white/60 text-sm hover:text-[var(--accent-color)] hover:translate-x-1 transition-all">Home</a></li>
+                    <li><a href="{{ route('product') }}" class="text-white/60 text-sm hover:text-[var(--accent-color)] hover:translate-x-1 transition-all">Shop</a></li>
+                    <li><a href="{{ route('about') }}" class="text-white/60 text-sm hover:text-[var(--accent-color)] hover:translate-x-1 transition-all">About Us</a></li>
+                    <li><a href="{{ route('contact') }}" class="text-white/60 text-sm hover:text-[var(--accent-color)] hover:translate-x-1 transition-all">Contact</a></li>
                 </ul>
             </div>
 
+            <!-- Customer Service -->
             <div>
-                <h4 class="text-[var(--secondary-color)] font-bold tracking-[0.2em] text-[10px] uppercase mb-8">Services</h4>
-                <ul class="space-y-4">
-                    <li><a href="{{ url('policies') }}" class="footer-link text-xs uppercase tracking-widest text-white/60">Shipping Policy</a></li>
-                    <li><a href="{{ url('policies') }}" class="footer-link text-xs uppercase tracking-widest text-white/60">Privacy Policy</a></li>
-                    <li><a href="{{ url('policies') }}" class="footer-link text-xs uppercase tracking-widest text-white/60">Warranty InformatioN</a></li>
-                    <li><a href="{{ url('policies') }}" class="footer-link text-xs uppercase tracking-widest text-white/60">Terms & Services</a></li>
+                <h4 class="text-[var(--accent-color)] font-bold text-xs uppercase tracking-[0.2em] mb-6">Service</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-white/60 text-sm hover:text-[var(--accent-color)] hover:translate-x-1 transition-all">Shipping Policy</a></li>
+                    <li><a href="#" class="text-white/60 text-sm hover:text-[var(--accent-color)] hover:translate-x-1 transition-all">Returns & Exchanges</a></li>
+                    <li><a href="#" class="text-white/60 text-sm hover:text-[var(--accent-color)] hover:translate-x-1 transition-all">Privacy Policy</a></li>
+                    <li><a href="#" class="text-white/60 text-sm hover:text-[var(--accent-color)] hover:translate-x-1 transition-all">Terms & Conditions</a></li>
+                    <li><a href="#" class="text-white/60 text-sm hover:text-[var(--accent-color)] hover:translate-x-1 transition-all">FAQ</a></li>
+                </ul>
+            </div>
 
+            <!-- Contact -->
+            <div>
+                <h4 class="text-[var(--accent-color)] font-bold text-xs uppercase tracking-[0.2em] mb-6">Contact</h4>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-map-marker-alt text-[var(--accent-color)] mt-1"></i>
+                        <span class="text-white/60 text-sm">123 Shoe Street, City, Country</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-phone text-[var(--accent-color)]"></i>
+                        <span class="text-white/60 text-sm">+92 300 1234567</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-envelope text-[var(--accent-color)]"></i>
+                        <span class="text-white/60 text-sm">info@footwear.com</span>
+                    </li>
                 </ul>
             </div>
         </div>
 
-        <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p class="text-white/20 text-[10px] uppercase tracking-[0.2em]">© {{ date('Y') }} Developed By The Helpex Pvt Ltd.</p>
-
-            <div class="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none opacity-[0.02]">
-                <h2 class="text-[18vw] font-serif leading-none translate-y-1/2">INHOUSE</h2>
+        <!-- Features -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 pt-12 border-t border-white/10">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                    <i class="fas fa-truck text-[var(--accent-color)]"></i>
+                </div>
+                <div>
+                    <p class="text-sm font-medium">Free Shipping</p>
+                    <p class="text-xs text-white/50">On orders over Rs.5000</p>
+                </div>
             </div>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                    <i class="fas fa-undo text-[var(--accent-color)]"></i>
+                </div>
+                <div>
+                    <p class="text-sm font-medium">Easy Returns</p>
+                    <p class="text-xs text-white/50">30-day return policy</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                    <i class="fas fa-shield-alt text-[var(--accent-color)]"></i>
+                </div>
+                <div>
+                    <p class="text-sm font-medium">Secure Payment</p>
+                    <p class="text-xs text-white/50">100% secure checkout</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                    <i class="fas fa-headset text-[var(--accent-color)]"></i>
+                </div>
+                <div>
+                    <p class="text-sm font-medium">24/7 Support</p>
+                    <p class="text-xs text-white/50">Dedicated support</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            <div class="flex gap-8 text-[10px] uppercase tracking-[0.2em] text-white/30">
-                <a href="" data-name="privacy" class=" link hover:text-[var(--secondary-color)] transition-colors">Privacy</a>
-                <a href="" data-name="terms" class="link hover:text-[var(--secondary-color)] transition-colors">Terms</a>
-                <a href="" data-name="shipping" class="link hover:text-[var(--secondary-color)] transition-colors">Shipping</a>
-
+    <!-- Bottom Bar -->
+    <div class="border-t border-white/10">
+        <div class="container mx-auto px-6 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/30 text-xs uppercase tracking-[0.2em]">
+                    © {{ date('Y') }} Footwear Premium. All rights reserved.
+                </p>
+                <div class="flex items-center gap-6 text-xs text-white/30">
+                    <a href="#" class="hover:text-[var(--accent-color)] transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-[var(--accent-color)] transition-colors">Terms</a>
+                    <a href="#" class="hover:text-[var(--accent-color)] transition-colors">Shipping</a>
+                </div>
             </div>
         </div>
     </div>
 </footer>
-<script>
-const links = document.querySelectorAll('.link');
-links.forEach(li => {
-    li.addEventListener('click', (e) => {
-        const page = li.getAttribute('data-name');
-        localStorage.setItem('selectedPolicy', page); 
-        window.location.href = '/policies'; 
-    });
-});
-
-</script>
 
 <style>
-    /* Premium Hover Animation */
-    .footer-link {
-        display: inline-block;
-        transition: all 0.4s ease;
-        position: relative;
+    footer a {
+        transition: all 0.3s ease;
     }
-
-    .footer-link::after {
-        content: '';
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 0;
-        height: 1px;
-        background-color: var(--secondary-color);
-        transition: width 0.4s ease;
-    }
-
-    .footer-link:hover {
-        color: white;
-        letter-spacing: 0.2em;
-    }
-
-    .footer-link:hover::after {
-        width: 100%;
+    footer a:hover {
+        color: var(--accent-color) !important;
     }
 </style>

@@ -1,366 +1,250 @@
 @extends("user.layouts.master-layouts.plain")
 
-<title>Inhouse Textiles | Category</title>
-
-
+<title>Footwear Premium | Categories</title>
 
 @push("style")
 <style>
-  :root {
-    --primary-color: #111827;
-    --primary-hover: #000000;
-    --secondary-color: #ffffff;
-    --secondary-hover: #f3f4f6;
-    --accent-color: #10b981;
-    --accent-hover: #059669;
-    --text-on-primary: #FFFFFF;
-    --text-on-secondary: #1f2937;
-    --background-color: #ffffff;
-    --card-background: #FFFFFF;
-    --border-color: #e5e7eb;
-    --text-color: #1f2937;
-  }
+    :root {
+        --primary-color: #111827;
+        --accent-color: #10b981;
+    }
 
-  body {
-    font-family: 'Inter', sans-serif;
-    color: var(--text-color);
-  }
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+    }
 
-  .btn-primary {
-    background-color: var(--primary-color);
-    color: white;
-  }
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 
-  .btn-primary:hover {
-    background-color: var(--secondary-color);
-  }
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
 
-  .text-primary {
-    color: var(--primary-color);
-  }
+    .category-card {
+        transition: all 0.4s ease;
+    }
 
-  .bg-primary {
-    background-color: var(--primary-color);
-  }
+    .category-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
+    }
 
-  .border-primary {
-    border-color: var(--primary-color);
-  }
-
-  .bg-accent {
-    background-color: var(--accent-color);
-  }
-
-  .categories-hero-bg {
-    background: linear-gradient(135deg, rgba(75, 54, 33, 0.85) 0%, rgba(107, 79, 51, 0.8) 100%), url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
-    background-size: cover;
-    background-position: center;
-  }
-
-  .color-picker {
-    position: fixed;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    background: white;
-    padding: 10px;
-    border-radius: 8px 0 0 8px;
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
-
-  .color-option {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    margin: 5px;
-    cursor: pointer;
-    border: 2px solid transparent;
-  }
-
-  .color-option.active {
-    border-color: #333;
-  }
-
-  .category-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-  }
-
-  .category-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-  }
-
-  .category-image {
-    transition: transform 0.5s ease;
-  }
-
-  .category-card:hover .category-image {
-    transform: scale(1.05);
-  }
-
-  .filter-btn {
-    transition: all 0.3s ease;
-  }
-
-  .filter-btn.active {
-    background-color: var(--primary-color);
-    color: white;
-  }
+    .category-card:hover .category-image {
+        transform: scale(1.1);
+    }
 </style>
 @endpush
 
-
 @section("content")
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[var(--background-color)]">
 
-  <div class="absolute inset-0 opacity-[0.04] pointer-events-none"
-    style="background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');"></div>
+<!-- Hero Section -->
+<section class="relative min-h-[70vh] flex items-center justify-center bg-[var(--primary-color)] overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-[0.05]" 
+         style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2310b981\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    
+    <!-- Floating Elements -->
+    <div class="absolute top-20 right-10 w-24 h-24 rounded-full bg-emerald-500/10 border border-emerald-500/20 animate-float"></div>
+    <div class="absolute bottom-20 left-10 w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/20 animate-float" style="animation-delay: -2s"></div>
 
-  <div class="absolute inset-0"
-    style="background: radial-gradient(circle at center, transparent 0%, rgba(229, 213, 195, 0.3) 100%);"></div>
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="flex flex-col items-center text-center">
+            <span class="inline-flex items-center gap-3 uppercase tracking-[0.3em] text-xs font-bold text-emerald-400 mb-6">
+                <span class="w-8 h-px bg-emerald-400/50"></span>
+                Premium Collection
+                <span class="w-8 h-px bg-emerald-400/50"></span>
+            </span>
 
-  <div class="absolute top-20 left-10 w-[300px] h-[1px] bg-[var(--secondary-color)] opacity-20 hidden md:block"></div>
-  <div class="absolute bottom-20 right-10 w-[300px] h-[1px] bg-[var(--secondary-color)] opacity-20 hidden md:block"></div>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 leading-tight">
+                Step Into <br>
+                <span class="italic font-light text-emerald-400">Elegance</span>
+            </h1>
 
-  <div class="container mx-auto px-6 relative z-20">
-    <div class="flex flex-col items-center text-center">
+            <p class="max-w-xl text-lg text-white/70 font-light leading-relaxed mb-10 px-4">
+                Discover our curated collection of premium footwear designed for comfort, style, and durability.
+            </p>
 
-      <div class="mb-8" data-aos="fade-down">
-        <span class="inline-flex items-center gap-3 uppercase tracking-[0.5em] text-[10px] font-bold text-[var(--accent-color)]">
-          <span class="w-8 h-[1px] bg-[var(--secondary-color)]"></span>
-          The 2024 Collection
-          <span class="w-8 h-[1px] bg-[var(--secondary-color)]"></span>
-        </span>
-      </div>
-
-      <h1 class="text-6xl md:text-9xl font-serif text-[var(--primary-color)] leading-[0.9] mb-10" data-aos="zoom-out" data-aos-duration="1500">
-        Quiet <br>
-        <span class="italic font-light text-[var(--secondary-color)] ml-4 md:ml-20">Luxury.</span>
-      </h1>
-
-      <p class="max-w-xl text-lg md:text-xl text-[var(--primary-color)] opacity-70 font-light leading-relaxed mb-14 px-4" data-aos="fade-up" data-aos-delay="400">
-        Step into a world where every detail is deliberate. Our furniture blends
-        <span class="font-medium text-[var(--primary-color)]">organic textures</span> with
-        <span class="font-medium text-[var(--primary-color)]">timeless silhouettes</span>.
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-10 items-center" data-aos="fade-up" data-aos-delay="600">
-
-        <a href="#categories"
-          class="group relative px-14 py-5 bg-[var(--primary-color)] text-[var(--text-on-primary)] transition-all duration-500 hover:shadow-[0_20px_40px_rgba(107,66,38,0.2)]">
-          <span class="relative z-10 uppercase tracking-[0.3em] text-xs font-bold">Discover More</span>
-          <div class="absolute inset-0 bg-[var(--primary-hover)] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
-        </a>
-
-        <a href="#products"
-          class="group flex items-center gap-5 text-[var(--primary-color)]">
-          <span class="uppercase tracking-[0.3em] text-xs font-bold group-hover:text-[var(--secondary-color)] transition-colors">View Lookbook</span>
-          <div class="relative w-12 h-12 flex items-center justify-center border border-[var(--border-color)] rounded-full group-hover:border-[var(--secondary-color)] group-hover:bg-[var(--secondary-color)] group-hover:text-white transition-all duration-500">
-            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-            </svg>
-          </div>
-        </a>
-      </div>
+            <div class="flex flex-col sm:flex-row gap-4 items-center">
+                <a href="#categories" 
+                   class="px-8 py-4 bg-emerald-500 text-white font-semibold rounded-full hover:bg-emerald-600 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/30">
+                    Explore Categories
+                </a>
+                <a href="{{ route('product') }}" 
+                   class="px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300">
+                    View All Products
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="absolute bottom-10 left-10 text-[var(--border-color)] text-[10px] uppercase tracking-[1em] vertical-text hidden lg:block" style="writing-mode: vertical-rl;">
-    Crafted For Comfort
-  </div>
-
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <i class="fas fa-chevron-down text-white/30 text-xl"></i>
+    </div>
 </section>
 
-<section id="categories" class="relative py-28 bg-[var(--background-color)] overflow-hidden">
-  <div class="absolute top-0 right-0 w-1/3 h-1/3 bg-[var(--border-color)] opacity-20 rounded-full blur-[120px]"></div>
-  <div class="absolute bottom-0 left-0 w-1/4 h-1/4 bg-[var(--secondary-color)] opacity-10 rounded-full blur-[100px]"></div>
-
-  <div class="container mx-auto px-6 relative z-10">
-    <div class="max-w-3xl mx-auto text-center mb-20" data-aos="fade-up">
-      <h2 class="text-4xl md:text-6xl font-serif text-[var(--primary-color)] mb-6 tracking-tight">
-        The <span class="italic text-[var(--secondary-color)]">Signature</span> Series
-      </h2>
-      <p class="text-[var(--primary-color)] opacity-70 uppercase tracking-[0.2em] text-sm font-medium">
-        Curated Excellence • Handcrafted Quality
-      </p>
-      <div class="mt-8 flex justify-center items-center gap-4">
-        <div class="h-[1px] w-12 bg-[var(--border-color)]"></div>
-        <div class="w-2 h-2 rotate-45 border border-[var(--secondary-color)]"></div>
-        <div class="h-[1px] w-12 bg-[var(--border-color)]"></div>
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-      @foreach ($categories as $index => $category)
-      <div class="group relative bg-[var(--surface-color)] p-4 border border-[var(--border-color)] transition-all duration-700 hover:border-[var(--secondary-color)] shadow-sm hover:shadow-2xl"
-        data-aos="fade-up"
-        data-aos-delay="{{ $index * 100 }}">
-
-        <div class="relative h-[450px] overflow-hidden bg-[var(--background-color)]">
-          <img
-            src="{{ $category->image ? asset('storage/app/public/' . $category->image) : asset('images/default-category.jpg') }}"
-            alt="{{ $category->name }}"
-            class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
-
-          <div class="absolute top-4 right-4 bg-[var(--surface-color)]/90 backdrop-blur-md px-4 py-1 border border-[var(--border-color)] z-20">
-            <p class="text-[10px] tracking-[0.2em] uppercase text-[var(--primary-color)]">
-              Est. 2024
-            </p>
-          </div>
-
-          <div class="absolute inset-0 bg-[var(--primary-color)]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10"></div>
+<!-- Categories Section -->
+<section id="categories" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <span class="text-xs font-bold text-emerald-600 uppercase tracking-[0.3em]">Browse By</span>
+            <h2 class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mt-3">Our Categories</h2>
+            <p class="text-gray-600 mt-4 max-w-xl mx-auto">Find the perfect footwear for every occasion</p>
         </div>
 
-        <div class="pt-8 pb-4 text-center">
-          <h3 class="text-2xl font-serif text-[var(--primary-color)] group-hover:text-[var(--secondary-color)] transition-colors duration-500 mb-3">
-            {{ $category->name }}
-          </h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+            @php
+            $categories = [
+                ['name' => 'Sneakers', 'slug' => 'sneakers', 'count' => 25, 'image' => 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80', 'icon' => 'fa-running'],
+                ['name' => 'Formal Shoes', 'slug' => 'formal-shoes', 'count' => 18, 'image' => 'https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=600&q=80', 'icon' => 'fa-briefcase'],
+                ['name' => 'Sandals', 'slug' => 'sandals', 'count' => 15, 'image' => 'https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=600&q=80', 'icon' => 'fa-shoe-prints'],
+                ['name' => 'Loafers', 'slug' => 'loafers', 'count' => 12, 'image' => 'https://images.unsplash.com/photo-1533867617858-e7b97e060509?w=600&q=80', 'icon' => 'fa-walking'],
+                ['name' => 'Boots', 'slug' => 'boots', 'count' => 20, 'image' => 'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=600&q=80', 'icon' => 'fa-boot'],
+                ['name' => 'Slippers', 'slug' => 'slippers', 'count' => 10, 'image' => 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=600&q=80', 'icon' => 'fa-home'],
+            ];
+            @endphp
 
-          <p class="text-sm text-[var(--primary-color)] opacity-60 mb-6 px-4 line-clamp-2 italic">
-            {{ $category->description ?? 'Redefining the standards of modern luxury and craftsmanship.' }}
-          </p>
+            @foreach($categories as $category)
+            <a href="{{ route('product', ['category_id' => \App\Models\Category::where('slug', $category['slug'])->first()?->id]) }}" 
+               class="category-card group relative aspect-[4/5] rounded-2xl overflow-hidden">
+                <img src="{{ $category['image'] }}" 
+                     alt="{{ $category['name'] }}" 
+                     class="category-image absolute inset-0 w-full h-full object-cover transition-transform duration-500">
+                
+                <!-- Overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent"></div>
+                
+                <!-- Content -->
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-6">
+                    <div class="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4 group-hover:bg-emerald-500 group-hover:scale-110 transition-all duration-300">
+                        <i class="fas {{ $category['icon'] }} text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">{{ $category['name'] }}</h3>
+                    <span class="text-white/70 text-sm">{{ $category['count'] }} Products</span>
+                </div>
 
-          <div class="relative overflow-hidden inline-block">
-            <a href="{{ route('product', ['category_id' => $category->id]) }}"
-              class="inline-block text-[var(--primary-color)] text-xs uppercase tracking-[0.3em] font-bold py-2 group-hover:text-[var(--secondary-hover)] transition-colors">
-              View Collection
+                <!-- Hover Effect -->
+                <div class="absolute inset-0 border-2 border-transparent group-hover:border-emerald-500/50 rounded-2xl transition-all duration-300"></div>
             </a>
-            <div class="h-[1px] w-full bg-[var(--secondary-color)] transform translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500"></div>
-          </div>
+            @endforeach
         </div>
-
-        <div class="absolute bottom-0 left-0 w-0 h-0 border-b-2 border-l-2 border-[var(--secondary-color)] transition-all duration-500 group-hover:w-8 group-hover:h-8"></div>
-      </div> @endforeach
-    </div> </div>
+    </div>
 </section>
 
 <!-- Featured Products Section -->
-<section id="featured" class="py-16 bg-white">
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-12" data-aos="fade-up">
-      <div class="mb-8" data-aos="fade-down">
-        <div class="max-w-3xl mx-auto text-center mb-20" data-aos="fade-up">
-          <h2 class="text-4xl md:text-6xl font-serif text-[var(--primary-color)] mb-6 tracking-tight">
-            The <span class="italic text-[var(--secondary-color)]">Signature</span> Series
-          </h2>
-          <p class="text-[var(--primary-color)] opacity-70 uppercase tracking-[0.2em] text-sm font-medium">
-            Curated Excellence • Handcrafted Quality
-          </p>
-          <div class="mt-8 flex justify-center items-center gap-4">
-            <div class="h-[1px] w-12 bg-[var(--border-color)]"></div>
-            <div class="w-2 h-2 rotate-45 border border-[var(--secondary-color)]"></div>
-            <div class="h-[1px] w-12 bg-[var(--border-color)]"></div>
-          </div>
+<section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <span class="text-xs font-bold text-emerald-600 uppercase tracking-[0.3em]">Popular Picks</span>
+            <h2 class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mt-3">Trending Now</h2>
+            <p class="text-gray-600 mt-4 max-w-xl mx-auto">Our most loved styles by customers</p>
         </div>
 
-      </div>
+        @php
+        $featuredProducts = \App\Models\Product::where('is_top_selling', 1)
+            ->with('defaultImage')
+            ->take(4)
+            ->get();
+        @endphp
 
-      <div class="w-full px-4 lg:px-8 mx-auto">
-        <div class="products-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          @foreach($products as $product)
-          @include('user.partials.home-product-cards', ['product' => $product])
-          @endforeach
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            @foreach($featuredProducts as $product)
+            <a href="{{ route('product.detail', $product->id) }}" class="group">
+                <div class="relative aspect-square rounded-xl overflow-hidden mb-4 bg-gray-100">
+                    <img src="{{ $product->defaultImage ? asset('storage/app/public/' . $product->defaultImage->image_path) : 'https://placehold.co/400x400/f3f4f6/111827?text=Product' }}" 
+                         alt="{{ $product->name }}" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    
+                    @if($product->cut_price && $product->cut_price < $product->price)
+                    <span class="absolute top-3 left-3 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                        {{ round((($product->price - $product->cut_price) / $product->price) * 100) }}% OFF
+                    </span>
+                    @endif
+                </div>
+                <h3 class="font-medium text-gray-900 mb-1 group-hover:text-emerald-600 transition-colors">{{ $product->name }}</h3>
+                <div class="flex items-center gap-2">
+                    <span class="font-bold text-emerald-600">Rs.{{ number_format($product->cut_price ?? $product->price) }}</span>
+                    @if($product->cut_price)
+                    <span class="text-sm text-gray-400 line-through">Rs.{{ number_format($product->price) }}</span>
+                    @endif
+                </div>
+            </a>
+            @endforeach
         </div>
-      </div>
-      <div class="text-center mt-10" data-aos="fade-up">
-        <a href="/product" class="btn-primary px-8 py-3 rounded-lg font-medium text-lg">View All Products</a>
-      </div>
+
+        <div class="text-center mt-12">
+            <a href="{{ route('product') }}" class="inline-flex items-center gap-3 px-8 py-4 bg-gray-900 text-white font-semibold rounded-full hover:bg-emerald-600 transition-all duration-300">
+                <span>View All Products</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
     </div>
 </section>
 
+<!-- Why Shop With Us -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <span class="text-xs font-bold text-emerald-600 uppercase tracking-[0.3em]">Why Choose Us</span>
+            <h2 class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mt-3">The Footwear Premium Advantage</h2>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="text-center p-6">
+                <div class="w-16 h-16 mx-auto rounded-full bg-emerald-100 flex items-center justify-center mb-4">
+                    <i class="fas fa-shipping-fast text-2xl text-emerald-600"></i>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-2">Free Shipping</h3>
+                <p class="text-sm text-gray-500">On orders over Rs.5000</p>
+            </div>
+
+            <div class="text-center p-6">
+                <div class="w-16 h-16 mx-auto rounded-full bg-emerald-100 flex items-center justify-center mb-4">
+                    <i class="fas fa-undo text-2xl text-emerald-600"></i>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-2">Easy Returns</h3>
+                <p class="text-sm text-gray-500">30-day return policy</p>
+            </div>
+
+            <div class="text-center p-6">
+                <div class="w-16 h-16 mx-auto rounded-full bg-emerald-100 flex items-center justify-center mb-4">
+                    <i class="fas fa-shield-alt text-2xl text-emerald-600"></i>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-2">Secure Payment</h3>
+                <p class="text-sm text-gray-500">100% secure checkout</p>
+            </div>
+
+            <div class="text-center p-6">
+                <div class="w-16 h-16 mx-auto rounded-full bg-emerald-100 flex items-center justify-center mb-4">
+                    <i class="fas fa-headset text-2xl text-emerald-600"></i>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-2">24/7 Support</h3>
+                <p class="text-sm text-gray-500">Dedicated assistance</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="py-20 bg-gray-900">
+    <div class="container mx-auto px-4">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Stay Updated</h2>
+            <p class="text-white/70 mb-8">Subscribe to get the latest updates on new arrivals and exclusive offers.</p>
+            <form class="flex flex-col sm:flex-row gap-4">
+                <input type="email" 
+                       placeholder="Enter your email" 
+                       class="flex-1 px-6 py-4 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-emerald-500">
+                <button type="submit" 
+                        class="px-8 py-4 bg-emerald-500 text-white font-semibold rounded-full hover:bg-emerald-600 transition-all duration-300">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
 
 @endsection
-
-
-@push("script")
-
-<script>
-  // Initialize AOS (Animate On Scroll)
-  document.addEventListener('DOMContentLoaded', function() {
-    AOS.init({
-      duration: 800,
-      easing: 'ease-in-out',
-      once: true
-    });
-
-    // Mobile menu toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
-
-    // Category filtering functionality
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const categoryCards = document.querySelectorAll('.category-card');
-
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Update active button
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        const filterValue = button.getAttribute('data-filter');
-
-        // Filter category cards
-        categoryCards.forEach(card => {
-          if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-            card.style.display = 'block';
-            // Add animation
-            card.style.animation = 'fadeIn 0.5s ease forwards';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    // Theme color changer
-    const colorOptions = document.querySelectorAll('.color-option');
-
-    colorOptions.forEach(option => {
-      option.addEventListener('click', () => {
-        // Update active color
-        colorOptions.forEach(opt => opt.classList.remove('active'));
-        option.classList.add('active');
-
-        // Get the selected color
-        const newColor = option.getAttribute('data-color');
-
-        // Update CSS variables
-        document.documentElement.style.setProperty('--primary-color', newColor);
-
-        // Calculate secondary color (darker shade)
-        const secondaryColor = shadeColor(newColor, -20);
-        document.documentElement.style.setProperty('--secondary-color', secondaryColor);
-      });
-    });
-
-    // Helper function to shade colors
-    function shadeColor(color, percent) {
-      let R = parseInt(color.substring(1, 3), 16);
-      let G = parseInt(color.substring(3, 5), 16);
-      let B = parseInt(color.substring(5, 7), 16);
-
-      R = parseInt(R * (100 + percent) / 100);
-      G = parseInt(G * (100 + percent) / 100);
-      B = parseInt(B * (100 + percent) / 100);
-
-      R = (R < 255) ? R : 255;
-      G = (G < 255) ? G : 255;
-      B = (B < 255) ? B : 255;
-
-      const RR = ((R.toString(16).length == 1) ? "0" + R.toString(16) : R.toString(16));
-      const GG = ((G.toString(16).length == 1) ? "0" + G.toString(16) : G.toString(16));
-      const BB = ((B.toString(16).length == 1) ? "0" + B.toString(16) : B.toString(16));
-
-      return "#" + RR + GG + BB;
-    }
-  });
-</script>
-@endpush
